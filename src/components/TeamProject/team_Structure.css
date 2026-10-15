@@ -1,4 +1,7 @@
 .team-structure-image-slot { overflow: hidden; }
+.team-design-direction .team-additional-image { background: #fff; }
+.team-direction-image { position: absolute; top: -10.2%; left: -18.2%; width: 131%; height: 121%; max-width: none; object-fit: fill; }
+.team-design-direction--mind-map .team-direction-image { top: -1%; left: -10%; width: 120%; height: 100%; }
 .team-design-direction .team-additional-image, .team-screen-design .team-additional-image { background: #d9d9d9; }
 .team-design-direction .team-structure-menu li { width: 59px; }
 .team-design-direction .team-structure-menu li:nth-child(2) { width: 120px; }

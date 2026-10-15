@@ -1,5 +1,10 @@
 import { loadProjectImage } from './loadProjectImage.js';
 
+const directionImages = {
+    MOODBOARD: new URL('./assets/moodboard.png', import.meta.url).href,
+    'DESIGN MIND MAP': new URL('./assets/design-mind-map.png', import.meta.url).href,
+};
+
 const views = {
     minutes: { src: new URL('./assets/meeting-minutes-source.png', import.meta.url).href, title: 'MEETING MINUTES' },
     menu: { src: new URL('./assets/menu-tree.png', import.meta.url).href, title: 'MENU TREE' },
@@ -9,6 +14,12 @@ const views = {
 export function initStructure() {
     document.querySelectorAll('[data-design-title]').forEach(button => button.addEventListener('click', () => {
         const panel = button.closest('.team-additional');
+        const directionImage = panel.querySelector('.team-direction-image');
+        if (directionImage && directionImages[button.dataset.designTitle]) {
+            panel.classList.toggle('team-design-direction--mind-map', button.dataset.designTitle === 'DESIGN MIND MAP');
+            loadProjectImage(directionImage, directionImages[button.dataset.designTitle]);
+            directionImage.alt = button.querySelector('span').textContent;
+        }
         panel.querySelector('.team-additional-subtitle').textContent = button.dataset.designTitle;
         panel.querySelector('h2').textContent = panel.classList.contains('team-design-direction')
             ? '디자인 방향 설정'
