@@ -1,6 +1,8 @@
 import { loadProjectImage } from './loadProjectImage.js';
 
 const directionImages = {
+    WIREFRAME: new URL('./assets/wireframe.png', import.meta.url).href,
+    'DESIGN SYSTEM': new URL('./assets/design-system.png', import.meta.url).href,
     MOODBOARD: new URL('./assets/moodboard.png', import.meta.url).href,
     'DESIGN MIND MAP': new URL('./assets/design-mind-map.png', import.meta.url).href,
 };
@@ -14,9 +16,10 @@ const views = {
 export function initStructure() {
     document.querySelectorAll('[data-design-title]').forEach(button => button.addEventListener('click', () => {
         const panel = button.closest('.team-additional');
-        const directionImage = panel.querySelector('.team-direction-image');
+        const directionImage = panel.querySelector('.team-direction-image, .team-screen-image');
         if (directionImage && directionImages[button.dataset.designTitle]) {
             panel.classList.toggle('team-design-direction--mind-map', button.dataset.designTitle === 'DESIGN MIND MAP');
+            panel.classList.toggle('team-screen-design--system', button.dataset.designTitle === 'DESIGN SYSTEM');
             loadProjectImage(directionImage, directionImages[button.dataset.designTitle]);
             directionImage.alt = button.querySelector('span').textContent;
         }
