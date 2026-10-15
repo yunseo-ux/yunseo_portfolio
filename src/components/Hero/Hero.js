@@ -1,4 +1,4 @@
-import { initHeroDoodle } from './HeroDoodle.js';
+import { initHeroOcean } from './HeroOcean.js';
 
 export function initHero() {
     document.querySelector('.hero-menu a[href="#home"]').addEventListener('click', event => {
@@ -6,5 +6,5 @@ export function initHero() {
         window.scrollTo({ top: 0, behavior: 'smooth' });
         window.history.replaceState(null, '', '#home');
     });
-    initHeroDoodle();
+    initHeroOcean();
 }

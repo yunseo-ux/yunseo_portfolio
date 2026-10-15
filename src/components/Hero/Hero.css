@@ -16,11 +16,6 @@
     font-family: 'Ownglyph PDH', sans-serif;
     text-transform: uppercase;
 }
-.hero-doodle { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; touch-action: pan-y; user-select: none; }
-.hero-doodle-controls { position: absolute; z-index: 5; right: 3%; top: 69%; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 12px; width: 260px; color: #4f718d; font-size: 18px; white-space: nowrap; }
-.hero-doodle-controls button { padding: 3px 12px; border: 1px solid #4f718d; border-radius: 12px; color: inherit; background: #dce5eb; }
-.hero-doodle-controls button:disabled { opacity: .4; }
-@media (max-width: 600px) { .hero-doodle-controls { display: none; } }
 .hero-header {
     cursor: url('./assets/pencil-cursor.svg') 3 29, pointer;
     position: fixed;
@@ -157,6 +152,31 @@
 }
 .hero-wave img {
     max-width: none;
+}
+.hero-ocean .hero-wave {
+    z-index: 4;
+    top: auto;
+    bottom: -1px;
+    left: 0;
+    width: 100%;
+    height: clamp(110px, 14cqw, 300px);
+    scale: none;
+    transform: translateY(var(--ocean-rise, 0px));
+    pointer-events: none;
+    will-change: transform;
+}
+.hero-ocean .hero-wave svg { display: block; width: 100%; height: 100%; }
+.hero-ocean .hero-wave::after {
+    position: absolute;
+    top: calc(100% - 1px);
+    left: 0;
+    width: 100%;
+    height: 100vh;
+    content: '';
+    background: #faf8f3;
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero-ocean .hero-wave { will-change: auto; }
 }
 @media (max-width: 600px) {
     .portfolio-hero {

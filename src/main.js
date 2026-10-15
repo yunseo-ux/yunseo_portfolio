@@ -5,6 +5,7 @@ import { initCloneCoding } from './components/CloneCoding/CloneCoding.js';
 import { initTeamProjectSlogan } from './components/TeamProject/TeamProjectSlogan.js';
 import { initDrawingReveal } from './drawingReveal.js';
 import { loadSections } from './sections.js';
+import { initChatbot } from './components/Chatbot/Chatbot.js';
 
 async function start() {
     const root = document.querySelector('#root');
@@ -17,7 +18,7 @@ async function start() {
         root.replaceChildren(message);
         return;
     }
-    for (const initialize of [initHero, initTeamProject, initApproach, initTeamProjectSlogan, initDrawingReveal, initCloneCoding]) {
+    for (const initialize of [initHero, initTeamProject, initApproach, initTeamProjectSlogan, initDrawingReveal, initCloneCoding, initChatbot]) {
         try {
             initialize();
         } catch (error) {

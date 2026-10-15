@@ -1,5 +1,5 @@
 const targets = [
-    '.hero-title > span', '.hero-pen', '.intro-heading > span', '.intro-copy',
+    '.hero-pen', '.intro-heading > span', '.intro-copy',
     '.intro-process', '.introduction-art', '.introduction-content h2', '.introduction-content p',
     '.team-project-slogan h2', '.team-project-slogan-label', '.team-project-slogan-character',
     '.team-project-slogan-line', '.team-project-slogan-star',
@@ -75,7 +75,7 @@ export function initDrawingReveal() {
             element.classList.add('drawing-reveal-pending');
             return;
         }
-        if (element.matches('.software-skills-tools > li, .hero-title > span, .intro-heading > span')) {
+        if (element.matches('.software-skills-tools > li, .intro-heading > span')) {
             element.dataset.drawingDelay = String([...element.parentElement.children].indexOf(element) * 100);
         }
         element.classList.add('drawing-reveal-pending');
@@ -194,6 +194,45 @@ function initIntroScroll(preference) {
         element.style.clipPath = p === 0 ? 'inset(0 100% 0 0)' : `polygon(0 0, ${Math.min(100, p * 200)}% 0, 100% ${Math.max(0, p * 200 - 100)}%, ${Math.max(0, p * 200 - 100)}% 100%, 0 ${Math.min(100, p * 200)}%)`;
     };
     let frame = 0;
+    let headingAnimating = false;
+    let lastWheelTime = -Infinity;
+    let headingGesture = false;
+    const headingStops = [0, 550, 1150, 1750];
+    window.addEventListener('wheel', event => {
+        if (event.target.closest('.portfolio-chatbot')) return;
+        if (preference.matches || event.ctrlKey || !event.deltaY || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
+        const now = performance.now();
+        const sameGesture = now - lastWheelTime < 140;
+        lastWheelTime = now;
+        if (headingAnimating || (headingGesture && sameGesture)) {
+            event.preventDefault();
+            return;
+        }
+        headingGesture = false;
+        const vertical = Math.max(0, section.offsetHeight - window.innerHeight);
+        const start = wrapper.getBoundingClientRect().top + window.scrollY + vertical;
+        const range = Math.max(1, wrapper.offsetHeight - section.offsetHeight - vertical);
+        const timeline = (window.scrollY - start) / range * 4500;
+        if (timeline < -1 || timeline > 1751) return;
+        const next = event.deltaY > 0
+            ? headingStops.find(stop => stop > timeline + 1)
+            : [...headingStops].reverse().find(stop => stop < timeline - 1);
+        if (next === undefined) return;
+        event.preventDefault();
+        headingGesture = true;
+        headingAnimating = true;
+        const from = window.scrollY;
+        const to = start + next / 4500 * range;
+        const started = performance.now();
+        const animate = time => {
+            const progress = clamp((time - started) / 350);
+            const eased = 1 - (1 - progress) ** 3;
+            window.scrollTo({ top: from + (to - from) * eased, behavior: 'instant' });
+            if (progress < 1) requestAnimationFrame(animate);
+            else headingAnimating = false;
+        };
+        requestAnimationFrame(animate);
+    }, { passive: false });
     const update = () => {
         frame = 0;
         if (preference.matches) {
@@ -205,9 +244,9 @@ function initIntroScroll(preference) {
         const distance = wrapper.offsetHeight - section.offsetHeight;
         const progress = clamp((-wrapper.getBoundingClientRect().top - vertical) / Math.max(1, distance - vertical));
         const timeline = progress * 4500;
-        const lineStarts = [0, 420, 1050];
+        const lineStarts = [0, 600, 1200];
         lines.forEach((line, index) => {
-            const local = clamp((timeline - lineStarts[index]) / 350);
+            const local = clamp((timeline - lineStarts[index]) / 550);
             const stepped = Math.floor(local * 12) / 12;
             line.style.clipPath = `inset(0 ${(1 - stepped) * 100}% 0 0)`;
         });

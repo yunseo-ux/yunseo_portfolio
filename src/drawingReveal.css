@@ -3,7 +3,7 @@
 .introduction-scroll-track > .introduction { position: sticky; top: 0; }
 @media (max-width: 600px) { .introduction-scroll-track { height: calc(100svh + 2100px); margin-top: 90px; } }
 @media (prefers-reduced-motion: reduce) { .introduction-scroll-track { height: auto; } .introduction-scroll-track > .introduction { position: relative; top: 0 !important; } }
-.intro-scroll-track { position: relative; height: calc(100svh + 7000px); background: #faf8f3; }
+.intro-scroll-track { position: relative; height: calc(100svh + 3500px); background: #faf8f3; }
 .intro-scroll-track > .portfolio-intro { position: sticky; top: 0; height: 100svh; min-height: 0; aspect-ratio: auto; }
 .intro-scroll-main { position: absolute; left: 50%; top: 50%; transform: translate(-50%, -50%); width: max-content; max-width: 96%; }
 .intro-scroll-main .intro-heading-wrap { position: relative; inset: auto; width: max-content; margin: auto; }
