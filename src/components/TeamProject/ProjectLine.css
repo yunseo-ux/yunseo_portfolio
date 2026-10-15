@@ -1,0 +1,5 @@
+.project-light { position: absolute; z-index: 0; top: 495px; left: 0; width: 100%; height: 280px; overflow: visible; pointer-events: none; }
+.project-light path { fill: none; stroke-linecap: round; stroke-linejoin: round; }
+.project-light-line { stroke: #7895a7; stroke-width: 7px; opacity: .25; stroke-dasharray: 1000; stroke-dashoffset: var(--line-offset, 1000); }
+.project-light-pencil { stroke: #7895a7; stroke-width: 1px; opacity: .16; stroke-dasharray: 1000; stroke-dashoffset: var(--line-offset, 1000); }
+.team-project-canvas, .team-background-canvas, .team-research-canvas, .team-placeholder-canvas { z-index: 1; }

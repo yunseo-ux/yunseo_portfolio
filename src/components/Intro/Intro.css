@@ -1,0 +1,132 @@
+@font-face {
+    font-family: 'Ownglyph Yuntaeng';
+    src: url('./assets/OwnglyphYuntaeng.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+.portfolio-intro {
+    position: relative;
+    container-type: inline-size;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    color: #354858;
+    background: #faf8f3;
+    font-family: 'Ownglyph PDH', sans-serif;
+}
+
+.intro-heading-wrap {
+    position: absolute;
+    inset: 0;
+}
+
+.intro-heading {
+    margin: 0;
+    font-size: 5.2083cqw;
+    font-weight: 400;
+    line-height: normal;
+    white-space: nowrap;
+    text-transform: uppercase;
+}
+
+.intro-heading span {
+    position: absolute;
+}
+
+.intro-heading span:nth-child(1) { top: 11.875cqw; left: 37.0313cqw; }
+.intro-heading span:nth-child(2) { top: 17.7604cqw; left: 35.5208cqw; }
+.intro-heading span:nth-child(3) { top: 23.6458cqw; left: 41.3021cqw; }
+
+.intro-sparkles {
+    position: absolute;
+    top: 10.9375cqw;
+    left: 34.1667cqw;
+    width: 2.25cqw;
+    height: 2.1cqw;
+    transform-origin: top left;
+    scale: calc(100cqw / 1920px);
+}
+
+.intro-sparkle-large,
+.intro-sparkle-small {
+    position: absolute;
+    max-width: none;
+    transform-origin: center;
+}
+
+.intro-sparkle-large { top: 0; left: 0; transform: rotate(3.51deg); }
+.intro-sparkle-small { top: 1.0031cqw; left: 1.576cqw; transform: rotate(176.49deg) scaleY(-1); }
+
+.intro-copy-wrap {
+    position: absolute;
+    top: 31.25cqw;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+}
+
+.intro-copy {
+    position: relative;
+    z-index: 1;
+    margin: 0;
+    color: #4f718d;
+    font-family: 'Ownglyph Yuntaeng', sans-serif;
+    font-size: 38px;
+    font-weight: 400;
+    line-height: 1.3;
+    text-align: center;
+}
+
+.intro-highlighter {
+    position: absolute;
+    z-index: 0;
+    top: calc(5.493cqw - 10px);
+    left: 50%;
+    max-width: none;
+    transform: translateX(-50%);
+    scale: calc(100cqw / 1920px);
+}
+.intro-highlight-text { position: relative; display: inline-block; isolation: isolate; }
+.intro-highlight-text .intro-highlighter { z-index: 0; top: 50%; left: 50%; width: calc(100% + 16px); height: auto; transform: translate(-50%, -50%); scale: none; pointer-events: none; }
+.intro-highlight-label { position: relative; z-index: 1; }
+
+.intro-divider {
+    position: absolute;
+    top: 42.1063cqw;
+    left: 49.9073cqw;
+    max-width: none;
+    transform-origin: top left;
+    scale: calc(100cqw / 1920px);
+}
+
+.intro-process {
+    position: absolute;
+    top: 49.1146cqw;
+    left: 37.2396cqw;
+    display: flex;
+    align-items: center;
+    gap: 2.0833cqw;
+    margin: 0;
+    color: #6c869b;
+    font-size: 1.25cqw;
+    line-height: normal;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .portfolio-intro { aspect-ratio: auto; min-height: 100svh; }
+    .intro-heading-wrap { top: 16%; }
+    .intro-heading { font-size: 11cqw; }
+    .intro-heading span:nth-child(1) { top: 0; left: 21cqw; }
+    .intro-heading span:nth-child(2) { top: 13cqw; left: 15cqw; }
+    .intro-heading span:nth-child(3) { top: 26cqw; left: 31cqw; }
+    .intro-sparkles { top: -3cqw; left: 13cqw; scale: .8; }
+    .intro-copy-wrap { top: 52%; width: 92%; }
+    .intro-copy { font-size: 5.3cqw; }
+    .intro-highlighter { top: 13cqw; transform: translateX(-50%) scale(.7); }
+    .intro-divider { top: 72%; left: 50%; transform: translateX(-50%); }
+    .intro-process { top: 88%; left: 50%; gap: 4cqw; font-size: 3.8cqw; transform: translateX(-50%); }
+}

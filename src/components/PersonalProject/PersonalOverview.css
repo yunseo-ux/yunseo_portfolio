@@ -1,0 +1,40 @@
+.personal-overview { background: #faf8f3; container-type: inline-size; }
+.personal-overview-canvas { position: relative; width: min(100%, 1920px); aspect-ratio: 1920 / 1080; margin: auto; color: #354858; font-family: 'Ownglyph Yuntaeng', sans-serif; }
+.personal-overview-canvas p, .personal-overview-canvas h2, .personal-overview-canvas h3 { position: absolute; margin: 0; font-weight: 400; }
+.personal-overview-page { left: 56.927083%; top: 20.648148%; font-size: min(1.666667cqw, 32px); }
+.personal-overview-page span { color: #4f718d; font-size: min(1.458333cqw, 28px); }
+.personal-overview-canvas h2 { left: 56.927083%; top: 25.092593%; font-size: min(2.5cqw, 48px); white-space: nowrap; }
+.personal-overview-link { position: absolute; top: 32.037037%; left: 57.239583%; width: 5.78125%; height: 3.148148%; color: #354858; font-family: 'Ownglyph PDH', sans-serif; font-size: min(1.041667cqw, 20px); text-decoration: none; }
+.personal-overview-pen { position: absolute; top: 0; left: 0; transform: rotate(-162.05deg) scaleY(-1); }
+.personal-overview-link span { position: absolute; left: 26.126126%; top: 8.823529%; }
+.personal-overview-underline { position: absolute; left: 26.126126%; top: 81%; }
+.personal-overview-link:hover span { animation: research-label-writing 650ms steps(7, end) both; }
+.personal-overview-link:hover .personal-overview-underline { animation: research-label-writing 650ms ease both; }
+.personal-overview-canvas h3 { left: 56.927083%; font-family: 'Ownglyph PDH', sans-serif; font-size: min(1.041667cqw, 20px); }
+.personal-overview-brief-label { top: 43.425926%; }
+.personal-overview-contribution-label { top: 72.12963%; }
+.personal-overview-brief, .personal-overview-direction { left: 56.927083%; color: #4f718d; font-size: min(1.302083cqw, 25px); line-height: 1.4; white-space: nowrap; }
+.personal-overview-brief { top: 46.296296%; }
+.personal-overview-direction { top: 62.222222%; }
+.personal-overview-contribution { position: absolute; left: 56.979167%; top: 75%; display: flex; gap: min(4cqw, 77px); margin: 0; padding: 0; list-style: none; color: #4f718d; font-size: min(1.302083cqw, 25px); line-height: 1.4; white-space: nowrap; }
+.personal-overview-highlight { position: absolute; }
+.personal-overview-highlight--1 { top: 46.574074%; left: 56.5625%; }
+.personal-overview-highlight--2 { top: 62.175926%; left: 71.328125%; }
+.personal-overview-highlight--3 { top: 65.185185%; left: 60.208333%; }
+.personal-overview-visual { top: 29.351852%; left: 6.25%; width: 47.604167%; height: 51.759259%; }
+.personal-overview-visual .team-project-laptop-lid { top: 2.146691%; left: 7.111597%; width: 85.776805%; height: 88.908766%; padding: 1.31291% 1.203501% 2.407002%; }
+.personal-overview-visual .team-project-laptop-base { top: 91.055456%; width: 100%; height: 5.724508%; }
+.personal-overview-screen { display: block; width: 100%; height: auto; }
+.personal-website-button { position: absolute; top: 32.037037%; left: 57.239583%; padding: 0; border: 0; background: transparent; text-align: left; }
+.personal-overview .personal-website-button:hover,
+.personal-overview .personal-website-button:focus-visible { color: #354858; }
+.personal-overview .personal-website-button:hover span,
+.personal-overview .personal-website-button:focus-visible span,
+.personal-overview .personal-website-button:hover .team-project-link-line,
+.personal-overview .personal-website-button:focus-visible .team-project-link-line { animation: none; }
+.personal-overview--03 .personal-overview-direction,
+.personal-overview--04 .personal-overview-direction { top: 59.259259%; }
+.personal-overview--03 .personal-overview-highlight--2 { top: 58.981481%; left: 72.03125%; }
+.personal-overview--03 .personal-overview-highlight--3 { top: 62.361111%; left: 65.703125%; }
+.personal-overview--04 .personal-overview-highlight--2 { top: 59.12037%; left: 72.369792%; }
+.personal-overview--04 .personal-overview-highlight--3 { top: 62.222222%; left: 60.208333%; }

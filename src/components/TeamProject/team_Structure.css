@@ -1,0 +1,21 @@
+.team-structure-image-slot { overflow: hidden; }
+.team-design-direction .team-additional-image, .team-screen-design .team-additional-image { background: #d9d9d9; }
+.team-design-direction .team-structure-menu li { width: 59px; }
+.team-design-direction .team-structure-menu li:nth-child(2) { width: 120px; }
+.team-screen-design .team-structure-menu li { width: 96px; }
+.team-screen-design .team-structure-menu li:nth-child(2) { width: 97px; }
+.team-structure-image { position: absolute; inset: 0; display: block; width: 100%; height: 100%; max-width: none; object-fit: cover; }
+.team-structure--menu .team-structure-image { top: -14.8%; left: -18.2%; width: 170%; height: 135%; object-fit: fill; }
+.team-structure--flow .team-structure-image { top: -7.42%; left: -6.72%; width: 111.45%; height: 168.99%; object-fit: fill; }
+.team-structure-menu { position: absolute; top: 528px; left: 1137px; display: flex; align-items: center; gap: 27px; margin: 0; padding: 0; list-style: none; }
+.team-structure-menu li { width: 55px; height: 22px; }
+.team-structure-menu li:nth-child(2) { width: 67px; }
+.team-structure-menu li:nth-child(3) { width: 115px; }
+.team-structure-menu li:nth-child(4) { width: 113px; }
+.team-structure-menu button { position: relative; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; color: #354858; font-family: 'Ownglyph Yuntaeng', sans-serif; }
+.team-structure-menu button img { position: absolute; top: 3px; left: 1px; transform: rotate(-162.05deg) scaleY(-1); }
+.team-structure-menu button span { position: absolute; top: -2px; left: 18px; font-size: 21px; line-height: normal; white-space: nowrap; }
+.team-structure-menu button:hover span, .team-structure-menu button:focus-visible span { animation: research-label-writing 650ms steps(5, end) both; }
+.team-structure-menu button:focus-visible { outline: 2px solid #4f718d; outline-offset: 5px; }
+.team-structure-copy { position: absolute; top: 686px; left: 1137px; margin: 0; color: #4f718d; font-size: 25px; line-height: 1.4; white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) { .team-structure-menu button:hover span, .team-structure-menu button:focus-visible span { animation: none; } }

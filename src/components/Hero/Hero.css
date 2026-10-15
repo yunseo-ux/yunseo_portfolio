@@ -1,0 +1,194 @@
+﻿@font-face {
+    font-family: 'Ownglyph PDH';
+    src: url('./assets/Ownglyph_PDH.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+.portfolio-hero {
+    position: relative;
+    container-type: inline-size;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    color: #354858;
+    background: #dce5eb;
+    font-family: 'Ownglyph PDH', sans-serif;
+    text-transform: uppercase;
+}
+.hero-doodle { position: absolute; inset: 0; z-index: 3; width: 100%; height: 100%; touch-action: pan-y; user-select: none; }
+.hero-doodle-controls { position: absolute; z-index: 5; right: 3%; top: 69%; display: flex; flex-direction: column; align-items: flex-end; justify-content: center; gap: 12px; width: 260px; color: #4f718d; font-size: 18px; white-space: nowrap; }
+.hero-doodle-controls button { padding: 3px 12px; border: 1px solid #4f718d; border-radius: 12px; color: inherit; background: #dce5eb; }
+.hero-doodle-controls button:disabled { opacity: .4; }
+@media (max-width: 600px) { .hero-doodle-controls { display: none; } }
+.hero-header {
+    cursor: url('./assets/pencil-cursor.svg') 3 29, pointer;
+    position: fixed;
+    z-index: 10;
+    top: 0;
+    left: 0;
+    display: flex;
+    width: 100%;
+    justify-content: space-between;
+    align-items: center;
+    padding: 2.1875% 5.7292% 0;
+    font-size: 1.25cqw;
+    line-height: normal;
+}
+.hero-header a {
+    color: inherit;
+    text-decoration: none;
+}
+.hero-header a:hover {
+    text-decoration: none;
+    cursor: url('./assets/pencil-cursor.svg') 3 29, pointer;
+}
+.hero-header a:focus-visible {
+    outline: 2px solid currentColor;
+    outline-offset: 6px;
+}
+.hero-menu {
+    display: flex;
+    align-items: center;
+    gap: 1.6146cqw;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+
+.hero-menu a,
+.hero-menu span {
+    position: relative;
+    display: inline-block;
+}
+
+.hero-menu li:hover > a,
+.hero-menu li:hover > span {
+    animation: header-type .45s steps(12, end) both;
+}
+
+.hero-menu li:hover > a::after,
+.hero-menu li:hover > span::after {
+    position: absolute;
+    top: 10%;
+    right: -.18em;
+    width: 1px;
+    height: .9em;
+    content: '';
+    background: currentColor;
+    animation: header-caret .45s steps(1, end) both;
+}
+
+@keyframes header-type {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0); }
+}
+
+@keyframes header-caret {
+    0%, 100% { opacity: 0; }
+    25%, 75% { opacity: 1; }
+}
+.hero-intro {
+    position: absolute;
+    z-index: 4;
+    pointer-events: none;
+    top: 24.7222%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: max-content;
+}
+.hero-title {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin: 0;
+    font-size: 6.6667cqw;
+    font-weight: 400;
+    line-height: 1.125;
+    white-space: nowrap;
+}
+/* Preserve SVG dimensions and scale the decorative wrappers with the canvas. */
+.hero-pen {
+    position: absolute;
+    top: -0.3646cqw;
+    left: 2.3958cqw;
+    width: 120px;
+    height: 100px;
+    transform-origin: top left;
+    scale: calc(100cqw / 1920px);
+}
+.hero-pen-box {
+    position: absolute;
+    top: 0;
+    left: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 61.714px;
+    height: 61.714px;
+}
+.hero-pen-rotation {
+    flex: none;
+    transform: rotate(-162.05deg) scaleY(-1);
+}
+.hero-pen-icon {
+    display: block;
+    width: 49px;
+    height: 49px;
+}
+.hero-pen-line {
+    position: absolute;
+    left: 46px;
+    top: 62px;
+    transform: rotate(27.73deg);
+    transform-origin: center;
+}
+.hero-pen img {
+    max-width: none;
+}
+.hero-wave {
+    position: absolute;
+    top: 78.7963%;
+    left: -2.2068%;
+    width: 1981.74px;
+    height: 237.909px;
+    transform-origin: top left;
+    scale: calc(100cqw / 1920px);
+}
+.hero-wave img {
+    max-width: none;
+}
+@media (max-width: 600px) {
+    .portfolio-hero {
+        aspect-ratio: auto;
+        min-height: 100svh;
+    }
+    .hero-header {
+        padding: 28px 6% 0;
+        flex-wrap: wrap;
+        gap: 24px;
+        font-size: 19px;
+    }
+    .hero-menu {
+        gap: 20px;
+        font-size: 17px;
+        flex-wrap: wrap;
+    }
+    .hero-intro {
+        top: 36%;
+    }
+    .hero-title {
+        font-size: 12cqw;
+        line-height: 1.2;
+    }
+    .hero-pen {
+        left: -5cqw;
+        top: -5cqw;
+        scale: 0.6;
+    }
+    .hero-wave {
+        top: auto;
+        bottom: 0;
+        height: 12.3911cqw;
+    }
+}

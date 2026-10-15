@@ -1,0 +1,6 @@
+.team-background-canvas,
+.team-research-canvas,
+.team-placeholder-canvas,
+.team-additional-canvas { isolation: isolate; }
+.project-pencil-line { position: absolute; inset: 0; width: 1920px; height: 1080px; z-index: -1; overflow: hidden; pointer-events: none; }
+.project-pencil-line path { fill: none; stroke: #6f8b9c; stroke-linecap: round; stroke-linejoin: round; }

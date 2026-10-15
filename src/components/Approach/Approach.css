@@ -1,0 +1,215 @@
+.approach {
+    position: relative;
+    container-type: inline-size;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    background: #faf8f3;
+    font-family: 'Ownglyph PDH', sans-serif;
+}
+
+.approach-canvas {
+    position: absolute;
+    inset: 0 auto auto 0;
+    width: 1920px;
+    height: 1080px;
+    transform-origin: top left;
+    scale: calc(100cqw / 1920px);
+}
+
+.approach-card {
+    position: absolute;
+}
+.approach-drawing-content { position: absolute; inset: 0; }
+.approach.approach-pinned { height: 340vh; aspect-ratio: auto; overflow: visible; }
+.approach-pin-viewport { position: sticky; top: 0; height: 100vh; width: 100%; overflow: hidden; }
+.approach-animated .approach-card { opacity: 0; translate: 0 24px; }
+.approach-animated .approach-drawing-content { clip-path: none; }
+.approach-animated .approach-card--draw { animation: approach-paper-appear 450ms ease-out var(--card-delay) forwards, approach-pencil-fill 1600ms ease-in-out var(--card-delay) both; }
+@keyframes approach-paper-appear { to { opacity: 1; translate: 0 0; } }
+@keyframes approach-pencil-fill {
+    0% { clip-path: polygon(0 0, 0 0, 0 0, 0 0, 0 0); }
+    45% { clip-path: polygon(0 0, 100% 0, 100% 0, 0 100%, 0 100%); }
+    100% { clip-path: polygon(0 0, 100% 0, 100% 100%, 100% 100%, 0 100%); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .approach-animated .approach-card { opacity: 1; translate: none; animation: none; }
+    .approach-animated .approach-drawing-content { clip-path: none; animation: none; }
+}
+
+.approach-sheet {
+    position: absolute;
+    color: #354858;
+    background: #ffffff;
+    transform-origin: center;
+}
+
+.approach-card--observe {
+    top: 227px;
+    left: 128px;
+    width: 584px;
+    height: 694px;
+}
+.approach-card--observe .approach-sheet {
+    top: 38px;
+    left: 44px;
+    width: 496.561px;
+    height: 622.266px;
+    transform: rotate(-8.48deg);
+    box-shadow: -2px 2px 7.4px rgba(0, 0, 0, 0.11);
+}
+.approach-card--observe .approach-tape {
+    top: 0;
+    left: 171px;
+    transform: rotate(4.14deg);
+}
+
+.approach-card--explore {
+    top: 192px;
+    left: 704px;
+    width: 511px;
+    height: 684px;
+}
+.approach-card--explore .approach-sheet {
+    top: 40px;
+    left: 0;
+    width: 511px;
+    height: 644px;
+    box-shadow: 0 5px 12px rgba(105, 96, 89, 0.22), 0 2px 4px rgba(53, 72, 88, 0.08);
+}
+.approach-card--explore .approach-tape {
+    top: 0;
+    left: 172px;
+    transform: rotate(3.56deg);
+}
+
+.approach-card--create {
+    top: 236px;
+    left: 1207px;
+    width: 557px;
+    height: 665px;
+}
+.approach-card--create .approach-sheet {
+    top: 35px;
+    left: 37px;
+    width: 482.973px;
+    height: 601.685px;
+    transform: rotate(7.32deg);
+    box-shadow: 0 4px 9.1px rgba(0, 0, 0, 0.1);
+}
+.approach-card--create .approach-tape {
+    top: 0;
+    left: 246px;
+}
+
+.approach-tape {
+    position: absolute;
+    z-index: 2;
+    max-width: none;
+    transform-origin: center;
+}
+
+.approach-number,
+.approach-sheet h2,
+.approach-description {
+    position: absolute;
+    left: 50%;
+    width: max-content;
+    margin: 0;
+    transform: translateX(-50%);
+    font-weight: 400;
+    line-height: 1.1;
+    letter-spacing: 2px;
+    text-align: center;
+}
+
+.approach-number {
+    top: 74px;
+    color: #4f718d;
+    font-size: 45px;
+}
+.approach-sheet h2 {
+    top: 128px;
+    font-size: 48px;
+    text-transform: uppercase;
+}
+.approach-image {
+    position: absolute;
+    top: 190px;
+    left: 50%;
+    width: 227px;
+    height: 227px;
+    max-width: none;
+    transform: translateX(-50%);
+    object-fit: cover;
+    opacity: 0.15;
+}
+.approach-description {
+    top: 385px;
+    color: #4f718d;
+    font-size: 30px;
+}
+.approach-description span {
+    display: block;
+}
+
+.approach-card--observe .approach-image {
+    top: 175px;
+}
+.approach-card--observe .approach-description {
+    top: 408px;
+}
+
+.approach-card--explore .approach-number {
+    top: 82px;
+}
+.approach-card--explore .approach-sheet h2 {
+    top: 140px;
+}
+.approach-card--explore .approach-image {
+    top: 176px;
+    width: 273px;
+    height: 273px;
+}
+.approach-card--explore .approach-description {
+    top: 415px;
+}
+.approach-card--create .approach-number {
+    top: 74px;
+}
+.approach-card--create .approach-sheet h2 {
+    top: 128px;
+}
+.approach-card--create .approach-image {
+    top: 176px;
+}
+.approach-card--create .approach-description {
+    top: 395px;
+}
+
+@media (max-width: 600px) {
+    .approach {
+        min-height: 260svh;
+        aspect-ratio: auto;
+        overflow: hidden;
+    }
+    .approach-canvas {
+        left: 50%;
+        width: 1920px;
+        height: 3240px;
+        transform: translateX(-50%);
+        scale: 0.52;
+    }
+    .approach-card--observe {
+        top: 180px;
+        left: 668px;
+    }
+    .approach-card--explore {
+        top: 1030px;
+        left: 704px;
+    }
+    .approach-card--create {
+        top: 1880px;
+        left: 681px;
+    }
+}

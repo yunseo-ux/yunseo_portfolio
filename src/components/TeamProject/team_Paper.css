@@ -1,0 +1,41 @@
+.team-paper-frame > .team-background-placeholder,
+.team-paper-frame > .team-placeholder-image-slot,
+.team-paper-frame > .team-additional-image {
+    top: 0;
+    left: 0;
+    width: 908.5px;
+    height: 731.228px;
+    overflow: hidden;
+    mask-image: url('./assets/paper-outline.svg');
+    mask-size: 100% 100%;
+    mask-position: center;
+    mask-repeat: no-repeat;
+}
+.team-research-paper {
+    overflow: visible;
+}
+.team-research-paper::after { display: none; }
+.team-paper-shadow { position: absolute; inset: -20px; z-index: -2; background: url('./assets/paper-shadow.svg') center / 100% 100% no-repeat; pointer-events: none; }
+.team-project-gallery section .team-research-paper > .team-paper-shadow { display: block; }
+.team-project-gallery .team-research-paper-original { filter: none; }
+.team-project-gallery .team-research-paper::before { filter: none; }
+.team-research-paper::before {
+    box-shadow: inset 0 0 14px rgb(107 94 68 / 18%);
+    background-color: #fffefa;
+}
+.team-background .team-research-tape { transform: rotate(-6deg); }
+.team-placeholder .team-research-tape { transform: rotate(8deg); }
+.team-planning .team-research-tape { transform: rotate(-4deg); }
+.team-structure .team-research-tape { transform: rotate(6deg); }
+.team-design-direction .team-research-tape { transform: rotate(-9deg); }
+.team-screen-design .team-research-tape { transform: rotate(2deg); }
+.team-structure--requirements .team-paper-frame::before,
+.team-structure--requirements .team-paper-frame::after,
+.team-structure--requirements .team-paper-shadow { display: none; }
+.team-structure--requirements .team-structure-image-slot { overflow: hidden; box-shadow: none; background: transparent; }
+.team-structure--requirements .team-structure-image { top: 0; left: 0; right: auto; bottom: auto; width: 100%; height: 100%; object-fit: fill; }
+.team-structure:not(.team-structure--menu):not(.team-structure--flow):not(.team-structure--requirements) .team-paper-frame::before,
+.team-structure:not(.team-structure--menu):not(.team-structure--flow):not(.team-structure--requirements) .team-paper-frame::after,
+.team-structure:not(.team-structure--menu):not(.team-structure--flow):not(.team-structure--requirements) .team-paper-shadow { display: none; }
+.team-structure:not(.team-structure--menu):not(.team-structure--flow):not(.team-structure--requirements) .team-structure-image-slot { overflow: hidden; box-shadow: none; background: transparent; }
+.team-structure:not(.team-structure--menu):not(.team-structure--flow):not(.team-structure--requirements) .team-structure-image { top: -5%; left: -5%; right: auto; bottom: auto; width: 110%; height: 110%; object-fit: fill; }

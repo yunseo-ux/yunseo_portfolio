@@ -1,0 +1,35 @@
+.app-overview-canvas { overflow: hidden; }
+.app-overview-phone { position: absolute; left: 9.819%; top: 22.86%; width: 14.993%; height: 56.172%; transform: rotate(-13.62deg); overflow: hidden; z-index: 2; }
+.app-overview-phone img { position: absolute; width: 373.04%; height: 132.76%; max-width: none; left: -187.89%; top: -28.35%; }
+.app-overview--eco .app-overview-phone { left: 10.104%; top: 24.393%; width: 14.449%; height: 53.624%; transform: rotate(-13.56deg); }
+.app-overview--eco .app-overview-phone img { width: 386.05%; height: 138.69%; left: -194.82%; top: -31.96%; }
+.app-overview-screen { position: absolute; top: 32.777778%; width: 9.895833%; height: 38.148148%; overflow: hidden; opacity: .82; background: #fff; box-shadow: 3px 4px 4.8px rgb(0 0 0 / 6%); }
+.app-overview-screen--1 { left: 23.541667%; }
+.app-overview-screen--2 { left: 33.90625%; }
+.app-overview-screen--3 { left: 44.270833%; }
+.app-overview-screen img { display: block; width: 100%; height: 100%; object-fit: cover; }
+.app-overview--eco .app-overview-screen img { position: absolute; height: 95.07%; top: -.01%; }
+.app-overview--eco .app-overview-screen--1 img { top: 4.82%; }
+.app-overview--eco .app-overview-screen--3 img { top: .08%; }
+.app-overview-phone-shadow { position: absolute; left: 13.692%; top: 76.009%; width: 13.813%; height: 3.444%; background: url('./assets/phone-shadow.svg') center / 100% 100% no-repeat; }
+.app-overview-figma { position: absolute; left: 59.322917%; top: 32.037037%; width: 5.78125%; height: 3.148148%; color: #354858; font-family: 'Ownglyph PDH', sans-serif; text-decoration: none; font-size: min(1.041667cqw, 20px); }
+.app-overview-figma:focus-visible { outline: 2px solid #4f718d; outline-offset: 5px; }
+.app-overview-link-pen { position: absolute; width: 19.355%; height: 63.191%; left: 2.511%; top: 8.197%; transform: rotate(-162.05deg) scaleY(-1); background: url('./assets/app-link-pen.svg') center / 100% 100% no-repeat; }
+.app-overview-link-label { position: absolute; left: 26.126126%; top: 8.823529%; }
+.app-overview-link-line { position: absolute; left: 26.126126%; top: 81.09%; width: 62.6126%; height: 18.62%; background: url('./assets/app-link-line.svg') center / 100% 100% no-repeat; }
+.app-overview .personal-overview-canvas h2 { left: 59.010417%; }
+.app-overview .personal-overview-page { left: 59.010417%; }
+.app-overview .personal-overview-canvas h3,
+.app-overview .personal-overview-brief,
+.app-overview .personal-overview-direction { left: 59.010417%; }
+.app-overview .personal-overview-contribution { left: 59.0625%; gap: min(4.322917cqw, 83px); }
+.app-overview .personal-overview-direction { top: 59.259259%; }
+.app-overview--eco .personal-overview-direction { top: 56.018519%; }
+.app-overview-english-title { font-family: 'Ownglyph PDH', sans-serif; font-size: min(2.395833cqw, 46px); }
+.app-overview-english { font-family: 'Ownglyph PDH', sans-serif; font-size: min(1.145833cqw, 22px); }
+.app-overview-highlight { position: absolute; background-position: center; background-repeat: no-repeat; background-size: 100% 100%; }
+.app-overview--today .app-overview-highlight--1 { left: 66.979167%; top: 62.777778%; width: 7.552083%; height: 2.685185%; background-image: url('./assets/today-highlight-1.svg'); }
+.app-overview--today .app-overview-highlight--2 { left: 73.333333%; top: 46.574074%; width: 10.677083%; height: 2.685185%; background-image: url('./assets/today-highlight-2.svg'); }
+.app-overview--eco .app-overview-highlight--1 { left: 63.229167%; top: 49.722222%; width: 6.354167%; height: 3.055556%; background-image: url('./assets/eco-highlight.svg'); }
+.app-overview--eco .app-overview-highlight--2 { left: 67.916667%; top: 59.444444%; width: 6.354167%; height: 3.055556%; background-image: url('./assets/eco-highlight.svg'); }
+

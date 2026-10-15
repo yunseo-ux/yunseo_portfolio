@@ -1,0 +1,15 @@
+.app-project-slogan { container-type: inline-size; background: #faf8f3; }
+.app-slogan-scroll { height: calc(100svh + 2000px); }
+.app-slogan-scroll > .app-project-slogan { position: sticky; top: 0; display: flex; align-items: center; height: 100svh; }
+@media (prefers-reduced-motion: reduce) { .app-slogan-scroll { height: auto; } .app-slogan-scroll > .app-project-slogan { position: relative; height: auto; } }
+.app-project-canvas { position: relative; width: min(100%, 1920px); aspect-ratio: 1920 / 900; margin: auto; font-family: 'Ownglyph PDH', sans-serif; }
+.app-project-label, .app-project-canvas h2 { position: absolute; left: 49.973958%; margin: 0; transform: translateX(-50%); white-space: nowrap; font-weight: 400; line-height: normal; }
+.app-project-label { top: 52.602222%; color: #4f718d; font-size: min(1.875cqw, 36px); }
+.app-project-canvas h2 { top: 59.694444%; color: #354858; font-size: min(5.208333cqw, 100px); }
+.app-project-character { position: absolute; top: 28.092222%; left: 49.973958%; transform: translateX(-50%); width: 10.052083%; aspect-ratio: 1; }
+.app-project-character-body { width: 100%; height: 100%; object-fit: cover; }
+.app-project-hand { position: absolute; width: 17.259067%; height: 16.907772%; }
+.app-project-hand--left { left: 23.471%; top: 22.828%; transform: rotate(-169.92deg) scaleY(-1); }
+.app-project-hand--right { left: 58.908%; top: 21.595%; transform: rotate(-16.94deg); }
+.app-project-hand > div { position: absolute; inset: 0; overflow: hidden; }
+.app-project-hand img { position: absolute; top: -116.12%; left: -351.22%; width: 552.82%; height: 564.19%; max-width: none; }

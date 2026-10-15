@@ -1,0 +1,46 @@
+.project-preview {
+    position: relative;
+    display: flow-root;
+    padding: 100px 8.5% 240px;
+    background: #faf8f3;
+    color: #354858;
+    font-family: 'Ownglyph PDH', sans-serif;
+    isolation: isolate;
+}
+.project-preview-background {
+    position: sticky;
+    top: 160px;
+    padding: 90px 0 60px;
+    text-align: center;
+    pointer-events: none;
+}
+.project-preview-background h2 { margin: 42px 0 26px; font-family: 'Ownglyph PDH', sans-serif; font-size: clamp(48px, 4.6vw, 88px); font-weight: 400; line-height: normal; white-space: nowrap; }
+.project-preview-background > p { margin: 0; color: #4f718d; font-family: 'Ownglyph Yuntaeng', sans-serif; font-size: 30px; line-height: 1.5; }
+.project-preview-cards { position: relative; z-index: 1; margin-top: -140px; }
+.project-preview-card { width: min(720px, 46%); margin-bottom: 130px; }
+.project-preview-card:last-child { margin-bottom: 0; }
+.project-preview-card--right { margin-left: auto; }
+.project-preview-photo { position: relative; isolation: isolate; transform: rotate(-2deg); }
+.project-preview-photo::after { content: ''; position: absolute; top: -38px; left: 38%; width: clamp(90px, 8.5vw, 163px); height: clamp(41px, 3.84vw, 74px); background: url('../TeamProject/assets/research-tape.svg') center / contain no-repeat; transform: rotate(9deg); pointer-events: none; z-index: 2; }
+.project-preview-card--right .project-preview-photo { transform: rotate(2.5deg); }
+.project-preview-card--right .project-preview-photo::after { transform: rotate(18deg); }
+.project-preview-card:nth-child(3) .project-preview-photo::after { transform: rotate(-8deg); }
+.project-preview-card:nth-child(4) .project-preview-photo::after { transform: rotate(-13deg); }
+.project-preview-image { display: block; width: 100%; height: auto; aspect-ratio: 720 / 452; object-fit: cover; border: 1px solid #dce5eb; border-radius: 5px; }
+.project-preview-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; aspect-ratio: 720 / 452; border: 1px solid #c1ced7; border-radius: 5px; background: #dce5eb; color: #7895a7; }
+.project-preview-placeholder > span { font-size: 76px; line-height: 1; }
+.project-preview-placeholder > p { margin: 20px 0 0; font-size: 25px; letter-spacing: 2px; }
+.project-preview-card-caption { padding-top: 27px; text-align: center; }
+.project-preview-card-number { position: relative; top: 5px; margin: 0; color: #4f718d; font-size: 18px; letter-spacing: 2px; }
+.project-preview-card-caption h3 { margin: 8px 0 0; font-family: 'Ownglyph Yuntaeng', sans-serif; font-size: 36px; font-weight: 400; }
+@media (max-width: 800px) {
+    .project-preview { padding: 60px 6% 130px; }
+    .project-preview-background { top: 100px; padding: 70px 0; }
+    .project-preview-background h2 { font-size: clamp(32px, 7vw, 56px); margin-top: 25px; }
+    .project-preview-background > p { font-size: 23px; }
+    .project-preview-cards { margin-top: 20px; }
+    .project-preview-card { width: 88%; margin-bottom: 80px; }
+    .project-preview-placeholder { border-radius: 5px; }
+    .project-preview-placeholder > span { font-size: 52px; }
+    .project-preview-placeholder > p { font-size: 18px; }
+}

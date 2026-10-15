@@ -1,0 +1,25 @@
+.software-skills { padding: 150px max(6%, calc((100% - 1600px) / 2)) 170px; background: #faf8f3; color: #354858; font-family: 'Ownglyph PDH', sans-serif; }
+.software-skills-heading { position: relative; text-align: center; }
+.software-skills-heading h2 { margin: 26px 0 24px; font-size: clamp(48px, 4.6vw, 88px); font-weight: 400; line-height: 1; }
+.software-skills-heading > p { margin: 0; color: #4f718d; font-family: 'Ownglyph Yuntaeng', sans-serif; font-size: 27px; line-height: 1.5; }
+.software-skills-tools { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; margin: 85px 0 160px; padding: 0; list-style: none; }
+.software-skills-tools > li { display: flex; flex-direction: column; justify-content: center; align-items: center; width: 112px; min-height: 124px; padding: 14px 8px; border: 1px solid #dce5eb; border-radius: 5px; background: #f3f5f3; }
+.software-skills-tools > li:nth-child(3n + 1) { transform: rotate(-3deg); }
+.software-skills-tools > li:nth-child(3n + 2) { transform: rotate(2deg); }
+.software-skills-tools span { display: block; height: 47px; font-size: 39px; line-height: 47px; color: #4f718d; }
+.software-skills-tools p { display: flex; align-items: center; justify-content: center; min-height: 42px; margin: 8px 0 0; font-size: 19px; line-height: 1.1; text-align: center; }
+.software-skills-paper { position: relative; display: grid; grid-template-columns: repeat(3, 1fr); gap: 48px; max-width: 960px; margin: 60px auto 0; padding: 52px 60px; background: #fffefa; border: 1px solid #e3e7e6; box-shadow: 0 7px 18px rgb(53 72 88 / 7%); }
+.software-skills-paper::before { content: ''; position: absolute; left: calc(50% - 81px); top: -35px; width: 163px; height: 74px; background: url('../TeamProject/assets/research-tape.svg') center / contain no-repeat; transform: rotate(4deg); }
+.software-skills-group + .software-skills-group { margin-top: 30px; }
+.software-skills-group h3 { display: inline-block; margin: 0 0 13px; font-size: 21px; font-weight: 400; background: linear-gradient(transparent 58%, #dce5eb 58%, #dce5eb 86%, transparent 86%); }
+.software-skills-group ul { margin: 0; padding: 0; list-style: none; color: #4f718d; font-size: 23px; line-height: 1.6; }
+@media (max-width: 800px) {
+    .software-skills { padding: 100px 6%; }
+    .software-skills-heading h2 { font-size: clamp(32px, 7vw, 56px); }
+    .software-skills-heading > p { font-size: 23px; }
+    .software-skills-tools { gap: 12px; margin: 55px 0 135px; }
+    .software-skills-tools > li { width: 92px; min-height: 108px; }
+    .software-skills-paper { padding: 42px 24px; gap: 24px; grid-template-columns: repeat(2, 1fr); }
+    .software-skills-group ul { font-size: 21px; }
+}
+@media (max-width: 420px) { .software-skills-paper { grid-template-columns: 1fr; } }

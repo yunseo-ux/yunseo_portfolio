@@ -1,0 +1,10 @@
+.project-car { position: absolute; width: 112px; height: 84px; opacity: .35; pointer-events: none; }
+.project-car--0 { top: 360px; left: 1340px; }
+.project-car--1 { top: 625px; left: 1500px; transform: rotate(14deg); }
+.project-car--2 { top: 370px; left: 1330px; transform: rotate(-10deg); }
+.project-car---1 { top: 180px; left: 700px; transform: rotate(-8deg); }
+.project-car-stroke { fill: none; stroke: #354858; stroke-width: 2px; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 100; stroke-dashoffset: calc(100 - clamp(0, calc(var(--car-progress, 0) * 400 - var(--part-start)), 100)); }
+.project-car-stroke--0 { --part-start: 0; }
+.project-car-stroke--1 { --part-start: 100; }
+.project-car-stroke--2 { --part-start: 200; }
+.project-car-stroke--3 { --part-start: 300; }

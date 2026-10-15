@@ -1,0 +1,31 @@
+.team-placeholder { position: relative; width: 100%; height: 1080px; overflow: hidden; background: #faf8f3; }
+.team-placeholder-canvas { position: absolute; top: 0; left: 0; width: 1920px; height: 1080px; font-family: 'Ownglyph Yuntaeng', sans-serif; }
+.team-placeholder-image-slot { position: absolute; top: 173px; left: 134px; width: 914px; height: 735px; overflow: hidden; }
+.team-placeholder-image { position: absolute; top: -122.01%; left: -8.81%; width: 117.72%; height: 460.55%; max-width: none; }
+.team-interview--questions .team-placeholder-image { top: -132.76%; left: -4.27%; width: 108.53%; height: 301.1%; }
+.team-interview--summary .team-placeholder-image { top: 0; left: 0; width: 100%; height: 100%; object-fit: cover; }
+.team-interview--affinity .team-placeholder-image { top: 0; left: 0; width: 100%; height: 100%; object-fit: fill; }
+.team-interview-button { position: absolute; inset: 0; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; color: inherit; }
+.team-interview-button:focus-visible { outline: 2px solid #4f718d; outline-offset: 5px; border-radius: 2px; }
+.team-placeholder-labels { position: absolute; top: 528px; left: 1137px; display: flex; align-items: center; gap: 27px; margin: 0; padding: 0; list-style: none; }
+.team-placeholder-label { position: relative; width: 85px; height: 22px; }
+.team-placeholder-label img { position: absolute; top: 3px; left: 1px; width: 11px; height: 11px; transform: rotate(-162.05deg) scaleY(-1); }
+.team-placeholder-label span { position: absolute; top: -2px; left: 18px; color: #354858; font-size: 21px; line-height: normal; white-space: nowrap; }
+.team-placeholder-label--1 { width: 82px; }
+.team-placeholder-label--2 { width: 76px; }
+.team-placeholder-label--3 { width: 158px; }
+.team-placeholder-subtitle { position: absolute; top: 572px; left: 1137px; margin: 0; color: #4f718d; font-family: 'Ownglyph PDH', sans-serif; font-size: 24px; line-height: normal; }
+.team-placeholder-canvas h2 { position: absolute; top: 611px; left: 1137px; margin: 0; color: #354858; font-size: 48px; font-weight: 400; line-height: normal; }
+.team-placeholder-copy { position: absolute; top: 686px; left: 1137px; margin: 0; color: #4f718d; font-family: 'Ownglyph Yuntaeng', sans-serif; font-size: 25px; font-weight: 400; line-height: 1.4; white-space: nowrap; }
+.team-placeholder-copy-english { color: #4F718D; font-family: 'Ownglyph PDH', sans-serif; font-size: 20px; font-style: normal; font-weight: 400; line-height: 140%; }
+
+.team-placeholder-label:hover span {
+    animation: placeholder-label-writing 650ms steps(5, end) both;
+}
+@keyframes placeholder-label-writing {
+    from { clip-path: inset(0 100% 0 0); }
+    to { clip-path: inset(0 0 0 0); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .team-placeholder-label:hover span { animation: none; }
+}

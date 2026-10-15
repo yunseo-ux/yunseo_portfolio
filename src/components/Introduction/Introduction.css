@@ -1,0 +1,120 @@
+.introduction {
+    position: relative;
+    container-type: inline-size;
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    overflow: hidden;
+    color: #354858;
+    background: #faf8f3;
+}
+
+.introduction-art {
+    position: absolute;
+    top: 9.8438cqw;
+    left: calc(3.6979cqw + 15px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 900.526px;
+    height: 751.435px;
+    transform-origin: top left;
+    scale: calc(100cqw / 1920px);
+}
+
+.introduction-art-rotation {
+    flex: none;
+    transform: rotate(-8.63deg);
+}
+
+.introduction-art img {
+    max-width: none;
+}
+
+.introduction-content {
+    position: absolute;
+    top: calc(19.1146cqw + 50px);
+    left: calc(56.6146cqw + 40px);
+}
+
+.introduction-title-icon {
+    position: relative;
+    display: inline-block;
+    width: 65px;
+    height: 62px;
+    margin-left: 8px;
+    vertical-align: middle;
+}
+.introduction-title-pen {
+    position: absolute;
+    top: 0;
+    left: 13px;
+    transform: rotate(-17.95deg);
+}
+.introduction-title-pen-mark {
+    position: absolute;
+    top: 40px;
+    left: -3px;
+    transform: rotate(-21.6deg);
+}
+.introduction-content h2 {
+    margin: 0;
+    font-family: 'Ownglyph PDH', sans-serif;
+    font-size: 60px;
+    font-weight: 400;
+    line-height: normal;
+    text-transform: uppercase;
+    white-space: nowrap;
+}
+
+.introduction-content p {
+    margin: 1.5104cqw 0 0;
+    color: #4f718d;
+    font-family: 'Ownglyph Yuntaeng', sans-serif;
+    font-size: 35px;
+    font-weight: 400;
+    line-height: 1.1;
+    white-space: nowrap;
+}
+
+@media (max-width: 600px) {
+    .introduction {
+        display: flex;
+        min-height: 100svh;
+        aspect-ratio: auto;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 8cqw;
+        padding: 15cqw 6cqw;
+    }
+
+    .introduction-art,
+    .introduction-content {
+        position: relative;
+        top: auto;
+        left: auto;
+    }
+
+    .introduction-art {
+        width: 88cqw;
+        height: 65cqw;
+        scale: none;
+    }
+
+    .introduction-art-rotation {
+        scale: 0.42;
+    }
+
+    .introduction-content h2 {
+        font-size: 9cqw;
+        text-align: center;
+    }
+
+    .introduction-content p {
+        margin-top: 7cqw;
+        font-size: 4.9cqw;
+        line-height: 1.25;
+        text-align: center;
+        white-space: normal;
+    }
+}
