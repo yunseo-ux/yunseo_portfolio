@@ -3,6 +3,7 @@ import { initInterview } from './team_Interview.js';
 import { initPlanning } from './team_Planning.js';
 import { initStructure } from './team_Structure.js';
 import { initProjectLine } from './ProjectLine.js';
+import { loadProjectImage } from './loadProjectImage.js';
 const competitiveAnalysisImage = new URL('./assets/competitive-analysis.png', import.meta.url).href;
 const steepAnalysisImage = new URL('./assets/steep-source.png', import.meta.url).href;
 const threeCAnalysisImage = new URL('./assets/3c-source-1.png', import.meta.url).href;
@@ -30,7 +31,7 @@ function initResearch() {
             const view = views[selected];
             if (!view) return;
             for (const key of Object.keys(views)) research.classList.toggle(`team-research--${key}`, selected === key);
-            researchImage.src = view.image;
+            loadProjectImage(researchImage, view.image);
             researchImage.alt = view.alt;
             researchTitle.textContent = '시장과 브랜드 조사';
             researchSubtitle.textContent = view.subtitle;

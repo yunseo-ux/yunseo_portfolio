@@ -1,3 +1,5 @@
+import { loadProjectImage } from './loadProjectImage.js';
+
 const views = {
     minutes: { src: new URL('./assets/meeting-minutes-source.png', import.meta.url).href, title: 'MEETING MINUTES' },
     menu: { src: new URL('./assets/menu-tree.png', import.meta.url).href, title: 'MENU TREE' },
@@ -21,7 +23,7 @@ export function initStructure() {
         const view = views[selected];
         for (const key of Object.keys(views)) section.classList.toggle(`team-structure--${key}`, selected === key);
         const image = section.querySelector('.team-structure-image');
-        image.src = view.src;
+        loadProjectImage(image, view.src);
         image.alt = button.querySelector('span').textContent;
         section.querySelector('.team-additional-subtitle').textContent = view.title;
         section.querySelector('h2').textContent = '팀 논의와 구조 설계';

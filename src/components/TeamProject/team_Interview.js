@@ -1,3 +1,5 @@
+import { loadProjectImage } from './loadProjectImage.js';
+
 const images = {
     questions: new URL('./assets/interview-questions.png', import.meta.url).href,
     summary: new URL('./assets/response-summary.png', import.meta.url).href,
@@ -21,7 +23,7 @@ export function initInterview() {
         const view = views[selected];
         if (!view) return;
         for (const key of Object.keys(views)) section.classList.toggle(`team-interview--${key}`, selected === key);
-        image.src = view.src;
+        loadProjectImage(image, view.src);
         image.alt = view.alt;
         subtitle.textContent = view.title;
         section.querySelector('h2').textContent = '사용자 인터뷰와 분석';

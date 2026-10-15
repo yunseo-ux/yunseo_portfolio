@@ -1,3 +1,5 @@
+import { loadProjectImage } from './loadProjectImage.js';
+
 const views = {
     persona: { src: new URL('./assets/persona.png', import.meta.url).href, title: 'PERSONA', alt: '퍼소나 분석 자료' },
     journey: { src: new URL('./assets/user-journey-map.png', import.meta.url).href, title: 'USER JOURNEY MAP', alt: '사용자 저니맵 자료' },
@@ -12,7 +14,7 @@ export function initPlanning() {
     buttons.forEach(button => button.addEventListener('click', () => {
         const view = views[button.dataset.planning];
         section.classList.toggle('team-planning--lean', button.dataset.planning === 'lean');
-        image.src = view.src;
+        loadProjectImage(image, view.src);
         image.alt = view.alt;
         subtitle.textContent = view.title;
         section.querySelector('h2').textContent = '문제 정의와 기획';
