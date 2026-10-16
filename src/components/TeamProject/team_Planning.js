@@ -13,6 +13,7 @@ export function initPlanning() {
     const buttons = section.querySelectorAll('[data-planning]');
     buttons.forEach(button => button.addEventListener('click', () => {
         const view = views[button.dataset.planning];
+        section.classList.toggle('team-planning--persona', button.dataset.planning === 'persona');
         section.classList.toggle('team-planning--lean', button.dataset.planning === 'lean');
         loadProjectImage(image, view.src);
         image.alt = view.alt;

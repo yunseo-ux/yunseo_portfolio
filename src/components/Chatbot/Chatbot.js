@@ -83,7 +83,7 @@ export function initChatbot() {
                 nudge.classList.remove('is-visible');
                 scheduleNudge();
             }, 5500);
-        }, 12000);
+        }, 8000);
     };
     function close() {
         panel.hidden = true;
@@ -123,7 +123,7 @@ export function initChatbot() {
         if (!panel.hidden || document.hidden) return;
         nudge.classList.add('is-visible');
         nudgeHideTimer = setTimeout(() => { nudge.classList.remove('is-visible'); scheduleNudge(); }, 5500);
-    }, 2500);
+    }, 1500);
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) {
             clearTimeout(nudgeTimer);

@@ -50,6 +50,9 @@ export function initTeamProject() {
     initResearch();
     const screen = document.querySelector('.team-project-laptop-screen');
     const content = document.querySelector('.team-project-screen-scroll');
+    const phoneScreen = document.querySelector('.team-project-phone-screen');
+    const phoneContent = document.querySelector('.team-project-phone-content');
+    const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
     let startedAt;
     const animate = time => {
         if (!screen || !content) return;
@@ -58,6 +61,16 @@ export function initTeamProject() {
         const progress = ((time - startedAt) % 60000) / 60000;
         const position = progress < 0.08 ? 0 : progress < 0.88 ? (progress - 0.08) / 0.8 : 1;
         content.style.transform = `translateY(${-distance * position}px)`;
+        if (phoneScreen && phoneContent) {
+            const phoneDistance = Math.max(0, phoneContent.offsetHeight - phoneScreen.clientHeight);
+            const cycle = ((time - startedAt) % 100000) / 100000;
+            // Pause at both ends, then travel back without jumping to the start.
+            const phonePosition = cycle < .05 ? 0
+                : cycle < .45 ? (cycle - .05) / .4
+                : cycle < .55 ? 1
+                : cycle < .95 ? 1 - (cycle - .55) / .4 : 0;
+            phoneContent.style.transform = `translateY(${motionPreference.matches ? 0 : -phoneDistance * phonePosition}px)`;
+        }
         requestAnimationFrame(animate);
     };
     requestAnimationFrame(animate);
@@ -68,20 +81,40 @@ export function initTeamProject() {
     const track = gallery.querySelector('.team-project-track');
     if (!viewport || !track) return;
     const updateLine = initProjectLine(track);
+    const comparison = track.querySelector('.team-before-after');
+    const comparisonIndex = [...track.children].indexOf(comparison);
+    const clamp = value => Math.max(0, Math.min(1, value));
     let frame = 0;
     const update = () => {
         const scale = Math.min(1, gallery.clientWidth / 1920);
         gallery.style.setProperty('--project-scale', scale);
         gallery.style.setProperty('--project-height', `${1080 * scale}px`);
-        gallery.style.setProperty('--project-scroll-range', `${(track.children.length - 1) * 160}vh`);
+        const steps = track.children.length - 1;
+        const hold = comparison ? 2.8 : 0;
+        gallery.style.setProperty('--project-scroll-range', `${(steps + hold) * 160}vh`);
         const availableScroll = gallery.offsetHeight - viewport.offsetHeight;
         const verticalScroll = Math.max(0, viewport.offsetHeight - window.innerHeight);
         const scrolled = -gallery.getBoundingClientRect().top - verticalScroll;
         const progress = Math.max(0, Math.min(1, scrolled / availableScroll));
+        const timeline = progress * (steps + hold);
+        const position = !comparison || timeline < comparisonIndex ? timeline
+            : timeline < comparisonIndex + hold ? comparisonIndex : timeline - hold;
+        if (comparison) {
+            const local = (timeline - comparisonIndex) / hold;
+            const reveal = (start, end) => {
+                if (motionPreference.matches) return Number(local >= end);
+                const value = clamp((local - start) / (end - start));
+                return value * value * (3 - 2 * value);
+            };
+            comparison.style.setProperty('--comparison-image', reveal(.1, .3));
+            comparison.style.setProperty('--comparison-center', reveal(.34, .46));
+            comparison.style.setProperty('--comparison-right', reveal(.52, .64));
+            comparison.style.setProperty('--comparison-copy', reveal(.72, .84));
+        }
         viewport.style.setProperty('--pin-top', `${-verticalScroll}px`);
         const horizontalDistance = track.scrollWidth - viewport.clientWidth;
-        track.style.left = `${-Math.round(progress * horizontalDistance)}px`;
-        updateLine(progress * (track.children.length - 1));
+        track.style.left = `${-Math.round(position / steps * horizontalDistance)}px`;
+        updateLine(position);
         frame = 0;
     };
     const scheduleUpdate = () => { if (!frame) frame = requestAnimationFrame(update); };
