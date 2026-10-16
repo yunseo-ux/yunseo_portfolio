@@ -31,12 +31,23 @@
     line-height: normal;
 }
 .hero-header a {
+    display: inline-block;
+    padding: 12px 10px;
+    margin: -12px -10px;
     color: inherit;
     text-decoration: none;
 }
 .hero-header a:hover {
     text-decoration: none;
-    cursor: url('./assets/pencil-cursor.svg') 3 29, pointer;
+    cursor: url('./assets/hand-cursor.svg') 12 2, pointer;
+}
+html body .hero-menu li,
+html body .hero-menu li * {
+    cursor: url('./assets/hand-cursor.svg') 12 2, pointer;
+}
+.hero-menu > li {
+    padding: 12px 10px;
+    margin: -12px -10px;
 }
 .hero-header a:focus-visible {
     outline: 2px solid currentColor;
@@ -65,8 +76,8 @@
 .hero-menu li:hover > a::after,
 .hero-menu li:hover > span::after {
     position: absolute;
-    top: 10%;
-    right: -.18em;
+    top: calc(12px + .1em);
+    right: calc(10px - .18em);
     width: 1px;
     height: .9em;
     content: '';

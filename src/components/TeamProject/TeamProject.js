@@ -58,12 +58,12 @@ export function initTeamProject() {
         if (!screen || !content) return;
         if (startedAt === undefined) startedAt = time;
         const distance = Math.max(0, content.offsetHeight - screen.clientHeight);
-        const progress = ((time - startedAt) % 60000) / 60000;
+        const progress = ((time - startedAt) % 120000) / 120000;
         const position = progress < 0.08 ? 0 : progress < 0.88 ? (progress - 0.08) / 0.8 : 1;
         content.style.transform = `translateY(${-distance * position}px)`;
         if (phoneScreen && phoneContent) {
             const phoneDistance = Math.max(0, phoneContent.offsetHeight - phoneScreen.clientHeight);
-            const cycle = ((time - startedAt) % 100000) / 100000;
+            const cycle = ((time - startedAt) % 200000) / 200000;
             // Pause at both ends, then travel back without jumping to the start.
             const phonePosition = cycle < .05 ? 0
                 : cycle < .45 ? (cycle - .05) / .4
@@ -83,6 +83,10 @@ export function initTeamProject() {
     const updateLine = initProjectLine(track);
     const comparison = track.querySelector('.team-before-after');
     const comparisonIndex = [...track.children].indexOf(comparison);
+    const researchIndex = [...track.children].findIndex(panel => panel.matches('.team-research'));
+    if (researchIndex > 0) {
+        [...track.children].slice(researchIndex).forEach(panel => panel.classList.add('team-project-lower-row'));
+    }
     const clamp = value => Math.max(0, Math.min(1, value));
     let frame = 0;
     const update = () => {
@@ -112,8 +116,12 @@ export function initTeamProject() {
             comparison.style.setProperty('--comparison-copy', reveal(.72, .84));
         }
         viewport.style.setProperty('--pin-top', `${-verticalScroll}px`);
-        const horizontalDistance = track.scrollWidth - viewport.clientWidth;
-        track.style.left = `${-Math.round(position / steps * horizontalDistance)}px`;
+        // Continue right through contributions, move down into research,
+        // then resume the horizontal sequence.
+        const descent = researchIndex > 0 ? clamp(position - (researchIndex - 1)) : 0;
+        const horizontalPosition = position - descent;
+        track.style.left = `${-Math.round(horizontalPosition * viewport.clientWidth)}px`;
+        track.style.top = `${-Math.round(descent * viewport.offsetHeight)}px`;
         updateLine(position);
         frame = 0;
     };

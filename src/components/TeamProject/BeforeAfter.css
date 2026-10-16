@@ -1,18 +1,28 @@
 .team-before-after { position: relative; width: 100%; height: 1080px; overflow: hidden; background: #faf8f3; }
 .team-before-after-canvas { position: absolute; width: 1920px; height: 1080px; color: #354858; font-family: 'Ownglyph Yuntaeng', sans-serif; }
 .team-project-track .team-before-after-canvas { top: 0; left: max(0px, calc((100% - 1920px) / 2)); transform: scale(var(--project-scale)); transform-origin: top left; }
-.team-before-after-image-slot { position: absolute; left: 226px; top: 145px; width: 716px; height: 959px; overflow: hidden; }
+.team-before-after-canvas::before {
+    content: '';
+    position: absolute;
+    left: 223.5px;
+    top: 235.5px;
+    width: 713px;
+    height: 678px;
+    box-shadow: 0 6px 18px rgb(53 72 88 / 14%), 0 2px 5px rgb(53 72 88 / 7%);
+    pointer-events: none;
+}
+.team-before-after-image-slot { position: absolute; left: 222px; top: 234px; width: 716px; height: 681px; overflow: hidden; clip-path: inset(1.5px); }
 .team-before-after-image { position: absolute; max-width: none; }
-.team-before-after-image--before { left: -.05%; top: 0; width: 100.1%; height: 193.73879%; filter: brightness(calc(1 - var(--comparison-image, 0) * .5)); }
+.team-before-after-image--before { left: -.05%; top: -23.61%; width: 100.1%; height: 272.97%; filter: brightness(calc(1 - var(--comparison-image, 0) * .5)); }
 .team-before-after-image--after {
-    left: 0; top: .02%; width: 100%; height: 119.69%;
+    left: 0; top: -48.4%; width: 100%; height: 168.55%;
     -webkit-mask-image: linear-gradient(to right, #000 calc(var(--comparison-image, 0) * 140% - 40%), transparent calc(var(--comparison-image, 0) * 140%));
     mask-image: linear-gradient(to right, #000 calc(var(--comparison-image, 0) * 140% - 40%), transparent calc(var(--comparison-image, 0) * 140%));
 }
 .team-before-after-detail { position: absolute; width: 355px; height: 200px; }
 .team-before-after-detail img { width: 100%; height: 100%; object-fit: contain; }
-.team-before-after-detail--center { left: 822px; top: 194px; opacity: var(--comparison-center, 0); }
-.team-before-after-detail--right { left: 1198px; top: 314px; opacity: var(--comparison-right, 0); }
+.team-before-after-detail--center { left: 822px; top: 184px; opacity: var(--comparison-center, 0); }
+.team-before-after-detail--right { left: 1198px; top: 304px; opacity: var(--comparison-right, 0); box-shadow: 0 2px 4px rgb(0 0 0 / 9%); }
 .team-before-after-label { position: absolute; left: 1036px; top: 572px; margin: 0; font: 20px 'Ownglyph PDH', sans-serif; color: #4f718d; }
 .team-before-after-canvas h2 { position: absolute; left: 1036px; top: 602px; margin: 0; font: 50px 'Ownglyph PDH', sans-serif; }
 .team-before-after-title--before { opacity: calc(1 - var(--comparison-image, 0)); }

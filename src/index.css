@@ -2,10 +2,25 @@
     box-sizing: border-box;
 }
 
+:root {
+    --color-text-hover: #006ECA;
+}
+
+html body :is(a[href], button:not(:disabled), [role="button"], summary, label[for]):hover,
+html body :is(a[href], button:not(:disabled), [role="button"], summary, label[for]):hover *,
+html body .hero-menu li:hover > span {
+    color: var(--color-text-hover);
+}
+
 html,
 body,
 body * {
     cursor: url('./components/Hero/assets/pencil-cursor.svg') 3 29, auto;
+}
+
+html body :is(a[href], button:not(:disabled), [role="button"], summary, label[for], input[type="submit"], input[type="button"], input[type="checkbox"], input[type="radio"]),
+html body :is(a[href], button:not(:disabled), [role="button"], summary, label[for]) * {
+    cursor: url('./components/Hero/assets/hand-cursor.svg') 12 2, pointer;
 }
 
 body {

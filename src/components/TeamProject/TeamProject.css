@@ -24,6 +24,11 @@
     min-width: 0;
     height: var(--project-height);
 }
+.team-project-track > .team-project-lower-row {
+    position: relative;
+    left: -100%;
+    top: var(--project-height);
+}
 .team-project-track .team-project-canvas,
 .team-project-track .team-background-canvas,
 .team-project-track .team-research-canvas,

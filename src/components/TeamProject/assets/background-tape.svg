@@ -1,0 +1,17 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="202.023" height="94.9326" viewBox="0 0 202.023 94.9326" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g id="Tape" filter="url(#filter0_d_0_4)">
+<path d="M23.7427 10.7324C23.0619 7.51269 21.5642 0.858594 21.0196 0L198.023 25.2212L190.534 28.9775L198.023 37.0268L190.534 39.71L195.3 46.686L187.811 51.5156L195.3 59.5649L185.088 62.248L187.811 70.834L181.684 74.0537L185.088 86.9326L4 62.248L16.2541 53.1255L8.0847 46.686L16.2541 37.0268L14.8925 30.5874L23.7427 25.2212L14.8925 16.6353L23.7427 10.7324Z" fill="#A8B8C5" fill-opacity="0.8" shape-rendering="crispEdges"/>
+</g>
+<defs>
+<filter id="filter0_d_0_4" x="0" y="0" width="202.023" height="94.9326" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<feFlood flood-opacity="0" result="BackgroundImageFix"/>
+<feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
+<feOffset dy="4"/>
+<feGaussianBlur stdDeviation="2"/>
+<feComposite in2="hardAlpha" operator="out"/>
+<feColorMatrix type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0.05 0"/>
+<feBlend mode="normal" in2="BackgroundImageFix" result="effect1_dropShadow_0_4"/>
+<feBlend mode="normal" in="SourceGraphic" in2="effect1_dropShadow_0_4" result="shape"/>
+</filter>
+</defs>
+</svg>

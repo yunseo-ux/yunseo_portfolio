@@ -1,5 +1,5 @@
 .drawing-reveal-pending { opacity: 0; }
-.introduction-scroll-track { position: relative; height: calc(56.25vw + 2100px); margin-top: 140px; background: #faf8f3; }
+.introduction-scroll-track { position: relative; height: calc(57.291667vw + 2100px); margin-top: 140px; background: #faf8f3; }
 .introduction-scroll-track > .introduction { position: sticky; top: 0; }
 @media (max-width: 600px) { .introduction-scroll-track { height: calc(100svh + 2100px); margin-top: 90px; } }
 @media (prefers-reduced-motion: reduce) { .introduction-scroll-track { height: auto; } .introduction-scroll-track > .introduction { position: relative; top: 0 !important; } }

@@ -115,48 +115,40 @@ export function initDrawingReveal() {
 function initAboutScroll(preference) {
     const section = document.querySelector('.introduction');
     if (!section) return;
+    const paper = [...section.querySelectorAll('.introduction-paper, .introduction-tape-paper')];
+    const photo = [...section.querySelectorAll('.introduction-photo, .introduction-tape-top-right, .introduction-tape-bottom-left')];
+    if (!paper.length || !photo.length) return;
     const wrapper = document.createElement('div');
     wrapper.className = 'introduction-scroll-track';
     section.before(wrapper);
     wrapper.append(section);
-    const title = section.querySelector('h2');
-    const copy = section.querySelector('.introduction-content p');
-    const art = section.querySelector('.introduction-art');
-    const artImage = art.querySelector('img');
-    const ns = 'http://www.w3.org/2000/svg';
-    const sketch = document.createElementNS(ns, 'svg');
-    sketch.setAttribute('viewBox', '0 0 814.263 636.495');
-    sketch.setAttribute('width', '814.263');
-    sketch.setAttribute('height', '636.495');
-    sketch.setAttribute('aria-hidden', 'true');
-    sketch.style.display = 'block';
-    sketch.style.maxWidth = 'none';
-    sketch.innerHTML = '<defs><mask id="about-scribble-draw" maskUnits="userSpaceOnUse" x="0" y="0" width="814.263" height="636.495"><path d="M234 40 L582 90 L151 158 L688 122 L63 235 L648 255 L153 300 L767 351 L113 417 L657 417 L199 475 L750 526 L593 573 L236 596" fill="none" stroke="white" stroke-width="150" stroke-linecap="round" stroke-linejoin="round" pathLength="1"/></mask></defs>';
-    const artwork = document.createElementNS(ns, 'image');
-    artwork.setAttribute('href', artImage.getAttribute('src'));
-    artwork.setAttribute('width', '814.263');
-    artwork.setAttribute('height', '636.495');
-    artwork.setAttribute('mask', 'url(#about-scribble-draw)');
-    sketch.append(artwork);
-    artImage.replaceWith(sketch);
-    const drawingStroke = sketch.querySelector('path');
-    drawingStroke.style.strokeDasharray = '1';
     const clamp = value => Math.max(0, Math.min(1, value));
+    const reveal = (elements, progress) => {
+        elements.forEach(element => {
+            element.style.opacity = String(progress);
+            // Reveal the shadow together with its paper, including the area
+            // outside the element's border box throughout the animation.
+            const shadowMargin = 24;
+            const right = (1 - progress) * (element.offsetWidth + shadowMargin * 2) - shadowMargin;
+            element.style.clipPath = progress >= 1 ? '' : `inset(-${shadowMargin}px ${right}px -${shadowMargin}px -${shadowMargin}px)`;
+        });
+    };
     let frame = 0;
     const update = () => {
         frame = 0;
         if (preference.matches) {
-            [title, copy, art].forEach(element => { element.style.clipPath = ''; });
-            drawingStroke.style.strokeDashoffset = '0';
+            [...paper, ...photo].forEach(element => {
+                element.style.opacity = '';
+                element.style.clipPath = '';
+            });
+            section.style.top = '';
             return;
         }
         const vertical = Math.max(0, section.offsetHeight - window.innerHeight);
-        section.style.top = `${-vertical}px`;
+        section.style.top = (-vertical) + 'px';
         const scroll = -wrapper.getBoundingClientRect().top - vertical;
-        title.style.clipPath = '';
-        copy.style.clipPath = '';
-        art.style.clipPath = '';
-        drawingStroke.style.strokeDashoffset = String(1 - clamp((scroll - 450) / 750));
+        reveal(paper, clamp(scroll / 600));
+        reveal(photo, clamp((scroll - 700) / 650));
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     window.addEventListener('scroll', schedule, { passive: true });

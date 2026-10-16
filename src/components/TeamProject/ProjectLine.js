@@ -1,5 +1,7 @@
 export function initProjectLine(track) {
-    const panels = [...track.querySelectorAll(':scope > section')].slice(1);
+    const sections = [...track.querySelectorAll(':scope > section')];
+    const startIndex = sections.findIndex(section => section.matches('.team-research'));
+    const panels = startIndex < 0 ? [] : sections.slice(startIndex);
     const ns = 'http://www.w3.org/2000/svg';
     let curve = 'M -40 927';
     panels.forEach((_, index) => {
@@ -93,7 +95,7 @@ export function initProjectLine(track) {
         if (!frame) previous = 0;
     };
     return (position) => {
-        target = Math.max(0, Math.min(1, (position - 0.5) / (panels.length - 0.5)));
+        target = panels.length ? Math.max(0, Math.min(1, (position - startIndex + 0.5) / (panels.length - 0.5))) : 0;
         if (reduced) drawn = target;
         if (!frame) frame = requestAnimationFrame(draw);
     };

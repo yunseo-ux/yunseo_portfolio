@@ -35,7 +35,14 @@ export function initApproach() {
                 const fill = clamp(phase / .8);
                 const leading = Math.min(100, fill * 200);
                 const trailing = Math.max(0, fill * 200 - 100);
-                card.style.clipPath = fill === 1 ? 'none' : fill === 0 ? 'inset(0 100% 0 0)' : `polygon(0 0, ${leading}% 0, 100% ${trailing}%, ${trailing}% 100%, 0 ${leading}%)`;
+                // Include the center sheet's shadow in the reveal instead of
+                // clipping it until the final frame removes the polygon.
+                if (card.classList.contains('approach-card--explore')) {
+                    const edge = value => value * 1.1 - 5;
+                    card.style.clipPath = fill === 1 ? 'none' : fill === 0 ? 'inset(0 100% 0 0)' : `polygon(-5% -5%, ${edge(leading)}% -5%, 105% ${edge(trailing)}%, ${edge(trailing)}% 105%, -5% ${edge(leading)}%)`;
+                } else {
+                    card.style.clipPath = fill === 1 ? 'none' : fill === 0 ? 'inset(0 100% 0 0)' : `polygon(0 0, ${leading}% 0, 100% ${trailing}%, ${trailing}% 100%, 0 ${leading}%)`;
+                }
             });
             frame = 0;
         };

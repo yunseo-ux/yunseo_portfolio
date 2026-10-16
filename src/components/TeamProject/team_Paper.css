@@ -14,6 +14,15 @@
 .team-research-paper {
     overflow: visible;
 }
+.team-project-gallery .team-research-paper,
+.team-project-gallery .team-paper-frame {
+    scale: 0.9;
+    transform-origin: center;
+}
+.team-project-gallery .team-research-tape {
+    scale: 0.9;
+    translate: 4px 36px;
+}
 .team-research-paper::after { display: none; }
 .team-paper-shadow { position: absolute; inset: -20px; z-index: -2; background: url('./assets/paper-shadow.svg') center / 100% 100% no-repeat; pointer-events: none; }
 .team-project-gallery section .team-research-paper > .team-paper-shadow { display: block; }

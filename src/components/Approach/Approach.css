@@ -26,6 +26,12 @@
 .approach-animated .approach-card { opacity: 0; translate: 0 24px; }
 .approach-animated .approach-drawing-content { clip-path: none; }
 .approach-animated .approach-card--draw { animation: approach-paper-appear 450ms ease-out var(--card-delay) forwards, approach-pencil-fill 1600ms ease-in-out var(--card-delay) both; }
+.approach-animated .approach-card--explore.approach-card--draw { animation-name: approach-paper-appear, approach-explore-fill; }
+@keyframes approach-explore-fill {
+    0% { clip-path: polygon(-5% -5%, -5% -5%, -5% -5%, -5% -5%, -5% -5%); }
+    45% { clip-path: polygon(-5% -5%, 105% -5%, 105% -5%, -5% 105%, -5% 105%); }
+    100% { clip-path: polygon(-5% -5%, 105% -5%, 105% 105%, 105% 105%, -5% 105%); }
+}
 @keyframes approach-paper-appear { to { opacity: 1; translate: 0 0; } }
 @keyframes approach-pencil-fill {
     0% { clip-path: polygon(0 0, 0 0, 0 0, 0 0, 0 0); }
