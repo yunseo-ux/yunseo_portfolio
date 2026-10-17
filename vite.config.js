@@ -9,15 +9,13 @@ function expandSections(html) {
 }
 
 export default defineConfig({
-    server: { watch: { ignored: ['**/verification/**', '**/backups/**'] } },
+    optimizeDeps: { entries: ['index.html'] },
+    server: {
+        hmr: false,
+        watch: { ignored: ['**/verification/**', '**/backups/**'] },
+    },
     plugins: [{
         name: 'html-sections',
         transformIndexHtml: { order: 'pre', handler: expandSections },
-        handleHotUpdate({ file, server }) {
-            if (file.endsWith('.html')) {
-                server.ws.send({ type: 'full-reload' });
-                return [];
-            }
-        },
     }],
 });

@@ -2,9 +2,30 @@
 <html lang="ko">
   <head>
     <meta charset="UTF-8" />
+    <script>
+      (() => {
+        if (!['127.0.0.1', 'localhost', '[::1]'].includes(location.hostname)) return;
+        const NativeWebSocket = window.WebSocket;
+        window.WebSocket = class extends NativeWebSocket {
+          constructor(url, protocols) {
+            if (protocols === undefined) super(url);
+            else super(url, protocols);
+            const target = new URL(url, location.href);
+            if (target.host !== location.host || !target.pathname.endsWith('/ws')) return;
+            this.addEventListener('message', event => {
+              if (event.data === 'reload' || event.data === 'refreshcss') event.stopImmediatePropagation();
+            });
+          }
+        };
+      })();
+    </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>사이트 제작</title>
+    <title>윤서 포트폴리오</title>
+    <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
+    <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+    <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+    <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
       <link rel="stylesheet" href="/src/index.css" />
     <link rel="stylesheet" href="/src/drawingReveal.css" />
     <link rel="stylesheet" href="/src/components/Chatbot/Chatbot.css" />
@@ -12,10 +33,12 @@
     <link rel="stylesheet" href="/src/components/Intro/Intro.css" />
     <link rel="stylesheet" href="/src/components/Introduction/Introduction.css" />
     <link rel="stylesheet" href="/src/components/Approach/Approach.css" />
+    <link rel="stylesheet" href="/src/components/BetterTogether/BetterTogether.css" />
     <link rel="stylesheet" href="/src/components/TeamProject/TeamProject.css" />
     <link rel="stylesheet" href="/src/components/TeamProject/TeamProjectSlogan.css" />
     <link rel="stylesheet" href="/src/components/TeamProject/team_BACKGROUND.css" />
     <link rel="stylesheet" href="/src/components/TeamProject/BeforeAfter.css" />
+    <link rel="stylesheet" href="/src/components/TeamProject/EditorialDesign.css" />
     <link rel="stylesheet" href="/src/components/TeamProject/Contribution.css" />
     <link rel="stylesheet" href="/src/components/TeamProject/team_RESEARCH.css" />
     <link rel="stylesheet" href="/src/components/TeamProject/team_.css" />
@@ -26,14 +49,16 @@
     <link rel="stylesheet" href="/src/components/TeamProject/ProjectPencil.css" />
     <link rel="stylesheet" href="/src/components/PersonalProject/PersonalProject.css" />
     <link rel="stylesheet" href="/src/components/PersonalProject/PersonalOverview.css" />
+    <link rel="stylesheet" href="/src/components/PersonalProject/MovementDetails.css" />
     <link rel="stylesheet" href="/src/components/SoftwareSkills/SoftwareSkills.css" />
+    <link rel="stylesheet" href="/src/components/PhotoRail/PhotoRail.css" />
     <link rel="stylesheet" href="/src/components/CloneCoding/CloneCoding.css" />
     <link rel="stylesheet" href="/src/components/AppProject/AppProject.css" />
     <link rel="stylesheet" href="/src/components/AppProject/AppOverview.css" />
     <link rel="stylesheet" href="/src/components/ProjectPreview/project_Preview.css" />
   </head>
   <body>
-    <div id="root"><!-- @include /src/components/Hero/Hero.html --><!-- @include /src/components/Intro/Intro.html --><!-- @include /src/components/Introduction/Introduction.html --><!-- @include /src/components/Approach/Approach.html --><!-- @include /src/components/ProjectPreview/project_Preview.html --><!-- @include /src/components/TeamProject/TeamProjectSlogan.html --><!-- @include /src/components/TeamProject/TeamProject.html --><!-- @include /src/components/PersonalProject/PersonalProject.html --><!-- @include /src/components/PersonalProject/PersonalOverview.html --><!-- @include /src/components/AppProject/AppProject.html --><!-- @include /src/components/AppProject/AppOverview.html --><!-- @include /src/components/CloneCoding/CloneCoding.html --><!-- @include /src/components/SoftwareSkills/SoftwareSkills.html --></div>
+    <div id="root"><!-- @include /src/components/Hero/Hero.html --><!-- @include /src/components/Intro/Intro.html --><!-- @include /src/components/Introduction/Introduction.html --><!-- @include /src/components/Approach/Approach.html --><!-- @include /src/components/ProjectPreview/project_Preview.html --><!-- @include /src/components/TeamProject/TeamProjectSlogan.html --><!-- @include /src/components/TeamProject/TeamProject.html --><!-- @include /src/components/PersonalProject/PersonalProject.html --><!-- @include /src/components/PersonalProject/PersonalOverview.html --><!-- @include /src/components/AppProject/AppProject.html --><!-- @include /src/components/AppProject/AppOverview.html --><!-- @include /src/components/CloneCoding/CloneCoding.html --><!-- @include /src/components/SoftwareSkills/SoftwareSkills.html --><!-- @include /src/components/PhotoRail/PhotoRail.html --></div>
     <script type="module" src="/src/main.js"></script>
   </body>
 </html>

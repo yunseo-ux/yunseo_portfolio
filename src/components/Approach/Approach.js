@@ -18,13 +18,15 @@ export function initApproach() {
         section.append(viewport);
         section.classList.add('approach-pinned');
         const clamp = value => Math.max(0, Math.min(1, value));
-        let frame = 0;
-        const update = () => {
-            const canvas = viewport.firstElementChild;
-            const scale = Math.min(section.clientWidth / 1920, window.innerHeight / 1080);
+        const canvas = viewport.firstElementChild;
+        const measure = () => {
+            const scale = Math.min(section.clientWidth / 1920, viewport.clientHeight / 1080);
             canvas.style.scale = String(scale);
             canvas.style.left = `${(section.clientWidth - 1920 * scale) / 2}px`;
-            canvas.style.top = `${(window.innerHeight - 1080 * scale) / 2}px`;
+            canvas.style.top = `${(viewport.clientHeight - 1080 * scale) / 2}px`;
+        };
+        let frame = 0;
+        const update = () => {
             const holdDistance = 200;
             const scrollDistance = -section.getBoundingClientRect().top;
             const progress = clamp((scrollDistance - holdDistance) / (section.offsetHeight - viewport.offsetHeight - holdDistance));
@@ -48,7 +50,8 @@ export function initApproach() {
         };
         const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
         window.addEventListener('scroll', schedule, { passive: true });
-        window.addEventListener('resize', schedule);
+        window.addEventListener('resize', () => { measure(); schedule(); });
+        measure();
         update();
         return;
     }

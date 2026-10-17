@@ -95,7 +95,9 @@ export function initProjectLine(track) {
         if (!frame) previous = 0;
     };
     return (position) => {
-        target = panels.length ? Math.max(0, Math.min(1, (position - startIndex + 0.5) / (panels.length - 0.5))) : 0;
+        const next = panels.length ? Math.max(0, Math.min(1, (position - startIndex + 0.5) / (panels.length - 0.5))) : 0;
+        if (next === target) return;
+        target = next;
         if (reduced) drawn = target;
         if (!frame) frame = requestAnimationFrame(draw);
     };

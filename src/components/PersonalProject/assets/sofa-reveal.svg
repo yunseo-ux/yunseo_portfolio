@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 141.477 79.641" role="img" aria-label="선으로 그려지는 소파 일러스트">
+            <defs><mask id="movement-sofa-ink" maskUnits="userSpaceOnUse" x="0" y="0" width="141.477" height="79.641">
+                <path class="movement-ink" pathLength="1" d="M7 48 Q0 25 25 29 Q20 8 47 12 L107 15 Q128 19 124 35 Q145 29 137 51 L128 64 L18 62 Z" fill="none" stroke="white" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
+                <path class="movement-ink movement-ink--detail" pathLength="1" d="M20 46 Q65 36 122 49 M68 17 L67 48 M20 57 L20 76 M120 58 L120 77" fill="none" stroke="white" stroke-width="22" stroke-linecap="round" />
+                <rect class="movement-ink-finish" width="141.477" height="79.641" fill="white" />
+            </mask></defs>
+            <image href="" width="141.477" height="79.641" preserveAspectRatio="none" mask="url(#movement-sofa-ink)" />
+        </svg>

@@ -7,6 +7,7 @@ import { initDrawingReveal } from './drawingReveal.js';
 import { loadSections } from './sections.js';
 import { initChatbot } from './components/Chatbot/Chatbot.js';
 import { initPersonalProject } from './components/PersonalProject/PersonalProject.js';
+import { initPhotoRail } from './components/PhotoRail/PhotoRail.js';
 
 async function start() {
     const root = document.querySelector('#root');
@@ -19,7 +20,7 @@ async function start() {
         root.replaceChildren(message);
         return;
     }
-    for (const initialize of [initHero, initTeamProject, initApproach, initTeamProjectSlogan, initPersonalProject, initDrawingReveal, initCloneCoding, initChatbot]) {
+    for (const initialize of [initHero, initTeamProject, initApproach, initTeamProjectSlogan, initPersonalProject, initDrawingReveal, initCloneCoding, initChatbot, initPhotoRail]) {
         try {
             initialize();
         } catch (error) {

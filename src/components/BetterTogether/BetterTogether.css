@@ -1,0 +1,53 @@
+.better-together { position: relative; width: 100%; aspect-ratio: 16 / 9; container-type: inline-size; overflow: hidden; background: #faf8f3; color: #354858; }
+.better-together-canvas { position: absolute; width: 1920px; height: 1080px; transform-origin: top left; scale: calc(100cqw / 1920px); }
+.together-photo { position: absolute; object-fit: fill; object-position: bottom; }
+.together-photo--workspace { left: 205px; top: 199px; width: 279px; height: 294px; }
+.together-photo--collaboration { left: 423px; top: 356px; width: 525px; height: 538px; }
+.together-photo--collaboration { opacity: var(--together-large, 1); }
+.together-photo--workspace { z-index: 2; opacity: var(--together-small, 1); }
+.together-tape--large { z-index: 1; opacity: var(--together-large, 1); }
+.together-tape--small { z-index: 3; opacity: var(--together-small, 1); }
+.together-tape { position: absolute; }
+.together-tape img { max-width: none; }
+.together-tape--small { left: 309px; top: 177px; width: 74.165px; height: 31.484px; transform: rotate(3.56deg); }
+.together-tape--large { left: 623px; top: 327px; width: 107.434px; height: 47.011px; transform: rotate(-6.27deg); }
+.together-tape--small img { position: absolute; left: -4px; top: 0; }
+.together-tape--large img { position: absolute; left: -4px; top: 0; }
+.together-copy { position: absolute; left: 1115px; top: 506px; width: 680px; }
+.together-links { display: flex; gap: 41px; height: 34px; margin-bottom: 32px; font: 20px / normal 'Ownglyph PDH', sans-serif; text-transform: uppercase; }
+.together-links a:focus-visible { outline: 2px solid #4f718d; outline-offset: 5px; }
+.together-eyebrow { margin: 0 0 10px; color: #4f718d; font: 24px / normal 'Ownglyph PDH', sans-serif; text-transform: uppercase; }
+.together-copy h2 { margin: 0 0 28px; font: 400 48px / normal 'Ownglyph Yuntaeng', sans-serif; }
+.together-description { color: #4f718d; font: 25px / 1.4 'Ownglyph Yuntaeng', sans-serif; }
+.together-description p { margin: 0 0 22px; }
+.team-project-track .better-together-canvas { top: 0; left: max(0px, calc((100% - 1920px) / 2)); scale: none; transform: scale(var(--project-scale)); transform-origin: top left; }
+@media (prefers-reduced-motion: reduce) {
+    .together-photo--collaboration, .together-photo--workspace { opacity: 1; }
+    .together-tape--large, .together-tape--small { opacity: 1; }
+}
+@media (max-width: 600px) {
+    .better-together { aspect-ratio: auto; padding: 110px 24px 60px; }
+    .better-together-canvas { position: relative; width: 100%; height: auto; scale: none; display: grid; grid-template-columns: repeat(10, 1fr); }
+    .together-photo { position: relative; width: 100%; height: auto; }
+    .together-photo--workspace { left: auto; top: auto; grid-column: 1 / 5; grid-row: 1; margin-top: 12px; }
+    .together-photo--collaboration { left: auto; top: auto; grid-column: 4 / 11; grid-row: 1; margin-top: 70px; }
+    .together-tape--small { left: 13%; top: 0; }
+    .together-tape--large { left: 57%; top: 53px; }
+    .together-copy { position: static; grid-column: 1 / -1; width: auto; margin-top: 36px; }
+    .together-links { margin-bottom: 28px; }
+    .together-copy h2 { font-size: 40px; margin-bottom: 20px; }
+    .together-description { font-size: 23px; }
+    .together-desktop-break { display: none; }
+    .team-project-track .better-together { padding: 0; }
+    .team-project-track .better-together-canvas { position: absolute; display: block; width: 1920px; height: 1080px; }
+    .team-project-track .together-photo { position: absolute; margin: 0; }
+    .team-project-track .together-photo--workspace { left: 205px; top: 199px; width: 279px; height: 294px; }
+    .team-project-track .together-photo--collaboration { left: 423px; top: 356px; width: 525px; height: 538px; }
+    .team-project-track .together-tape--small { left: 309px; top: 177px; }
+    .team-project-track .together-tape--large { left: 623px; top: 327px; }
+    .team-project-track .together-copy { position: absolute; left: 1115px; top: 506px; width: 680px; margin: 0; }
+    .team-project-track .together-links { margin-bottom: 32px; }
+    .team-project-track .together-copy h2 { font-size: 48px; margin-bottom: 28px; }
+    .team-project-track .together-description { font-size: 25px; }
+    .team-project-track .together-desktop-break { display: initial; }
+}

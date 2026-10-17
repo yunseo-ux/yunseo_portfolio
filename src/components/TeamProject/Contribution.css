@@ -6,7 +6,7 @@
 .contribution-main--bottom { left: 191.303px; top: 593.022px; }
 .contribution-main--top { left: 174.703px; top: 314.522px; }
 .contribution-slides { left: 1192.814px; top: 577.233px; width: 515.204px; height: 289.802px; transform: rotate(9.18deg); box-shadow: 2px 4px 7.6px rgb(0 0 0 / 11%); }
-.contribution-detail { left: 1320.005px; top: 256.921px; width: 317px; height: 186px; transform: rotate(3.93deg); box-shadow: 3px 3px 6.7px rgb(0 0 0 / 16%); }
+.contribution-detail { left: 1328.362px; top: 263.902px; width: 339.348px; height: 199.791px; transform: rotate(3.93deg); box-shadow: 3px 3px 6.7px rgb(0 0 0 / 16%); }
 .contribution-guide { left: 772px; top: 261px; width: 345px; height: 451.402px; box-shadow: 2.15px 3.224px 6.126px rgb(0 0 0 / 14%); }
 .contribution-caption { position: absolute; margin: 0; font-size: 25px; line-height: 1.4; white-space: nowrap; font-weight: 400; }
 .contribution-caption--main { left: 310.623px; top: 268.836px; transform: rotate(-2.61deg); }
@@ -18,3 +18,16 @@
 .contribution-tape--main { left: 134.44px; top: 327.403px; width: 93.655px; height: 36.049px; transform: rotate(-43.82deg); }
 .contribution-tape--slides { left: 1435.306px; top: 562.564px; width: 79.719px; height: 33.842px; transform: rotate(9.84deg); }
 .contribution-tape--guide { left: 896.906px; top: 245.274px; width: 74.165px; height: 31.484px; transform: rotate(3.56deg); }
+
+.team-contribution--animated :is(.contribution-main, .contribution-guide, .contribution-detail, .contribution-slides, .contribution-tape) { opacity: 0; }
+.team-contribution--visible :is(.contribution-main, .contribution-guide, .contribution-detail, .contribution-slides, .contribution-tape) { animation: contribution-appear 700ms ease-out var(--contribution-delay, 0ms) both; }
+.contribution-guide, .contribution-tape--guide { --contribution-delay: 250ms; }
+.contribution-detail { --contribution-delay: 500ms; }
+.contribution-slides, .contribution-tape--slides { --contribution-delay: 750ms; }
+@keyframes contribution-appear {
+    from { opacity: 0; translate: 0 12px; }
+    to { opacity: 1; translate: 0 0; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .team-contribution--animated :is(.contribution-main, .contribution-guide, .contribution-detail, .contribution-slides, .contribution-tape) { opacity: 1; animation: none; translate: none; }
+}

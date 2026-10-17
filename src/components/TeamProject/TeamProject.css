@@ -1,5 +1,6 @@
 .team-project-gallery {
     position: relative;
+    overflow-anchor: none;
     --project-scale: 1;
     --project-height: 1080px;
     height: calc(var(--project-height) + var(--project-scroll-range, 1120vh));
@@ -7,7 +8,7 @@
 }
 .team-project-viewport {
     position: sticky;
-    top: var(--pin-top, min(0px, calc(100vh - var(--project-height))));
+    top: 0;
     width: 100%;
     height: var(--project-height);
     overflow: hidden;
@@ -29,6 +30,10 @@
     left: -100%;
     top: var(--project-height);
 }
+.team-project-track > section > [class$="-canvas"] {
+    top: var(--project-canvas-top, 0px);
+    left: var(--project-canvas-left, 0px);
+}
 .team-project-track .team-project-canvas,
 .team-project-track .team-background-canvas,
 .team-project-track .team-research-canvas,
@@ -44,6 +49,7 @@
     position: relative;
     width: 100%;
     height: 1080px;
+    overflow-anchor: none;
     overflow: hidden;
     background: #faf8f3;
 }
@@ -56,6 +62,8 @@
     height: 1080px;
     color: #354858;
     font-family: 'Ownglyph Yuntaeng', sans-serif;
+    left: max(0px, calc((100% - 1920px) / 2));
+    transform-origin: top left;
 }
 
 .team-project-visual {

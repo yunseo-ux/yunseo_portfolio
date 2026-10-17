@@ -1,6 +1,10 @@
 const includePattern = /<!-- @include \/(src\/components\/[\w/]+\.html) -->/g;
 
 async function expandSections(html) {
+    // Live Server injects its reload script before every closing SVG tag.
+    // Inside fragments, that script's CDATA can swallow the following HTML
+    // when the combined document is assigned to innerHTML.
+    html = html.replace(/<!--\s*Code injected by live-server\s*-->\s*<script\b[^>]*>[\s\S]*?<\/script\s*>/gi, '');
     const includes = [...html.matchAll(includePattern)];
     const sections = await Promise.all(includes.map(async ([, path]) => {
         const response = await fetch(`/${path}`);

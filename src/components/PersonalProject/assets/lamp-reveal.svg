@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 86.604 178.373" role="img" aria-label="선으로 그려지는 스탠드 조명 일러스트">
+            <defs><mask id="movement-lamp-ink" maskUnits="userSpaceOnUse" x="0" y="0" width="86.604" height="178.373">
+                <path class="movement-ink" pathLength="1" d="M17 47 L28 9 Q46 -1 59 10 L75 48 Q46 61 17 47 M32 17 L29 42 M50 16 L58 43" fill="none" stroke="white" stroke-width="24" stroke-linecap="round" stroke-linejoin="round" />
+                <path class="movement-ink movement-ink--detail" pathLength="1" d="M43 51 L44 161 Q17 158 22 170 Q42 182 68 169 Q74 158 44 161" fill="none" stroke="white" stroke-width="22" stroke-linecap="round" />
+                <rect class="movement-ink-finish" width="86.604" height="178.373" fill="white" />
+            </mask></defs>
+            <image href="" x="-65.257" y="-20.138" width="215.904" height="215.902" preserveAspectRatio="none" mask="url(#movement-lamp-ink)" />
+        </svg>

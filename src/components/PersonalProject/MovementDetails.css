@@ -1,0 +1,67 @@
+.movement-details-canvas { position: relative; width: min(100%, 1920px); aspect-ratio: 1920 / 1080; margin: auto; color: #354858; }
+.movement-static-content { position: absolute; inset: 0; z-index: 1; isolation: isolate; opacity: 1; visibility: visible; }
+.movement-static-content > div { opacity: 1; visibility: visible; clip-path: none; }
+.movement-strategy-image, .movement-solution-image { position: absolute; width: 29.21875%; height: 30.925926%; overflow: hidden; box-shadow: 3px 5px 7px rgb(0 0 0 / 13%); }
+.movement-strategy-image { left: 12.96875%; top: 21.574074%; }
+.movement-strategy-image img { position: absolute; width: 100%; height: 471.87%; top: -328.68%; max-width: none; }
+.movement-solution-image { left: 57.864583%; top: 52.407407%; }
+.movement-solution-image img { width: 100%; height: 100%; object-fit: cover; }
+.movement-strategy-copy { position: absolute; left: 45.052083%; top: 38.055556%; }
+.movement-solution-copy { position: absolute; right: 45%; top: 65.833333%; text-align: right; }
+.movement-details h3 { margin: 0 0 min(.572917cqw, 11px); font: 400 min(1.041667cqw, 20px) / normal 'Ownglyph PDH', sans-serif; }
+.movement-details p { margin: 0; color: #4f718d; font: min(1.302083cqw, 25px) / 1.4 'Ownglyph Yuntaeng', sans-serif; white-space: nowrap; }
+.movement-palette { display: flex; justify-content: flex-end; gap: min(.208333cqw, 4px); margin-bottom: min(.885417cqw, 17px); }
+.movement-palette span { width: min(2.708333cqw, 52px); height: min(1.822917cqw, 35px); background: #f4f3f1; }
+.movement-palette span:nth-child(2) { background: #e9e5dd; }
+.movement-palette span:nth-child(3) { background: #402f25; }
+.two-details .movement-strategy-image img { height: 349.76%; top: -154.33%; }
+.two-details .movement-solution-image img { position: absolute; width: 100%; height: 520.41%; top: -49.28%; max-width: none; }
+.two-details .movement-palette span:nth-child(1) { background: #fff; }
+.two-details .movement-palette span:nth-child(2) { background: #dfe6ed; }
+.two-details .movement-palette span:nth-child(3) { background: #4f6d8a; }
+.two-details .movement-palette span:nth-child(4) { background: #343c47; }
+.rola-details .movement-strategy-image img { height: 242.5%; top: -7.76%; }
+.rola-details .movement-solution-image img { position: absolute; width: 131.55%; height: 177.02%; top: -10.09%; max-width: none; }
+.rola-details .movement-palette span:nth-child(1) { background: #f8f5ef; }
+.rola-details .movement-palette span:nth-child(2) { background: #f9eef0; }
+.rola-details .movement-palette span:nth-child(3) { background: #d2495c; }
+.cosmetic-doodle--perfume { left: 16.2372%; top: 64.4756%; width: 3.425885%; height: 7.772593%; transform: rotate(-8.36deg); }
+.movement-doodle.cosmetic-doodle--perfume img { position: absolute; width: 170.61%; height: 133.69%; left: -35.24%; top: -16.63%; max-width: none; }
+.cosmetic-doodle--lipstick { left: 75.477448%; top: 25.940093%; width: 2.083229%; height: 8.035278%; transform: rotate(-4.22deg); }
+.movement-doodle.cosmetic-doodle--lipstick img { position: absolute; width: 276.21%; height: 127.31%; left: -87.67%; top: -17.66%; max-width: none; }
+.cosmetic-doodle--cream { left: 77.816745%; top: 30.704722%; width: 2.46724%; height: 3.389907%; transform: rotate(10.68deg); }
+.movement-doodle.cosmetic-doodle--cream img { position: absolute; width: 163.71%; height: 211.82%; left: -31.98%; top: -64.02%; max-width: none; }
+.cosmetic-doodle { clip-path: inset(0 0 100% 0); }
+.rola-shirt-doodle { left: 74.2055%; top: 27.0542%; width: 5.4487%; height: 6.7774%; transform: rotate(8.32deg); }
+.movement-doodle.rola-shirt-doodle img { position: absolute; width: 115.68%; height: 132.31%; left: -7.84%; top: -19.22%; max-width: none; }
+.movement-doodles--draw .cosmetic-doodle { animation: cosmetic-draw 750ms steps(24, end) both; }
+.movement-doodles--draw .cosmetic-doodle--cream { animation-delay: 120ms; }
+.movement-doodles--draw .cosmetic-doodle--perfume { animation-delay: 240ms; }
+@keyframes cosmetic-draw { to { clip-path: inset(0); } }
+.movement-doodle { position: absolute; z-index: 2; overflow: hidden; pointer-events: none; }
+.movement-doodle > svg, .movement-doodle > img { display: block; width: 100%; height: 100%; }
+.movement-doodle--sofa { left: 74.547448%; top: 25.575833%; width: 7.368594%; height: 7.374167%; transform: rotate(6.91deg); }
+.movement-doodle--lamp { left: 13.779714%; top: 64.891667%; width: 4.510625%; height: 16.516019%; transform: rotate(-5.65deg); }
+.movement-ink { stroke-dasharray: 1; stroke-dashoffset: 1; }
+.movement-ink-finish { opacity: 0; }
+.movement-doodles--draw .movement-ink { animation: movement-doodle-ink 600ms ease-in-out both; }
+.movement-doodles--draw .movement-ink--detail { animation-delay: 320ms; }
+.movement-doodles--draw .movement-doodle--lamp .movement-ink { animation-delay: 150ms; }
+.movement-doodles--draw .movement-doodle--lamp .movement-ink--detail { animation-delay: 470ms; }
+.movement-doodles--draw .movement-ink-finish { animation: movement-doodle-finish 1ms 950ms forwards; }
+.movement-doodles--draw .movement-doodle--lamp .movement-ink-finish { animation-delay: 1100ms; }
+@keyframes movement-doodle-ink { to { stroke-dashoffset: 0; } }
+@keyframes movement-doodle-finish { to { opacity: 1; } }
+.personal-project-track > .personal-overview:not(.movement-details) .personal-overview-screen { animation: movement-site-scroll 55s linear infinite alternate; animation-play-state: paused; }
+#personal-project .personal-overview-screen { width: 126.078431%; max-width: none; }
+.personal-project-track > .personal-overview.movement-preview--playing:not(.movement-details) .personal-overview-screen { animation-play-state: running; }
+@keyframes movement-site-scroll {
+    0% { transform: translateY(0); }
+    97%, 100% { transform: translateY(calc(var(--movement-screen-height, 480px) - 100%)); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .personal-project-track .personal-overview-screen { animation: none !important; }
+    .cosmetic-doodle { clip-path: none; animation: none !important; }
+    .movement-ink-finish { opacity: 1; animation: none !important; }
+    .movement-ink { animation: none !important; }
+}

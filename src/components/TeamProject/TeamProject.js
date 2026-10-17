@@ -54,15 +54,22 @@ export function initTeamProject() {
     const phoneContent = document.querySelector('.team-project-phone-content');
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
     let startedAt;
+    let previewFrame = 0;
+    let previewVisible = false;
+    let distance = 0;
+    let phoneDistance = 0;
+    const measurePreview = () => {
+        distance = screen && content ? Math.max(0, content.offsetHeight - screen.clientHeight) : 0;
+        phoneDistance = phoneScreen && phoneContent ? Math.max(0, phoneContent.offsetHeight - phoneScreen.clientHeight) : 0;
+    };
     const animate = time => {
-        if (!screen || !content) return;
+        previewFrame = 0;
+        if (!screen || !content || !previewVisible || document.hidden || motionPreference.matches) return;
         if (startedAt === undefined) startedAt = time;
-        const distance = Math.max(0, content.offsetHeight - screen.clientHeight);
         const progress = ((time - startedAt) % 120000) / 120000;
-        const position = progress < 0.08 ? 0 : progress < 0.88 ? (progress - 0.08) / 0.8 : 1;
+        const position = progress < .003 ? 0 : progress < .803 ? (progress - .003) / .8 : 1;
         content.style.transform = `translateY(${-distance * position}px)`;
         if (phoneScreen && phoneContent) {
-            const phoneDistance = Math.max(0, phoneContent.offsetHeight - phoneScreen.clientHeight);
             const cycle = ((time - startedAt) % 200000) / 200000;
             // Pause at both ends, then travel back without jumping to the start.
             const phonePosition = cycle < .05 ? 0
@@ -71,9 +78,27 @@ export function initTeamProject() {
                 : cycle < .95 ? 1 - (cycle - .55) / .4 : 0;
             phoneContent.style.transform = `translateY(${motionPreference.matches ? 0 : -phoneDistance * phonePosition}px)`;
         }
-        requestAnimationFrame(animate);
+        previewFrame = requestAnimationFrame(animate);
     };
-    requestAnimationFrame(animate);
+    const refreshPreview = () => {
+        cancelAnimationFrame(previewFrame);
+        previewFrame = 0;
+        startedAt = undefined;
+        measurePreview();
+        if (previewVisible && !document.hidden && !motionPreference.matches) previewFrame = requestAnimationFrame(animate);
+    };
+    const previewSection = screen?.closest('.team-project');
+    if (previewSection) {
+        new IntersectionObserver(entries => {
+            previewVisible = entries[0].isIntersecting;
+            refreshPreview();
+        }, { threshold: .25 }).observe(previewSection);
+    }
+    content?.querySelector('img')?.addEventListener('load', measurePreview);
+    phoneContent?.addEventListener('load', measurePreview);
+    window.addEventListener('resize', measurePreview);
+    document.addEventListener('visibilitychange', refreshPreview);
+    motionPreference.addEventListener('change', refreshPreview);
 
     const gallery = document.querySelector('.team-project-gallery');
     if (!gallery) return;
@@ -83,28 +108,54 @@ export function initTeamProject() {
     const updateLine = initProjectLine(track);
     const comparison = track.querySelector('.team-before-after');
     const comparisonIndex = [...track.children].indexOf(comparison);
-    const researchIndex = [...track.children].findIndex(panel => panel.matches('.team-research'));
+    const panels = [...track.children];
+    const researchIndex = panels.findIndex(panel => panel.matches('.team-research'));
     if (researchIndex > 0) {
-        [...track.children].slice(researchIndex).forEach(panel => panel.classList.add('team-project-lower-row'));
+        panels.slice(researchIndex).forEach(panel => panel.classList.add('team-project-lower-row'));
     }
+    const together = track.querySelector('.better-together');
+    const togetherIndex = panels.indexOf(together);
+    const editorial = track.querySelector('.team-editorial');
+    const editorialIndex = panels.indexOf(editorial);
+    const contribution = track.querySelector('.team-contribution');
+    const contributionIndex = panels.indexOf(contribution);
+    contribution?.classList.add('team-contribution--animated');
     const clamp = value => Math.max(0, Math.min(1, value));
+    // Each panel has a reading interval before the next horizontal transition.
+    const holds = panels.map(panel => panel === comparison ? 2.8
+        : panel.matches('.better-together, .team-editorial') ? 1.25 : .7);
+    const starts = [];
+    let duration = 0;
+    holds.forEach((hold, index) => {
+        starts.push(duration);
+        duration += hold + (index < panels.length - 1 ? 1 : 0);
+    });
+    gallery.style.setProperty('--project-scroll-range', `${duration * 160}svh`);
+    const measure = () => {
+        const scale = Math.min(1, gallery.clientWidth / 1920, window.innerHeight / 1080);
+        gallery.style.setProperty('--project-scale', scale);
+        gallery.style.setProperty('--project-height', `${window.innerHeight}px`);
+        gallery.style.setProperty('--project-canvas-top', `${(window.innerHeight - 1080 * scale) / 2}px`);
+        gallery.style.setProperty('--project-canvas-left', `${(gallery.clientWidth - 1920 * scale) / 2}px`);
+    };
     let frame = 0;
     const update = () => {
-        const scale = Math.min(1, gallery.clientWidth / 1920);
-        gallery.style.setProperty('--project-scale', scale);
-        gallery.style.setProperty('--project-height', `${1080 * scale}px`);
-        const steps = track.children.length - 1;
-        const hold = comparison ? 2.8 : 0;
-        gallery.style.setProperty('--project-scroll-range', `${(steps + hold) * 160}vh`);
         const availableScroll = gallery.offsetHeight - viewport.offsetHeight;
-        const verticalScroll = Math.max(0, viewport.offsetHeight - window.innerHeight);
-        const scrolled = -gallery.getBoundingClientRect().top - verticalScroll;
+        const scrolled = -gallery.getBoundingClientRect().top;
         const progress = Math.max(0, Math.min(1, scrolled / availableScroll));
-        const timeline = progress * (steps + hold);
-        const position = !comparison || timeline < comparisonIndex ? timeline
-            : timeline < comparisonIndex + hold ? comparisonIndex : timeline - hold;
+        const timeline = progress * duration;
+        let position = panels.length - 1;
+        for (let index = 0; index < panels.length; index++) {
+            const local = timeline - starts[index];
+            if (local <= holds[index]) { position = index; break; }
+            if (index < panels.length - 1 && local < holds[index] + 1) {
+                const move = clamp(local - holds[index]);
+                position = index + move * move * (3 - 2 * move);
+                break;
+            }
+        }
         if (comparison) {
-            const local = (timeline - comparisonIndex) / hold;
+            const local = (timeline - starts[comparisonIndex]) / holds[comparisonIndex];
             const reveal = (start, end) => {
                 if (motionPreference.matches) return Number(local >= end);
                 const value = clamp((local - start) / (end - start));
@@ -115,18 +166,32 @@ export function initTeamProject() {
             comparison.style.setProperty('--comparison-right', reveal(.52, .64));
             comparison.style.setProperty('--comparison-copy', reveal(.72, .84));
         }
-        viewport.style.setProperty('--pin-top', `${-verticalScroll}px`);
-        // Continue right through contributions, move down into research,
-        // then resume the horizontal sequence.
+        if (together) {
+            const local = (timeline - starts[togetherIndex]) / holds[togetherIndex];
+            const photoProgress = (start, end) => {
+                if (motionPreference.matches) return 1;
+                const value = clamp((local - start) / (end - start));
+                return value * value * (3 - 2 * value);
+            };
+            together.style.setProperty('--together-large', photoProgress(0, .18));
+            together.style.setProperty('--together-small', photoProgress(.2, .4));
+        }
         const descent = researchIndex > 0 ? clamp(position - (researchIndex - 1)) : 0;
         const horizontalPosition = position - descent;
-        track.style.left = `${-Math.round(horizontalPosition * viewport.clientWidth)}px`;
-        track.style.top = `${-Math.round(descent * viewport.offsetHeight)}px`;
+        track.style.transform = `translate3d(${-horizontalPosition * viewport.clientWidth}px, ${-descent * viewport.clientHeight}px, 0)`;
+        editorial?.classList.toggle('team-editorial--visible', Math.abs(position - editorialIndex) < .35);
+        if (contribution) {
+            const distance = Math.abs(position - contributionIndex);
+            if (distance < .12) contribution.classList.add('team-contribution--visible');
+            else if (distance > .95) contribution.classList.remove('team-contribution--visible');
+        }
         updateLine(position);
         frame = 0;
     };
     const scheduleUpdate = () => { if (!frame) frame = requestAnimationFrame(update); };
+    measure();
     update();
     window.addEventListener('scroll', scheduleUpdate, { passive: true });
-    window.addEventListener('resize', scheduleUpdate);
+    window.addEventListener('resize', () => { measure(); scheduleUpdate(); });
+    motionPreference.addEventListener('change', scheduleUpdate);
 }
