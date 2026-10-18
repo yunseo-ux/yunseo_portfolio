@@ -214,7 +214,7 @@
     display: flex;
     flex: none;
     gap: 8px;
-    padding: 12px;
+    padding: 6px 12px;
     background: #fffdf8;
     border-top: 1px solid #dce5eb;
 }
@@ -229,21 +229,26 @@
 .chatbot-form input {
     flex: 1;
     min-width: 0;
-    padding: 10px;
+    padding: 4px 10px;
+    height: 40px;
+    box-sizing: border-box;
+    line-height: 1.2;
     border: 1px solid #c7d5df;
     border-radius: 9px;
     background: #faf8f3;
-    font-size: 16px;
+    font-size: 18px;
     color: #354858;
 }
 .chatbot-form input::placeholder {
     color: #718794;
-    font-size: 14px;
+    font-size: 16px;
 }
 .chatbot-form button {
     border: 0;
     border-radius: 9px;
-    padding: 8px 12px;
+    padding: 4px 12px;
+    height: 40px;
+    line-height: 1.2;
     background: #4f718d;
     color: #fffdf8;
     font-size: 16px;

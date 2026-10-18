@@ -3,21 +3,26 @@
 .team-project-track .team-contribution-canvas { left: max(0px, calc((100% - 1920px) / 2)); transform: scale(var(--project-scale)); transform-origin: top left; }
 .team-contribution-canvas > img { position: absolute; object-fit: cover; max-width: none; }
 .contribution-main { width: 496px; height: 279px; transform: rotate(-3.41deg); }
-.contribution-main--bottom { left: 191.303px; top: 593.022px; }
-.contribution-main--top { left: 174.703px; top: 314.522px; }
-.contribution-slides { left: 1192.814px; top: 577.233px; width: 515.204px; height: 289.802px; transform: rotate(9.18deg); box-shadow: 2px 4px 7.6px rgb(0 0 0 / 11%); }
-.contribution-detail { left: 1328.362px; top: 263.902px; width: 339.348px; height: 199.791px; transform: rotate(3.93deg); box-shadow: 3px 3px 6.7px rgb(0 0 0 / 16%); }
-.contribution-guide { left: 772px; top: 261px; width: 345px; height: 451.402px; box-shadow: 2.15px 3.224px 6.126px rgb(0 0 0 / 14%); }
+.contribution-main--bottom { left: 181.303px; top: 593.022px; }
+.contribution-main--top { left: 164.703px; top: 314.522px; }
+.contribution-slides { left: 1228.388px; top: 576.408px; width: 478.119px; height: 268.942px; transform: rotate(9.18deg); box-shadow: 2px 4px 7.6px rgb(0 0 0 / 11%); }
+.contribution-detail { left: 1348.362px; top: 273.902px; width: 339.348px; height: 199.791px; transform: rotate(3.93deg); box-shadow: 3px 3px 6.7px rgb(0 0 0 / 16%); }
+.contribution-guide { left: 792px; top: 261px; width: 345px; height: 451.402px; box-shadow: 2.15px 3.224px 6.126px rgb(0 0 0 / 14%); }
 .contribution-caption { position: absolute; margin: 0; font-size: 25px; line-height: 1.4; white-space: nowrap; font-weight: 400; }
-.contribution-caption--main { left: 310.623px; top: 268.836px; transform: rotate(-2.61deg); }
-.contribution-caption--guide { left: 860px; top: 723.84px; }
-.contribution-caption--slides { left: 1386.6px; top: 871.467px; transform: rotate(7.95deg); }
-.contribution-caption--detail { left: 1393.63px; top: 220.748px; font-size: 23px; transform: rotate(4.25deg); }
+.contribution-caption--main { left: 300.623px; top: 268.836px; transform: rotate(-2.61deg); }
+.contribution-caption--guide { left: 884px; top: 726.84px; }
+.contribution-caption--slides { left: 1401.1px; top: 851.467px; transform: rotate(7.95deg); }
+.contribution-caption--detail { left: 1444.63px; top: 228.748px; font-size: 23px; transform: rotate(4.25deg); }
+.contribution-description { color: #4f718d; font-size: 23px; }
+.contribution-description--main { left: 240.2px; top: 233.176px; transform: rotate(-2.61deg); }
+.contribution-description--guide { left: 832px; top: 770px; --contribution-delay: 250ms; }
+.contribution-description--detail { left: 1411px; top: 189.976px; transform: rotate(4.25deg); --contribution-delay: 500ms; }
+.contribution-description--slides { left: 1325.46px; top: 885.269px; transform: rotate(8.46deg); --contribution-delay: 750ms; }
 .contribution-tape { position: absolute; }
 .contribution-tape img { position: absolute; top: 0; left: -4px; max-width: none; }
-.contribution-tape--main { left: 134.44px; top: 327.403px; width: 93.655px; height: 36.049px; transform: rotate(-43.82deg); }
-.contribution-tape--slides { left: 1435.306px; top: 562.564px; width: 79.719px; height: 33.842px; transform: rotate(9.84deg); }
-.contribution-tape--guide { left: 896.906px; top: 245.274px; width: 74.165px; height: 31.484px; transform: rotate(3.56deg); }
+.contribution-tape--main { left: 124.44px; top: 327.403px; width: 93.655px; height: 36.049px; transform: rotate(-43.82deg); }
+.contribution-tape--slides { left: 1455.306px; top: 562.564px; width: 79.719px; height: 33.842px; transform: rotate(9.84deg); }
+.contribution-tape--guide { left: 916.906px; top: 245.274px; width: 74.165px; height: 31.484px; transform: rotate(3.56deg); }
 
 .team-contribution--animated :is(.contribution-main, .contribution-guide, .contribution-detail, .contribution-slides, .contribution-tape, .contribution-caption) { opacity: 0; }
 .team-contribution--visible :is(.contribution-main, .contribution-guide, .contribution-detail, .contribution-slides, .contribution-tape, .contribution-caption) { animation: contribution-appear 700ms ease-out var(--contribution-delay, 0ms) both; }

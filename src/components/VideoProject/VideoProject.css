@@ -1,3 +1,45 @@
+﻿.video-projects { background: #faf8f3; color: #354858; font-family: 'Ownglyph PDH', sans-serif; }
+.video-project { min-height: 100svh; display: flex; align-items: center; }
+.video-gallery--pinned { position: relative; height: 340svh; }
+.video-gallery--pinned .video-gallery-viewport { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.video-gallery--pinned .video-gallery-track { display: flex; height: 100%; will-change: transform; }
+.video-gallery--pinned .video-project { flex: 0 0 100%; min-width: 0; height: 100%; }
+.video-project-layout { position: relative; width: 100%; max-width: 1920px; margin: auto; aspect-ratio: 1920 / 1080; container-type: inline-size; }
+.video-project-media { position: absolute; left: 8.75%; top: 36.1111%; width: 33.8021%; aspect-ratio: 649 / 379; padding: 0; border: 0; background: transparent; cursor: pointer; font: inherit; color: inherit; }
+.video-project-media video { display: block; width: 100%; height: 100%; object-fit: cover; }
+.video-project-media:focus-visible { outline: 2px solid #4f718d; outline-offset: 8px; }
+.video-project--portrait .video-project-media { left: 15.0521%; top: 22.7778%; width: 18.1771%; aspect-ratio: 349 / 627; }
+.video-project-hint { position: absolute; left: 0; right: 0; bottom: -28px; font-size: 12px; text-align: center; color: #4f718d; }
+.video-project-copy { position: absolute; left: 48.8021%; top: 23.1481%; width: 48%; }
+.video-project--portrait .video-project-copy { left: 44.9479%; width: 51%; }
+.video-project-count { margin: 0 0 1.1cqw; font-family: 'Ownglyph Yuntaeng', sans-serif; font-size: 1.6667cqw; line-height: 1; }
+.video-project-count span { color: #4f718d; font-size: .875em; }
+.video-project-copy h2 { margin: 0 0 .55cqw; font-size: 2.3958cqw; font-weight: 400; line-height: 1.1; }
+.video-project-subtitle { margin: 0; font-size: .78125cqw; }
+.video-project-copy dl { margin: 3.65cqw 0 0; }
+.video-project-copy dl > div + div { margin-top: 1.65cqw; }
+.video-project-copy dl > div:first-child { margin-bottom: 2.1cqw; }
+.video-project-copy dt { margin-bottom: .55cqw; font-size: 1.04167cqw; }
+.video-project-copy dd { margin: 0; color: #4f718d; font-family: 'Ownglyph Yuntaeng', sans-serif; font-size: 1.3021cqw; line-height: 1.4; }
+.video-project-copy dd span { font-family: 'Ownglyph PDH', sans-serif; }
+@media (max-width: 800px) {
+ .video-gallery-viewport { overflow-x: auto; scroll-snap-type: x mandatory; }
+ .video-gallery-track { display: flex; align-items: flex-start; }
+ .video-gallery-track .video-project { flex: 0 0 100%; min-width: 0; box-sizing: border-box; scroll-snap-align: start; }
+ .video-project { min-height: auto; padding: 110px 7% 70px; }
+ .video-project-layout { display: flex; flex-direction: column; gap: 55px; aspect-ratio: auto; }
+ .video-project .video-project-media { position: relative; left: auto; top: auto; width: 100%; }
+ .video-project--portrait .video-project-media { width: min(65%, 300px); align-self: center; }
+ .video-project .video-project-copy { position: relative; left: auto; top: auto; width: 100%; }
+ .video-project-count { font-size: 26px; margin-bottom: 16px; }
+ .video-project-copy h2 { font-size: clamp(32px, 6vw, 46px); margin-bottom: 10px; }
+ .video-project-subtitle { font-size: 13px; }
+ .video-project-copy dl { margin-top: 38px; }
+ .video-project-copy dl > div + div, .video-project-copy dl > div:first-child { margin-top: 26px; margin-bottom: 0; }
+ .video-project-copy dt { font-size: 18px; margin-bottom: 8px; }
+ .video-project-copy dd { font-size: 22px; }
+ .video-desktop-break { display: none; }
+}
 .video-project-canvas { aspect-ratio: 1920 / 720; }
 .video-project-slogan h2 { left: 48.671875%; top: 44.6875%; text-align: center; }
 .video-project-slogan .personal-project-label { left: 42.604167%; top: 37.268519%; }

@@ -62,6 +62,12 @@ export function initChatbot() {
         label.textContent = author === 'user' ? '방문자' : '윤서 소개 도우미';
         const content = document.createElement('p');
         content.textContent = text;
+        if (author === 'bot' && reply?.emphasis && text.includes(reply.emphasis)) {
+            const position = text.indexOf(reply.emphasis);
+            const strong = document.createElement('strong');
+            strong.textContent = reply.emphasis;
+            content.replaceChildren(text.slice(0, position), strong, text.slice(position + reply.emphasis.length));
+        }
         row.append(label, content);
         if (reply?.section) {
             const link = document.createElement('a');

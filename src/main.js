@@ -13,6 +13,7 @@ import { initAppGallery } from './components/AppProject/AppGallery.js';
 import { initAppProposal } from './components/AppProject/AppProposal.js';
 import { initSoftwareSkills } from './components/SoftwareSkills/SoftwareSkills.js';
 import { initEnding } from './components/Ending/Ending.js';
+import { initVideoProject } from './components/VideoProject/VideoProject.js';
 
 async function start() {
     const root = document.querySelector('#root');
@@ -25,7 +26,7 @@ async function start() {
         root.replaceChildren(message);
         return;
     }
-    for (const initialize of [initHero, initTeamProject, initApproach, initTeamProjectSlogan, initPersonalProject, initDrawingReveal, initCloneCoding, initChatbot, initPhotoRail, initFooter, initAppGallery, initAppProposal, initSoftwareSkills]) {
+    for (const initialize of [initHero, initTeamProject, initApproach, initTeamProjectSlogan, initPersonalProject, initDrawingReveal, initCloneCoding, initChatbot, initPhotoRail, initFooter, initAppGallery, initAppProposal, initSoftwareSkills, initVideoProject]) {
         try {
             initialize();
         } catch (error) {
