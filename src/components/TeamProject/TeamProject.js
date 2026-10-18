@@ -137,6 +137,8 @@ export function initTeamProject() {
         gallery.style.setProperty('--project-height', `${window.innerHeight}px`);
         gallery.style.setProperty('--project-canvas-top', `${(window.innerHeight - 1080 * scale) / 2}px`);
         gallery.style.setProperty('--project-canvas-left', `${(gallery.clientWidth - 1920 * scale) / 2}px`);
+        gallery.style.setProperty('--project-line-width', `${gallery.clientWidth / scale}px`);
+        gallery.style.setProperty('--project-line-left', `${-Math.max(0, (gallery.clientWidth - 1920) / 2) / scale}px`);
     };
     let frame = 0;
     const update = () => {

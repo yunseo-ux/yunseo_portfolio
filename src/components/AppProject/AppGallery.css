@@ -1,0 +1,53 @@
+.app-gallery { position: relative; background: #faf8f3; overflow-anchor: none; }
+.app-gallery-viewport { position: sticky; top: 0; height: 100svh; overflow: hidden; }
+.app-gallery-track { display: flex; height: 100%; }
+.app-gallery-track > section { flex: 0 0 100%; min-width: 0; display: flex; align-items: center; }
+.app-intro-phone { position: absolute; width: 14.303958%; height: 53.159815%; padding: .494792%; border-radius: min(2.545781cqw, 49px); background: #020202; box-shadow: 0 0 0 min(.086302cqw, 1.657px) #999, inset 0 0 0 min(.172604cqw, 3.314px) #d2d2d2; }
+.app-intro-phone--today { left: 33.680208%; top: 15.185185%; }
+.app-intro-phone--eco { left: 52.013542%; top: 33.888889%; }
+.app-intro-phone img { width: 100%; height: 100%; border-radius: min(2.1cqw, 41px); object-fit: cover; }
+.app-intro-phone > span { position: absolute; left: 35%; top: 2.8%; width: 30%; height: 4.1%; border-radius: 30px; background: #020202; }
+.app-intro-copy { position: absolute; }
+.app-intro-copy--today { right: 69.375%; top: 21.574074%; text-align: right; }
+.app-intro-copy--eco { left: 68.4375%; top: 56.296296%; }
+.app-intro-copy h2, .app-intro-copy h3, .app-intro-copy p { position: static; }
+.app-intro-copy h2 { font-size: min(1.666667cqw, 32px); margin: 0 0 min(1.302083cqw, 25px); }
+.app-intro-copy h2 span { font-family: 'Ownglyph PDH', sans-serif; }
+.app-intro-copy h3 { font: 400 min(1.041667cqw, 20px) 'Ownglyph PDH', sans-serif; margin: 0 0 min(.572917cqw, 11px); }
+.app-intro-copy p { color: #4f718d; font-size: min(1.302083cqw, 25px); line-height: 1.4; white-space: nowrap; }
+.app-detail-logo { position: absolute; left: 12.916667%; top: 20.277778%; width: 6.71875%; height: 6.481481%; object-fit: cover; }
+.app-detail--eco .app-detail-logo { left: 12.1875%; top: 20.555556%; width: 18.072917%; }
+.app-detail p { font-size: min(1.302083cqw, 25px); line-height: 1.4; white-space: nowrap; color: #4f718d; left: 11.875%; }
+.app-detail p.app-detail-intro { top: 29.62963%; }
+.app-detail--today p.app-detail-intro { color: #354858; }
+.app-detail p.app-detail-keywords { top: 37.314815%; font-size: min(1.197917cqw, 23px); }
+.app-detail p.app-detail-quote { top: 44.62963%; color: #354858; font-size: min(1.5625cqw, 30px); }
+.app-detail p.app-detail-description { top: 51.203704%; }
+.app-detail--eco p.app-detail-quote { top: 45.833333%; font: min(1.458333cqw, 28px)/1.4 'Ownglyph PDH', sans-serif; }
+.app-detail--eco .app-detail-quote span { display: block; margin-top: min(.572917cqw, 11px); font-family: 'Ownglyph Yuntaeng', sans-serif; font-size: min(1.5625cqw, 30px); }
+.app-detail--eco p.app-detail-description { top: 56.481481%; }
+.app-detail-features { position: absolute; left: 11.875%; right: 11%; top: 64.351852%; display: grid; grid-template-columns: 1fr 1fr; row-gap: min(2.135417cqw, 41px); margin: 0; }
+.app-detail--eco .app-detail-features { top: 67.962963%; }
+.eco-leaves { position: absolute; left: 64%; top: 20%; width: 22%; height: 19%; pointer-events: none; }
+.eco-leaf { position: absolute; width: 18%; height: 56%; overflow: visible; }
+.eco-leaf--1 { left: 0; top: 12%; transform: rotate(-30deg); }
+.eco-leaf--2 { left: 41%; top: 0; transform: rotate(12deg); }
+.eco-leaf--3 { left: 80%; top: 38%; width: 16%; height: 49%; transform: rotate(43deg); }
+.today-doodles { color: #a9bec8; }
+.today-doodle--letter { left: 0; top: 0; width: 24%; height: 56%; transform: rotate(-12deg); }
+.today-doodle--location { left: 76%; top: 60%; width: 19%; height: 57%; transform: rotate(12deg); }
+.eco-leaf { opacity: .62; }
+.today-doodles .eco-leaf { opacity: .85; }
+.eco-leaf path { fill: none; stroke: currentColor; stroke-width: 4.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }
+.eco-leaf path.sketch-trace { stroke-width: 1.8; opacity: .32; }
+.today-doodles .eco-leaf path { stroke-width: 3; }
+.today-doodles .eco-leaf path.sketch-trace { stroke-width: 1.2; }
+.eco-leaves--draw .eco-leaf path { animation: eco-leaf-draw 700ms ease-in-out var(--leaf-delay) both; }
+@keyframes eco-leaf-draw { to { stroke-dashoffset: 0; } }
+.app-detail-features dt { font-size: min(1.458333cqw, 28px); line-height: 1.4; margin-bottom: min(.572917cqw, 11px); }
+.app-detail-features dd { margin: 0; color: #4f718d; font-size: min(1.302083cqw, 25px); line-height: 1.4; white-space: nowrap; }
+@media (prefers-reduced-motion: reduce) {
+ .app-gallery-viewport { position: relative; height: auto; overflow: visible; }
+ .app-gallery-track { display: block; }
+ .eco-leaves .eco-leaf path { animation: none; stroke-dashoffset: 0; }
+}

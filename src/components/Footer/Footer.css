@@ -1,0 +1,35 @@
+.portfolio-footer { position: relative; overflow: hidden; background: #dce5eb; color: #354858; font-family: 'Ownglyph PDH', sans-serif; container-type: inline-size; }
+.footer-canvas { position: relative; width: min(100%, 1920px); aspect-ratio: 1920 / 1080; margin-inline: auto; }
+.footer-wave { position: absolute; inset: 0 0 auto; height: min(13.541667cqw, 260px); pointer-events: none; }
+.footer-wave > svg { display: block; width: 100%; height: 100%; }
+.footer-wave > img { position: absolute; left: -2.03125%; top: 0; width: 102.8125%; max-width: none; transform: scaleY(-1); }
+.footer-contacts { position: absolute; left: 10%; top: 35.277778%; display: flex; flex-direction: column; gap: min(2.03125cqw, 39px); margin: 0; }
+.footer-contact { display: flex; align-items: center; gap: min(2.552083cqw, 49px); }
+.footer-contact dt { width: min(6.770833cqw, 130px); color: #465e72; font-size: min(1.5625cqw, 30px); }
+.footer-contact dd { margin: 0; font-size: min(2.083333cqw, 40px); line-height: 1.4; }
+.footer-contact a, .footer-resume { display: flex; align-items: center; gap: min(2.5cqw, 48px); color: inherit; text-decoration: none; white-space: nowrap; }
+.footer-contact a:hover > span:last-child { text-decoration: underline; text-underline-offset: .15em; }
+.footer-contact a:focus-visible { outline: 2px solid #4f718d; outline-offset: 6px; border-radius: 2px; }
+.footer-icon { position: relative; flex: none; display: block; overflow: hidden; width: min(2.395833cqw, 46px); height: min(2.239583cqw, 43px); }
+.footer-icon img { display: block; width: 100%; height: 100%; max-width: none; }
+.footer-icon--email { width: min(2.239583cqw, 43px); height: min(1.614583cqw, 31px); margin-right: min(.15625cqw, 3px); }
+.footer-icon--github img { position: absolute; width: 141.86%; height: 148.78%; left: -20.93%; top: -21.95%; }
+.footer-icon--resume { width: min(2.135417cqw, 41px); height: min(2.1875cqw, 42px); margin-right: min(.260417cqw, 5px); }
+.footer-icon--resume img { position: absolute; width: 186.94%; height: 184.14%; left: -37.74%; top: -45.7%; }
+.footer-character { position: absolute; left: 81%; top: 57.222222%; width: 11.041667%; aspect-ratio: 1; }
+.footer-character > img { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); opacity: .9; }
+.footer-character > span { position: absolute; left: 12.28%; top: 54.646226%; width: 18.867925%; font-size: min(1.25cqw, 24px); line-height: .94; text-align: center; color: #8fa9be; transform: rotate(8.66deg); }
+@media (max-width: 600px) {
+    .footer-canvas { aspect-ratio: auto; min-height: 620px; }
+    .footer-wave { height: 100px; }
+    .footer-contacts { left: 7%; right: 7%; top: 180px; gap: 28px; }
+    .footer-contact { gap: 16px; }
+    .footer-contact dt { width: 65px; font-size: 20px; }
+    .footer-contact dd { font-size: clamp(19px, 4.8cqw, 28px); }
+    .footer-contact a, .footer-resume { gap: 14px; }
+    .footer-icon { width: 23px; height: 22px; }
+    .footer-icon--email { width: 22px; height: 16px; margin-right: 1px; }
+    .footer-icon--resume { width: 21px; height: 21px; margin-right: 2px; }
+    .footer-character { left: 10%; right: auto; top: auto; bottom: 45px; width: 110px; }
+    .footer-character > span { font-size: 13px; }
+}

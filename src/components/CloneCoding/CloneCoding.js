@@ -4,8 +4,26 @@ export function initCloneCoding() {
     const track = section.querySelector('.clone-coding-track');
     const windowElement = section.querySelector('.clone-coding-window');
     const heading = section.querySelector('.clone-coding-heading');
-    section.prepend(heading);
+    const headingHold = document.createElement('div');
+    headingHold.className = 'clone-heading-hold';
+    section.prepend(headingHold);
+    headingHold.append(heading);
     const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
+    let headingObserver;
+    if (!reduced.matches) {
+        heading.classList.add('clone-heading--animated');
+        headingObserver = new IntersectionObserver(entries => {
+            if (!entries.some(entry => entry.isIntersecting)) return;
+            heading.classList.add('clone-heading--visible');
+            headingObserver.disconnect();
+        }, { threshold: .55 });
+        headingObserver.observe(heading);
+    }
+    reduced.addEventListener('change', () => {
+        if (!reduced.matches) return;
+        headingObserver?.disconnect();
+        heading.classList.remove('clone-heading--animated');
+    });
     let frame = 0;
     const update = () => {
         frame = 0;
@@ -14,7 +32,7 @@ export function initCloneCoding() {
         const distance = Math.max(0, track.scrollWidth - available);
         const pinned = window.innerWidth > 800 && window.innerHeight > 600 && !reduced.matches && distance > 1;
         section.classList.toggle('clone-coding--pinned', pinned);
-        const introDistance = heading.offsetHeight;
+        const introDistance = headingHold.offsetHeight;
         section.style.setProperty('--clone-scroll-distance', `${introDistance + distance * 1.8 + 250}px`);
         if (!pinned) {
             track.style.transform = '';

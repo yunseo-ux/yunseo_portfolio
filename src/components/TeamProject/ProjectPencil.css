@@ -2,8 +2,9 @@
 .team-research-canvas,
 .team-placeholder-canvas,
 .team-additional-canvas { isolation: isolate; }
-.project-pencil-line { position: absolute; inset: 0; width: 1920px; height: 1080px; z-index: -1; overflow: hidden; pointer-events: none; }
-.project-pencil-line path { fill: none; stroke: #6f8b9c; stroke-linecap: round; stroke-linejoin: round; }
+.project-pencil-line, .project-pencil-cars { position: absolute; inset: 0; width: 1920px; height: 1080px; z-index: -1; overflow: hidden; pointer-events: none; }
+.project-pencil-line { left: var(--project-line-left, 0px); width: var(--project-line-width, 1920px); }
+.project-pencil-line path, .project-pencil-cars path { fill: none; stroke: #6f8b9c; stroke-linecap: round; stroke-linejoin: round; }
 
 .team-project-track :is(.team-background-canvas, .team-research-canvas, .team-placeholder-canvas, .team-additional-canvas) > :is(p, h2, ul, .team-background-highlight) {
     translate: 20px 0;

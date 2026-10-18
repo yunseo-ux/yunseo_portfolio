@@ -3,10 +3,16 @@
 .photo-rail-stage { position: relative; width: 100%; height: 100%; }
 .photo-rail-rope { opacity: .45; clip-path: inset(0 100% 0 0); }
 .photo-rail-frames { opacity: 0; }
+.photo-rail-caption { position: absolute; inset: 0; margin: 0; color: #354858; font-family: 'Ownglyph Yuntaeng', sans-serif; pointer-events: none; }
+.photo-rail-caption span { position: absolute; left: 0; top: 0; display: block; line-height: 1.2; opacity: 0; transform-origin: center top; }
 .photo-rail-rope { position: absolute; top: var(--photo-rope-top, 22vh); left: var(--photo-rope-left, -1100px); width: 4218.81px; height: 151.116px; transform: scale(var(--photo-scale, 1)); transform-origin: top left; pointer-events: none; }
 .photo-rail-frame { position: absolute; left: 0; top: 0; width: 270.523px; height: 332.814px; margin: 0; transform-origin: 50% -20px; will-change: transform; }
 .photo-rail-paper { position: absolute; inset: 0; z-index: 1; background: white; box-shadow: 3px 4px 4px rgb(0 0 0 / 10%); }
 .photo-rail-placeholder { position: absolute; left: 23.03px; top: 42.17px; width: 229.218px; height: 269.681px; background: #d9d9d9; }
+.photo-rail-placeholder { overflow: hidden; }
+.photo-rail-placeholder > img { position: absolute; display: block; width: 100%; height: 100%; max-width: none; object-fit: fill; }
+.photo-rail-frame:nth-child(2) .photo-rail-placeholder > img { width: 104.27%; height: 118.16%; left: -2.13%; top: -.01%; }
+.photo-rail-frame:nth-child(6) .photo-rail-placeholder > img { width: 121.21%; height: 137.37%; left: -10.6%; top: -10.91%; }
 .photo-rail-clip { position: absolute; max-width: none; transform: scaleX(-1); }
 .photo-rail-clip--back { z-index: 0; left: 119px; top: -48px; }
 .photo-rail-clip--front { z-index: 2; left: 120px; top: -52px; }
@@ -14,4 +20,5 @@
     .photo-rail { height: 75svh; min-height: 470px; }
     .photo-rail-viewport { position: relative; height: 100%; overflow-x: auto; }
     .photo-rail-frame { will-change: auto; }
+    .photo-rail-caption { display: none; }
 }

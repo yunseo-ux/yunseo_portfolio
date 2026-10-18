@@ -39,6 +39,7 @@
 .movement-doodles--draw .cosmetic-doodle--perfume { animation-delay: 240ms; }
 @keyframes cosmetic-draw { to { clip-path: inset(0); } }
 .movement-doodle { position: absolute; z-index: 2; overflow: hidden; pointer-events: none; }
+.movement-doodle { opacity: .65; filter: saturate(.45); }
 .movement-doodle > svg, .movement-doodle > img { display: block; width: 100%; height: 100%; }
 .movement-doodle--sofa { left: 74.547448%; top: 25.575833%; width: 7.368594%; height: 7.374167%; transform: rotate(6.91deg); }
 .movement-doodle--lamp { left: 13.779714%; top: 64.891667%; width: 4.510625%; height: 16.516019%; transform: rotate(-5.65deg); }

@@ -1,0 +1,12 @@
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="49" height="49" viewBox="0 0 49 49" fill="none" xmlns="http://www.w3.org/2000/svg">
+<g filter="url(#ending-grain)" id="fa6-solid:pen" clip-path="url(#clip0_0_4)">
+<path fill="#dce5eb" fill-opacity=".45" id="Vector" d="M38.236 21.0829L16.9704 42.3407H16.9694C16.256 43.0541 15.3892 43.6025 14.4362 43.9511L14.028 44.0868L2.51922 47.4726C2.23465 47.5513 1.93212 47.4714 1.73016 47.2694C1.52927 47.0684 1.44882 46.768 1.53484 46.4755L4.92156 34.9677C5.21237 33.9914 5.70811 33.0917 6.37371 32.3358L6.66863 32.0204L27.9157 10.7626L38.236 21.0829ZM35.7819 2.90811C37.5323 1.15769 40.3331 1.10285 42.1491 2.74404L42.322 2.90811L46.0905 6.68643L46.0925 6.68838C47.8989 8.4951 47.8989 11.4207 46.0925 13.2274L42.5202 16.7987L32.2009 6.47939L35.3327 3.34756H35.3425L35.7819 2.90811Z" stroke="#8fa7b5" stroke-width="1.25" stroke-linejoin="round"/>
+<path id="Vector 2" d="M16 42.5L6.5 33.5" stroke="#8fa7b5" stroke-width="1.25" stroke-linejoin="round" stroke-linecap="round"/>
+<path id="Vector 3" d="M6 47L2 43" stroke="#8fa7b5" stroke-width="1.25" stroke-linejoin="round"/>
+</g>
+<defs><filter id="ending-grain" x="-8%" y="-8%" width="116%" height="116%"><feTurbulence type="fractalNoise" baseFrequency=".12 .45" numOctaves="2" seed="8" result="grain"/><feDisplacementMap in="SourceGraphic" in2="grain" scale=".45" xChannelSelector="R" yChannelSelector="G"/></filter>
+<clipPath id="clip0_0_4">
+<rect width="49" height="49" fill="white"/>
+</clipPath>
+</defs>
+</svg>

@@ -8,14 +8,15 @@
     background: #faf8f3;
 }
 .introduction-collage { position: absolute; width: 1920px; height: 1100px; transform-origin: top left; scale: calc(100cqw / 1920px); }
-.introduction-paper { position: absolute; left: 139.877px; top: 238.679px; width: 617.445px; height: 590.725px; background: #ebebeb; box-shadow: -4px 6px 11.8px rgb(0 0 0 / 19%); transform: rotate(-3.91deg); }
-.introduction-photo { position: absolute; left: 614.781px; top: 503.825px; width: 374.827px; height: 431.07px; overflow: hidden; box-shadow: 3px 5px 5.7px rgb(0 0 0 / 15%); transform: rotate(7.58deg); }
+.introduction-paper { position: absolute; left: 139.877px; top: 238.679px; width: 617.445px; height: 590.725px; transform: rotate(-3.91deg); box-shadow: -4px 6px 11.8px rgb(0 0 0 / 19%); }
+.introduction-paper img { display: block; width: 100%; height: 100%; object-fit: cover; object-position: center bottom; }
+.introduction-photo { position: absolute; left: 641.946px; top: 532.335px; width: 312.048px; height: 358.871px; overflow: hidden; box-shadow: 3px 5px 5.7px rgb(0 0 0 / 15%); transform: rotate(7.58deg); }
 .introduction-photo img { position: absolute; width: 100%; height: 111.78%; max-width: none; left: -0.2%; top: -7.18%; }
-.introduction-tape { position: absolute; width: 111.715px; height: 56.026px; }
+.introduction-tape { position: absolute; width: 93.004px; height: 46.642px; }
 .introduction-tape img { position: absolute; left: -4px; top: 0; max-width: none; }
 .introduction-tape-paper { left: 340.578px; top: 192.804px; width: 151.217px; height: 86.933px; transform: rotate(-28.49deg); }
-.introduction-tape-top-right { left: 938.992px; top: 502.225px; transform: rotate(18.43deg); }
-.introduction-tape-bottom-left { left: 540.989px; top: 886.224px; transform: rotate(27.1deg); }
+.introduction-tape-top-right { left: 911.858px; top: 531.007px; transform: rotate(18.43deg); }
+.introduction-tape-bottom-left { left: 580.518px; top: 844.021px; transform: rotate(27.1deg); }
 .introduction-content { position: absolute; top: 20.0521cqw; left: 56.6667cqw; }
 .introduction-content h2 { margin: 0; font-family: 'Ownglyph PDH', sans-serif; font-size: 3.3333cqw; font-weight: 400; line-height: normal; text-transform: uppercase; white-space: nowrap; }
 .introduction-title-icon { position: relative; display: inline-block; width: 65px; height: 62px; margin-left: 8px; vertical-align: middle; zoom: calc(100cqw / 1920px); }

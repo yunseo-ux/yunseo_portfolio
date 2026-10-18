@@ -2,6 +2,7 @@ import { topics, findReply } from './knowledge.js';
 
 const icon = new URL('./assets/chatbot.png', import.meta.url).href;
 const bubble = new URL('./assets/question.png', import.meta.url).href;
+const topArrow = new URL('./assets/top-arrow.svg', import.meta.url).href;
 
 export function initChatbot() {
     if (document.querySelector('.portfolio-chatbot')) return;
@@ -31,6 +32,20 @@ export function initChatbot() {
             </form>
         </section>`;
     document.body.append(widget);
+    const topButton = document.createElement('button');
+    topButton.className = 'chatbot-top';
+    topButton.type = 'button';
+    topButton.setAttribute('aria-label', '페이지 맨 위로 이동');
+    const arrow = document.createElement('img');
+    arrow.src = topArrow;
+    arrow.alt = '';
+    const topLabel = document.createElement('span');
+    topLabel.textContent = 'TOP';
+    topButton.append(arrow, topLabel);
+    widget.append(topButton);
+    topButton.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: window.matchMedia('(prefers-reduced-motion: reduce)').matches ? 'instant' : 'smooth' });
+    });
     const panel = widget.querySelector('.chatbot-panel');
     const launcher = widget.querySelector('.chatbot-launcher');
     const nudge = widget.querySelector('.chatbot-nudge');

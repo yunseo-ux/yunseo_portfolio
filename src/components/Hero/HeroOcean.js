@@ -1,6 +1,11 @@
 export function initHeroOcean() {
     const hero = document.querySelector('.portfolio-hero');
     const wave = hero?.querySelector('.hero-wave');
+    initOceanWave(hero, wave);
+    hero?.classList.add('hero-ocean');
+}
+
+export function initOceanWave(hero, wave, { closeAtTop = false, rise = true } = {}) {
     if (!wave) return;
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     const namespace = 'http://www.w3.org/2000/svg';
@@ -12,7 +17,6 @@ export function initHeroOcean() {
     path.setAttribute('fill', '#faf8f3');
     svg.append(path);
     wave.replaceChildren(svg);
-    hero.classList.add('hero-ocean');
 
     let frame = 0;
     let visible = true;
@@ -38,8 +42,8 @@ export function initHeroOcean() {
             const y = waveY(x);
             shape += `${x ? 'L' : 'M'}${x},${y.toFixed(2)} `;
         }
-        path.setAttribute('d', `${shape}L1920,260 L0,260 Z`);
-        hero.style.setProperty('--ocean-rise', `${preference.matches ? 0 : -progress * rect.height * .22}px`);
+        path.setAttribute('d', `${shape}L1920,${closeAtTop ? 0 : 260} L0,${closeAtTop ? 0 : 260} Z`);
+        if (rise) hero.style.setProperty('--ocean-rise', `${preference.matches ? 0 : -progress * rect.height * .22}px`);
         if (visible && !document.hidden && !preference.matches) frame = requestAnimationFrame(paint);
         else lastTime = null;
     };

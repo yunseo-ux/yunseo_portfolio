@@ -1,9 +1,9 @@
-<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="119.715" height="64.0256" viewBox="0 0 119.715 64.0256" fill="none" xmlns="http://www.w3.org/2000/svg">
+<svg preserveAspectRatio="none" overflow="visible" style="display: block;" width="101.004" height="54.642" viewBox="0 0 101.004 54.642" fill="none" xmlns="http://www.w3.org/2000/svg">
 <g id="Tape" filter="url(#filter0_d_0_6)">
-<path d="M15.3675 6.91674C14.9755 4.84172 14.1132 0.553339 13.7996 0L115.715 16.2543L111.403 18.6752L115.715 23.8627L111.403 25.5919L114.147 30.0878L109.835 33.2003L114.147 38.3879L108.268 40.1171L109.835 45.6505L106.308 47.7255L108.268 56.0256L4 40.1171L11.0557 34.2379L6.3519 30.0878L11.0557 23.8627L10.2717 19.7127L15.3675 16.2543L10.2717 10.7209L15.3675 6.91674Z" fill="#DCE5EB" fill-opacity="0.8" shape-rendering="crispEdges"/>
+<path d="M13.4636 5.75827C13.1373 4.03079 12.4193 0.460662 12.1583 0L97.0043 13.5319L93.4147 15.5473L97.0043 19.866L93.4147 21.3056L95.699 25.0485L92.1094 27.6397L95.699 31.9584L90.804 33.398L92.1094 38.0046L89.1724 39.7321L90.804 46.642L4 33.398L9.87396 28.5034L5.95799 25.0485L9.87396 19.866L9.22129 16.4111L13.4636 13.5319L9.22129 8.92532L13.4636 5.75827Z" fill="#DCE5EB" fill-opacity="0.8" shape-rendering="crispEdges"/>
 </g>
 <defs>
-<filter id="filter0_d_0_6" x="0" y="0" width="119.715" height="64.0256" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
+<filter id="filter0_d_0_6" x="0" y="0" width="101.004" height="54.642" filterUnits="userSpaceOnUse" color-interpolation-filters="sRGB">
 <feFlood flood-opacity="0" result="BackgroundImageFix"/>
 <feColorMatrix in="SourceAlpha" type="matrix" values="0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 0 127 0" result="hardAlpha"/>
 <feOffset dy="4"/>

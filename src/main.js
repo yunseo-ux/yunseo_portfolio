@@ -8,6 +8,11 @@ import { loadSections } from './sections.js';
 import { initChatbot } from './components/Chatbot/Chatbot.js';
 import { initPersonalProject } from './components/PersonalProject/PersonalProject.js';
 import { initPhotoRail } from './components/PhotoRail/PhotoRail.js';
+import { initFooter } from './components/Footer/Footer.js';
+import { initAppGallery } from './components/AppProject/AppGallery.js';
+import { initAppProposal } from './components/AppProject/AppProposal.js';
+import { initSoftwareSkills } from './components/SoftwareSkills/SoftwareSkills.js';
+import { initEnding } from './components/Ending/Ending.js';
 
 async function start() {
     const root = document.querySelector('#root');
@@ -20,13 +25,14 @@ async function start() {
         root.replaceChildren(message);
         return;
     }
-    for (const initialize of [initHero, initTeamProject, initApproach, initTeamProjectSlogan, initPersonalProject, initDrawingReveal, initCloneCoding, initChatbot, initPhotoRail]) {
+    for (const initialize of [initHero, initTeamProject, initApproach, initTeamProjectSlogan, initPersonalProject, initDrawingReveal, initCloneCoding, initChatbot, initPhotoRail, initFooter, initAppGallery, initAppProposal, initSoftwareSkills]) {
         try {
             initialize();
         } catch (error) {
             console.error('화면 기능을 초기화하지 못했습니다.', error);
         }
     }
+    await initEnding();
 }
 
 start();

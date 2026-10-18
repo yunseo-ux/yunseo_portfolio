@@ -1,5 +1,7 @@
 .software-skills { padding: 150px max(6%, calc((100% - 1600px) / 2)) 170px; background: #faf8f3; color: #354858; font-family: 'Ownglyph PDH', sans-serif; }
 .software-skills-heading { position: relative; text-align: center; }
+.skills-heading-hold { position: relative; height: 200svh; }
+.skills-heading-hold .software-skills-heading { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; }
 .software-skills-heading h2 { margin: 26px 0 24px; font-size: clamp(48px, 4.6vw, 88px); font-weight: 400; line-height: 1; }
 .software-skills-heading > p { margin: 0; color: #4f718d; font-family: 'Ownglyph Yuntaeng', sans-serif; font-size: 27px; line-height: 1.5; }
 .software-skills-tools { display: flex; flex-wrap: wrap; justify-content: center; gap: 18px; margin: 85px 0 160px; padding: 0; list-style: none; }
@@ -13,6 +15,29 @@
 .software-skills-group + .software-skills-group { margin-top: 30px; }
 .software-skills-group h3 { display: inline-block; margin: 0 0 13px; font-size: 21px; font-weight: 400; background: linear-gradient(transparent 58%, #dce5eb 58%, #dce5eb 86%, transparent 86%); }
 .software-skills-group ul { margin: 0; padding: 0; list-style: none; color: #4f718d; font-size: 23px; line-height: 1.6; }
+.skills--animated .software-skills-heading h2,
+.skills--animated .software-skills-heading > p,
+.skills--animated .software-skills-tools > li,
+.skills--animated .software-skills-paper { opacity: 0; }
+.skills--animated .software-skills-tools { margin-top: clamp(150px, 24svh, 280px); margin-bottom: clamp(220px, 32svh, 380px); }
+.skills--animated .software-skills-heading.skills--revealed h2 { animation: clone-title-reveal 1300ms ease-out both; }
+.skills--animated .software-skills-heading.skills--revealed > p { animation: clone-copy-reveal 1100ms 750ms ease-out both; }
+.skills--animated .software-skills-tools.skills--revealed > li { animation: skills-tool-appear 1000ms ease-out var(--tool-delay) both, skills-tool-float var(--float-duration) ease-in-out calc(1000ms + var(--tool-delay)) infinite var(--float-direction); animation-play-state: running, paused; }
+.skills--animated .software-skills-tools.skills-tools--active > li { animation-play-state: running, running; }
+.skills--animated .software-skills-paper.skills--revealed { animation: skills-paper-attach 1700ms 250ms cubic-bezier(.22,.7,.25,1) both; }
+@keyframes skills-tool-appear { from { opacity: 0; } to { opacity: 1; } }
+@keyframes skills-tool-float { 0%, 100% { translate: 0 5px; } 50% { translate: 0 -7px; } }
+@keyframes skills-paper-attach {
+    from { opacity: 0; translate: -38px -32px; rotate: -3deg; clip-path: polygon(-100px -100px, -100px -100px, -100px -100px); }
+    65% { opacity: 1; clip-path: polygon(-100px -100px, calc(200% + 100px) -100px, -100px calc(200% + 100px)); }
+    to { opacity: 1; translate: 0 0; rotate: 0deg; clip-path: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+ .skills-heading-hold { height: auto; }
+ .skills-heading-hold .software-skills-heading { position: relative; height: auto; }
+ .skills--animated .software-skills-heading h2, .skills--animated .software-skills-heading > p,
+ .skills--animated .software-skills-tools > li, .skills--animated .software-skills-paper { opacity: 1; animation: none !important; translate: none; rotate: none; clip-path: none; }
+}
 @media (max-width: 800px) {
     .software-skills { padding: 100px 6%; }
     .software-skills-heading h2 { font-size: clamp(32px, 7vw, 56px); }

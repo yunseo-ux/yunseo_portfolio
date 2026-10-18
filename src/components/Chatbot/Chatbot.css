@@ -21,6 +21,9 @@
     background: none;
     transition: transform 0.2s ease;
 }
+.portfolio-chatbot .chatbot-top { position: absolute; top: calc(100% + 28px); left: 50%; transform: translateX(-50%); display: flex; flex-direction: column; align-items: center; gap: 3px; width: 44px; min-height: 46px; padding: 3px; border: 0; background: transparent; color: #4f718d; font: 12px/1 'Ownglyph PDH', sans-serif; cursor: pointer; }
+.chatbot-top img { display: block; width: 20.34px; height: 21.58px; max-width: none; transition: translate 200ms ease; }
+.chatbot-top:hover img { translate: 0 -3px; }
 .chatbot-launcher img {
     width: 94px;
     height: 94px;
@@ -248,7 +251,7 @@
 @media (max-width: 600px) {
     .portfolio-chatbot {
         left: calc(100vw - 80px - max(52px, env(safe-area-inset-right)));
-        top: calc(100dvh - 80px - max(36px, env(safe-area-inset-bottom)));
+        top: calc(100dvh - 80px - max(92px, env(safe-area-inset-bottom)));
         right: auto;
         bottom: auto;
     }

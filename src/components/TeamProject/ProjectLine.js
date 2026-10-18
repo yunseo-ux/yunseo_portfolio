@@ -22,6 +22,7 @@ export function initProjectLine(track) {
         const svg = document.createElementNS(ns, 'svg');
         svg.classList.add('project-pencil-line');
         svg.setAttribute('viewBox', `${index * 1920} 0 1920 1080`);
+        svg.setAttribute('preserveAspectRatio', 'none');
         svg.setAttribute('aria-hidden', 'true');
         const filterId = `project-pencil-grain-${index}`;
         svg.innerHTML = `<defs><filter id="${filterId}" x="-5%" y="-10%" width="110%" height="120%"><feTurbulence type="fractalNoise" baseFrequency=".035 .32" numOctaves="3" seed="8" result="grain"/><feDisplacementMap in="SourceGraphic" in2="grain" scale="2.2" xChannelSelector="R" yChannelSelector="G"/></filter></defs>`;
@@ -69,7 +70,12 @@ export function initProjectLine(track) {
                     duration: 0.22 / (panels.length - 0.5),
                 });
             });
-            svg.append(sketch);
+            const carSvg = document.createElementNS(ns, 'svg');
+            carSvg.classList.add('project-pencil-cars');
+            carSvg.setAttribute('viewBox', `${index * 1920} 0 1920 1080`);
+            carSvg.setAttribute('aria-hidden', 'true');
+            carSvg.append(sketch);
+            canvas.prepend(carSvg);
         }
         canvas.prepend(svg);
     });

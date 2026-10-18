@@ -12,7 +12,7 @@ export function initPersonalProject() {
     const panels = [...track.children];
     const starts = [];
     const isOverviewHold = panel => panel.matches('#personal-project-03, #personal-project-04');
-    const holds = panels.map(panel => panel.id === 'rola-details' ? 1 : isOverviewHold(panel) ? .8 : panel.matches('.movement-details') ? .4 : .15);
+    const holds = panels.map(panel => panel.id === 'personal-project-04' ? .35 : panel.id === 'rola-details' ? 1 : isOverviewHold(panel) ? .8 : panel.matches('.movement-details') ? .4 : .15);
     let duration = 0;
     holds.forEach((hold, index) => { starts.push(duration); duration += hold + (index < panels.length - 1 ? 1 : 0); });
     const clamp = value => Math.max(0, Math.min(1, value));
@@ -86,7 +86,7 @@ export function initPersonalProject() {
                 panel.classList.add('movement-doodles--draw');
                 visited.add(panel);
                 lockPanel = panel;
-                lockUntil = performance.now() + 1200;
+                lockUntil = performance.now() + (panel.id === 'personal-project-04' ? 600 : 1200);
                 if (panel.id === 'rola-details') {
                     const drawing = panel.querySelector('.rola-shirt-doodle');
                     const animations = drawing?.getAnimations() ?? [];
