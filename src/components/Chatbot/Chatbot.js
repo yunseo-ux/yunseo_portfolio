@@ -64,6 +64,7 @@ export function initChatbot() {
         const content = document.createElement('p');
         content.textContent = text;
         if (reply?.contacts) {
+            content.classList.add('chatbot-contact-reply');
             content.textContent = '';
             reply.contacts.forEach((contact, index) => {
                 if (index) content.append(document.createElement('br'));

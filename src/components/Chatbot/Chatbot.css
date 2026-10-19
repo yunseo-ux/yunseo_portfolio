@@ -198,6 +198,12 @@ html body .portfolio-chatbot .chatbot-nudge:hover span {
     font-size: 15px;
     text-underline-offset: 4px;
 }
+.chatbot-message .chatbot-contact-reply {
+    font-size: 15px;
+}
+.chatbot-message .chatbot-contact-reply a {
+    font-size: 13px;
+}
 .chatbot-topics {
     display: flex;
     flex: none;
