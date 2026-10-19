@@ -3,7 +3,7 @@
 .footer-wave { position: absolute; inset: 0 0 auto; height: min(13.541667cqw, 260px); pointer-events: none; }
 .footer-wave > svg { display: block; width: 100%; height: 100%; }
 .footer-wave > img { position: absolute; left: -2.03125%; top: 0; width: 102.8125%; max-width: none; transform: scaleY(-1); }
-.footer-contacts { position: absolute; left: 10%; top: calc(35.277778% + 26px); display: flex; flex-direction: column; gap: min(2.03125cqw, 39px); margin: 0; }
+.footer-contacts { position: absolute; left: 10%; top: calc(35.277778% + 36px); display: flex; flex-direction: column; gap: min(2.03125cqw, 39px); margin: 0; }
 .footer-contact { display: flex; align-items: center; gap: min(2.552083cqw, 49px); }
 .footer-contact dt { width: min(6.770833cqw, 130px); color: #465e72; font-size: min(1.5625cqw, 30px); }
 .footer-contact dd { margin: 0; font-size: min(2.083333cqw, 40px); line-height: 1.4; }

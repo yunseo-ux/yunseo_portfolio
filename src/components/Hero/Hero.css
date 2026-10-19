@@ -68,6 +68,11 @@ html body .hero-menu li * {
     display: inline-block;
 }
 
+.hero-menu a[href="#team-project"] {
+    padding: 22px 14px;
+    margin: -22px -14px;
+}
+
 .hero-menu li:hover > a,
 .hero-menu li:hover > span {
     animation: header-type .45s steps(12, end) both;
@@ -83,6 +88,11 @@ html body .hero-menu li * {
     content: '';
     background: currentColor;
     animation: header-caret .45s steps(1, end) both;
+}
+
+.hero-menu li:hover > a[href="#team-project"]::after {
+    top: calc(22px + .1em);
+    right: calc(14px - .18em);
 }
 
 @keyframes header-type {

@@ -14,6 +14,7 @@
 .app-overview-phone-shadow { position: absolute; left: 13.692%; top: 76.009%; width: 13.813%; height: 3.444%; background: url('./assets/phone-shadow.svg') center / 100% 100% no-repeat; }
 .app-overview-figma { position: absolute; left: 59.322917%; top: 32.037037%; width: 5.78125%; height: 3.148148%; color: #354858; font-family: 'Ownglyph PDH', sans-serif; text-decoration: none; font-size: min(1.041667cqw, 20px); }
 .app-overview-figma:focus-visible { outline: 2px solid #4f718d; outline-offset: 5px; }
+.app-overview .app-overview-behance { left: calc(59.322917% + 152px); }
 .app-overview .app-overview-figma.team-project-link { position: absolute; width: 111px; height: 34px; font-size: 20px; line-height: normal; }
 .app-overview .app-overview-proposal.team-project-link { width: 124px; }
 .app-overview-proposal { width: 7.8125%; border: 0; padding: 0; background: transparent; cursor: pointer; text-align: left; }
