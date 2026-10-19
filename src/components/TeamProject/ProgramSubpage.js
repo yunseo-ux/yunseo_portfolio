@@ -7,7 +7,7 @@ export function initProgramSubpage() {
         if (!reference?.naturalWidth || !preview?.naturalWidth) return;
         const distance = image => Math.max(0, image.naturalHeight / image.naturalWidth * 716 - 681);
         const referenceDistance = distance(reference);
-        if (referenceDistance > 0) preview.style.setProperty('--preview-duration', `${76.5 * distance(preview) / referenceDistance}s`);
+        if (referenceDistance > 0) preview.style.setProperty('--preview-duration', `${85 * distance(preview) / referenceDistance}s`);
     };
     reference?.addEventListener('load', matchSpeed);
     preview?.addEventListener('load', matchSpeed);
