@@ -29,6 +29,7 @@ export function initViewportStages() {
         if (canvas.matches('.personal-project-slogan-canvas')) top = canvas.matches('.video-project-canvas') ? 36 : 96;
         if (panel.matches('.app-detail')) top = -99;
         if (panel.matches('.app-overview--eco')) top = -59;
+        if (panel.matches('.app-detail--eco')) stage.style.setProperty('--stage-content-left', '15px');
         stage.style.setProperty('--stage-content-top', `${top}px`);
         return { canvas, slot, stage, panel };
     });

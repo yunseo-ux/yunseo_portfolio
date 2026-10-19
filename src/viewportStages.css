@@ -35,6 +35,9 @@
         translate: none;
         --personal-project-scale: 1;
     }
+    .viewport-stage-slot--active > .viewport-stage > .viewport-stage-content {
+        left: var(--stage-content-left, 0px);
+    }
     .viewport-stage-slot--active .video-project-layout.viewport-stage-content {
         left: 160px;
         width: 1600px;
