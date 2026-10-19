@@ -132,13 +132,12 @@ export function initTeamProject() {
     });
     gallery.style.setProperty('--project-scroll-range', `${duration * 160}svh`);
     const measure = () => {
-        const scale = Math.min(1, gallery.clientWidth / 1920, window.innerHeight / 1080);
+        const offset = Math.min(32, Math.max(16, window.innerHeight * .03));
+        const scale = Math.min(1, gallery.clientWidth / 1920, Math.max(1, window.innerHeight - offset * 2 - 32) / 1080);
         gallery.style.setProperty('--project-scale', scale);
         gallery.style.setProperty('--project-height', `${window.innerHeight}px`);
         gallery.style.setProperty('--project-canvas-top', `${(window.innerHeight - 1080 * scale) / 2}px`);
         gallery.style.setProperty('--project-canvas-left', `${(gallery.clientWidth - 1920 * scale) / 2}px`);
-        gallery.style.setProperty('--project-line-width', `${gallery.clientWidth / scale}px`);
-        gallery.style.setProperty('--project-line-left', `${-Math.max(0, (gallery.clientWidth - 1920) / 2) / scale}px`);
     };
     let frame = 0;
     const update = () => {

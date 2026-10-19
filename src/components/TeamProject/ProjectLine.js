@@ -77,7 +77,7 @@ export function initProjectLine(track) {
             carSvg.append(sketch);
             canvas.prepend(carSvg);
         }
-        canvas.prepend(svg);
+        panel.prepend(svg);
     });
     let target = 0;
     let drawn = 0;

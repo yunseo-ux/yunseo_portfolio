@@ -129,7 +129,7 @@ export function initPersonalProject() {
         if (index < 0) return;
         const vertical = Math.max(0, viewport.offsetHeight - window.innerHeight);
         const top = gallery.getBoundingClientRect().top + window.scrollY + vertical + starts[index] * viewport.clientWidth;
-        window.scrollTo({ top, behavior: 'instant' });
+        window.scrollTo({ top, left: 0, behavior: 'instant' });
     };
     track.addEventListener('focusin', event => showPanel(event.target));
     const showHash = () => { if (window.location.hash) showPanel(document.getElementById(window.location.hash.slice(1))); };

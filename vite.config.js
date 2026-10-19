@@ -16,6 +16,15 @@ export default defineConfig({
     },
     plugins: [{
         name: 'html-sections',
+        configureServer(server) {
+            // The ending is a prebuilt, self-contained module in public/.
+            // Serve it directly instead of passing it through Vite's import transform.
+            server.middlewares.use((request, response, next) => {
+                if (request.url?.split('?')[0] !== '/ending/ending.js') return next();
+                response.setHeader('Content-Type', 'text/javascript');
+                response.end(readFileSync(resolve('public/ending/ending.js')));
+            });
+        },
         transformIndexHtml: { order: 'pre', handler: expandSections },
     }],
 });

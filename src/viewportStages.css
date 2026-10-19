@@ -1,0 +1,49 @@
+/* In mobile layouts the wrappers have no layout effect. */
+.viewport-stage-slot, .viewport-stage { display: contents; }
+
+@media (min-width: 801px) {
+    /* Hash/focus navigation must not add native scrolling on top of the track transform. */
+    .personal-project-viewport,
+    .app-gallery-viewport,
+    .video-gallery--pinned .video-gallery-viewport { overflow: clip; }
+    .viewport-stage-slot--active {
+        display: block;
+        position: relative;
+        width: 100%;
+        flex: 0 0 100%;
+        min-width: 0;
+    }
+    .viewport-stage-slot--active > .viewport-stage {
+        display: block;
+        position: absolute;
+        width: 1920px;
+        height: 900px;
+        left: 50%;
+        top: 50%;
+        container-type: inline-size;
+        transform: translate(-50%, -50%) scale(var(--stage-scale, 1));
+        transform-origin: center;
+    }
+    .viewport-stage-slot--active > .viewport-stage > .viewport-stage-content {
+        position: absolute;
+        left: 0;
+        top: var(--stage-content-top);
+        width: 1920px;
+        max-width: none;
+        margin: 0;
+        scale: none;
+        translate: none;
+        --personal-project-scale: 1;
+    }
+    .viewport-stage-slot--active .video-project-layout.viewport-stage-content {
+        left: 160px;
+        width: 1600px;
+        gap: 115.2px;
+    }
+    .video-project--portrait .viewport-stage-slot--active .video-project-layout.viewport-stage-content {
+        left: 170px;
+    }
+    .video-project--portrait .viewport-stage-slot--active .video-project-media {
+        height: 585px;
+    }
+}

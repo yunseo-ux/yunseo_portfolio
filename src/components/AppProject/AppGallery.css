@@ -38,8 +38,8 @@
 .app-detail--eco .eco-leaf--2 { left: 76.56%; top: 30.58%; width: 1.63%; height: 5.69%; transform: rotate(10deg); }
 .app-detail--eco .eco-leaf--3 { left: 78.19%; top: 41.65%; width: 4.28%; height: 6.35%; transform: rotate(43deg); }
 .today-doodles { color: #a9bec8; }
-.today-doodle--letter { left: 0; top: 0; width: 24%; height: 56%; transform: rotate(-12deg); }
-.today-doodle--location { left: 76%; top: 60%; width: 19%; height: 57%; transform: rotate(12deg); }
+.today-doodle--letter { left: 0; top: 0; width: 24%; height: 56%; transform: rotate(-12deg); scale: .85; }
+.today-doodle--location { left: 76%; top: 60%; width: 19%; height: 57%; transform: rotate(12deg); scale: .85; }
 .eco-leaf { opacity: .62; }
 .today-doodles .eco-leaf { opacity: .85; }
 .eco-leaf path { fill: none; stroke: currentColor; stroke-width: 4.6; stroke-linecap: round; stroke-linejoin: round; stroke-dasharray: 1; stroke-dashoffset: 1; }

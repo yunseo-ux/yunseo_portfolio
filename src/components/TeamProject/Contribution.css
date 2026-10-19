@@ -24,6 +24,9 @@
 .contribution-tape--slides { left: 1455.306px; top: 562.564px; width: 79.719px; height: 33.842px; transform: rotate(9.84deg); }
 .contribution-tape--guide { left: 916.906px; top: 245.274px; width: 74.165px; height: 31.484px; transform: rotate(3.56deg); }
 
+.team-contribution-canvas > :is(.contribution-main, .contribution-tape--main, .contribution-caption--main, .contribution-description--main) { margin-left: -75px; }
+.team-contribution-canvas > :is(.contribution-detail, .contribution-caption--detail, .contribution-description--detail, .contribution-slides, .contribution-tape--slides, .contribution-caption--slides, .contribution-description--slides) { margin-left: 90px; }
+
 .team-contribution--animated :is(.contribution-main, .contribution-guide, .contribution-detail, .contribution-slides, .contribution-tape, .contribution-caption) { opacity: 0; }
 .team-contribution--visible :is(.contribution-main, .contribution-guide, .contribution-detail, .contribution-slides, .contribution-tape, .contribution-caption) { animation: contribution-appear 700ms ease-out var(--contribution-delay, 0ms) both; }
 .contribution-guide, .contribution-tape--guide, .contribution-caption--guide { --contribution-delay: 250ms; }

@@ -14,6 +14,7 @@ import { initAppProposal } from './components/AppProject/AppProposal.js';
 import { initSoftwareSkills } from './components/SoftwareSkills/SoftwareSkills.js';
 import { initEnding } from './components/Ending/Ending.js';
 import { initVideoProject } from './components/VideoProject/VideoProject.js';
+import { initViewportStages } from './viewportStages.js';
 
 async function start() {
     const root = document.querySelector('#root');
@@ -33,6 +34,7 @@ async function start() {
             console.error('화면 기능을 초기화하지 못했습니다.', error);
         }
     }
+    initViewportStages();
     await initEnding();
 }
 

@@ -19,7 +19,7 @@ export function initPhotoRail() {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     const caption = document.createElement('p');
     caption.className = 'photo-rail-caption';
-    const messages = ['작은 순간에서 의미 있는 단서를 모읍니다', '서로 다른 생각을 연결해 가능성을 넓힙니다', '발견한 가능성을 실제 경험으로 구현합니다'];
+    const messages = ['작은 순간에서 의미 있는 단서를 모읍니다.', '서로 다른 생각을 연결해 가능성을 넓힙니다.', '발견한 가능성을 실제 경험으로 구현합니다.'];
     caption.setAttribute('aria-label', messages.join(' '));
     const lines = messages.map(message => [...message].map(character => {
         const letter = document.createElement('span');
@@ -146,7 +146,7 @@ export function initPhotoRail() {
         spacing = 620 * scale;
         startX = preference.matches ? 190 * scale : viewport.clientWidth + 280 * scale;
         distance = startX + spacing * (frames.length - 1) + 280 * scale;
-        ropeTop = viewport.clientHeight * .34;
+        ropeTop = viewport.clientHeight / 2 - (65 + 28 + 332.814 / 2) * scale;
         ropeLeft = (viewport.clientWidth - 4218.81 * scale) / 2;
         section.style.setProperty('--photo-rail-distance', `${viewport.clientHeight * 5 + Math.max(1000, distance * 2.7)}px`);
         section.style.setProperty('--photo-scale', scale);

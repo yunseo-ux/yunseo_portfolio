@@ -145,7 +145,9 @@ function initAboutScroll(preference) {
             return;
         }
         const vertical = Math.max(0, section.offsetHeight - window.innerHeight);
-        section.style.top = (-vertical) + 'px';
+        section.style.top = window.innerWidth > 800
+            ? `${(window.innerHeight - section.offsetHeight) / 2}px`
+            : (-vertical) + 'px';
         const scroll = -wrapper.getBoundingClientRect().top - vertical;
         reveal(paper, clamp(scroll / 600));
         reveal(photo, clamp((scroll - 700) / 650));

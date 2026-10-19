@@ -20,7 +20,8 @@ export function initApproach() {
         const clamp = value => Math.max(0, Math.min(1, value));
         const canvas = viewport.firstElementChild;
         const measure = () => {
-            const scale = Math.min(section.clientWidth / 1920, viewport.clientHeight / 1080);
+            const offset = Math.min(32, Math.max(16, viewport.clientHeight * .03));
+            const scale = Math.min(section.clientWidth / 1920, Math.max(1, viewport.clientHeight - offset * 2 - 32) / 1080);
             canvas.style.scale = String(scale);
             canvas.style.left = `${(section.clientWidth - 1920 * scale) / 2}px`;
             canvas.style.top = `${(viewport.clientHeight - 1080 * scale) / 2}px`;

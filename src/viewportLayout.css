@@ -1,0 +1,80 @@
+/* Use the browser's available viewport, including when browser chrome is visible. */
+@media (min-width: 801px) {
+    .team-project-track > section > [class$="-canvas"] {
+        top: var(--project-canvas-top, 0px);
+        left: var(--project-canvas-left, 0px);
+    }
+    .project-pencil-line { top: var(--project-canvas-top, 0px); }
+
+    .personal-project-viewport { top: 0; height: 100svh; }
+    .personal-project-track > .personal-overview { height: 100%; }
+    .personal-project-track .personal-overview-canvas,
+    .personal-project-track .movement-details-canvas,
+    .app-gallery-track .personal-overview-canvas {
+        scale: 1;
+        translate: 0 clamp(-64px, -6svh, -32px);
+        transform-origin: center;
+    }
+
+    .app-gallery-track .app-detail .personal-overview-canvas {
+        translate: 0 clamp(-112px, -11svh, -64px);
+    }
+    .app-gallery-track .app-overview--eco .personal-overview-canvas {
+        translate: 0 calc(clamp(-64px, -6svh, -32px) - 5px);
+    }
+
+    /* Center the visible video and copy, rather than the empty design canvas. */
+    .video-project { justify-content: center; }
+    .video-project-layout {
+        display: grid;
+        grid-template-columns: 1fr 1.15fr;
+        align-items: center;
+        gap: clamp(48px, 6vw, 115px);
+        width: 84%;
+        max-width: 1600px;
+        margin: auto;
+        aspect-ratio: auto;
+        top: 0;
+        scale: 1;
+        translate: 0 calc(clamp(-24px, -2svh, -12px) + 5px);
+    }
+    .video-project .video-project-media,
+    .video-project .video-project-copy {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        min-width: 0;
+    }
+    .video-project--portrait .video-project-media {
+        justify-self: center;
+        width: auto;
+        height: min(627px, 65svh);
+        max-width: 100%;
+    }
+
+    .intro-scroll-main { top: 50%; }
+    .team-project-slogan-canvas,
+    .personal-project-slogan-canvas,
+    .app-slogan-scroll .app-project-canvas { translate: none; }
+    .personal-project-slogan-canvas,
+    .app-slogan-scroll .app-project-canvas { translate: 0 clamp(-64px, -6svh, -32px); }
+    .personal-project-slogan-canvas {
+        scale: 1;
+    }
+    .video-project-canvas {
+        scale: 1;
+    }
+    .app-slogan-scroll .app-project-canvas {
+        scale: 1;
+    }
+
+    .skills-heading-hold .software-skills-heading,
+    .clone-heading-hold .clone-coding-heading { padding-top: 0; }
+    .clone-coding--pinned .clone-coding-window { translate: none; }
+    .ending-intro, .ending-scene { translate: none; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+    .personal-project-viewport { height: auto; }
+}

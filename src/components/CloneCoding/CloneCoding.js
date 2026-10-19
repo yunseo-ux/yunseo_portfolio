@@ -4,6 +4,26 @@ export function initCloneCoding() {
     const track = section.querySelector('.clone-coding-track');
     const windowElement = section.querySelector('.clone-coding-window');
     const heading = section.querySelector('.clone-coding-heading');
+    const cursor = document.createElement('span');
+    cursor.className = 'clone-link-cursor';
+    cursor.textContent = 'LINK';
+    cursor.hidden = true;
+    cursor.setAttribute('aria-hidden', 'true');
+    document.body.append(cursor);
+    const finePointer = matchMedia('(hover: hover) and (pointer: fine)');
+    const hideCursor = () => { cursor.hidden = true; };
+    section.querySelectorAll('.clone-coding-card').forEach(card => {
+        card.addEventListener('pointermove', event => {
+            if (!finePointer.matches || event.pointerType === 'touch') return;
+            cursor.style.color = card.hostname === 'musign-five.vercel.app' ? '#111111' : '#ffffff';
+            cursor.style.transform = `translate(${event.clientX + 10}px, ${event.clientY + 10}px)`;
+            cursor.hidden = false;
+        });
+        card.addEventListener('pointerleave', hideCursor);
+        card.addEventListener('pointerdown', hideCursor);
+    });
+    window.addEventListener('scroll', hideCursor, { passive: true });
+    window.addEventListener('blur', hideCursor);
     const headingHold = document.createElement('div');
     headingHold.className = 'clone-heading-hold';
     section.prepend(headingHold);

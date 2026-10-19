@@ -3,7 +3,7 @@
 .team-placeholder-canvas,
 .team-additional-canvas { isolation: isolate; }
 .project-pencil-line, .project-pencil-cars { position: absolute; inset: 0; width: 1920px; height: 1080px; z-index: -1; overflow: hidden; pointer-events: none; }
-.project-pencil-line { left: var(--project-line-left, 0px); width: var(--project-line-width, 1920px); }
+.project-pencil-line { left: 0; width: 100%; height: calc(1080px * var(--project-scale, 1)); z-index: 0; }
 .project-pencil-line path, .project-pencil-cars path { fill: none; stroke: #6f8b9c; stroke-linecap: round; stroke-linejoin: round; }
 
 .team-project-track :is(.team-background-canvas, .team-research-canvas, .team-placeholder-canvas, .team-additional-canvas) > :is(p, h2, ul, .team-background-highlight) {
