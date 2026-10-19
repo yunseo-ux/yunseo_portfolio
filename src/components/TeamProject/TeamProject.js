@@ -68,11 +68,11 @@ export function initTeamProject() {
         previewFrame = 0;
         if (!screen || !content || !previewVisible || document.hidden || motionPreference.matches) return;
         if (startedAt === undefined) startedAt = time;
-        const progress = ((time - startedAt) % 120000) / 120000;
+        const progress = ((time - startedAt) % 141000) / 141000;
         const position = progress < .003 ? 0 : progress < .803 ? (progress - .003) / .8 : 1;
         content.style.transform = `translateY(${-distance * position}px)`;
         if (phoneScreen && phoneContent) {
-            const cycle = ((time - startedAt) % 200000) / 200000;
+            const cycle = ((time - startedAt) % 235000) / 235000;
             // Pause at both ends, then travel back without jumping to the start.
             const phonePosition = cycle < .003 ? 0
                 : cycle < .453 ? (cycle - .003) / .45

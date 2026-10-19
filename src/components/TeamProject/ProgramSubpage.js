@@ -1,4 +1,4 @@
-﻿export function initProgramSubpage() {
+export function initProgramSubpage() {
     const section = document.querySelector('.team-program');
     if (!section) return;
     const reference = document.querySelector('.team-editorial:not(.team-program) .team-editorial-preview img');
@@ -7,7 +7,7 @@
         if (!reference?.naturalWidth || !preview?.naturalWidth) return;
         const distance = image => Math.max(0, image.naturalHeight / image.naturalWidth * 716 - 681);
         const referenceDistance = distance(reference);
-        if (referenceDistance > 0) preview.style.setProperty('--preview-duration', `${65 * distance(preview) / referenceDistance}s`);
+        if (referenceDistance > 0) preview.style.setProperty('--preview-duration', `${76.5 * distance(preview) / referenceDistance}s`);
     };
     reference?.addEventListener('load', matchSpeed);
     preview?.addEventListener('load', matchSpeed);
