@@ -20,7 +20,7 @@ export function initChatbot() {
         <section class="chatbot-panel" id="portfolio-chat-panel" role="dialog" aria-labelledby="chatbot-title" hidden>
             <header class="chatbot-header">
                 <img src="${icon}" alt="" width="42" height="42" />
-                <div><p>YUNSEO PORTFOLIO</p><h2 id="chatbot-title">윤서에게 물어보세요</h2></div>
+                <div><p>YUNSEO PORTFOLIO</p><h2 id="chatbot-title">윤서에게 물어보세요!</h2></div>
                 <button class="chatbot-close" type="button" aria-label="챗봇 닫기">×</button>
             </header>
             <div class="chatbot-messages" role="log" aria-label="대화 내용" aria-live="polite" aria-relevant="additions" tabindex="0"></div>
@@ -59,15 +59,9 @@ export function initChatbot() {
         row.className = `chatbot-message chatbot-message--${author}`;
         const label = document.createElement('span');
         label.className = 'chatbot-author';
-        label.textContent = author === 'user' ? '방문자' : '윤서 소개 도우미';
+        label.textContent = author === 'user' ? '방문자' : '윤서 소개 도우미 뭉지';
         const content = document.createElement('p');
         content.textContent = text;
-        if (author === 'bot' && reply?.emphasis && text.includes(reply.emphasis)) {
-            const position = text.indexOf(reply.emphasis);
-            const strong = document.createElement('strong');
-            strong.textContent = reply.emphasis;
-            content.replaceChildren(text.slice(0, position), strong, text.slice(position + reply.emphasis.length));
-        }
         row.append(label, content);
         if (reply?.section) {
             const link = document.createElement('a');

@@ -14,25 +14,23 @@ export function initVideoProject() {
     gallery.append(viewport);
     viewport.append(track);
     track.append(...panels);
-    const items = [...section.querySelectorAll('.video-project-media')].map(button => ({
-        button, video: button.querySelector('video'), hint: button.querySelector('.video-project-hint'),
+    const items = [...section.querySelectorAll('.video-project-media')].map(media => ({
+        media, video: media.querySelector('video'), hint: media.querySelector('.video-project-hint'),
     }));
-    const resetSound = ({ button, video, hint }) => {
-        video.muted = true;
-        button.setAttribute('aria-pressed', 'false');
-        button.setAttribute('aria-label', `${video.getAttribute('aria-label')} 소리 켜기`);
-        hint.textContent = matchMedia('(hover: hover)').matches ? 'HOVER TO PLAY · CLICK FOR SOUND' : 'TAP TO PLAY WITH SOUND';
+    const hover = matchMedia('(hover: hover) and (pointer: fine)');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const fullscreenVideo = () => items.some(({ video }) => document.fullscreenElement === video);
+    const updateControls = ({ media, video, hint }) => {
+        video.controls = !hover.matches || media.matches(':hover, :focus-within') || document.fullscreenElement === video;
+        hint.textContent = hover.matches && !reduced.matches
+            ? 'HOVER TO PLAY · USE VIDEO CONTROLS'
+            : 'USE VIDEO CONTROLS TO PLAY';
     };
     const stop = item => {
+        if (document.fullscreenElement === item.video) return;
         item.video.pause();
-        resetSound(item);
     };
     const play = item => {
-        // Load the video only after hover or click, keeping startup lightweight.
-        if (!item.video.getAttribute('src')) {
-            const base = import.meta.env?.BASE_URL;
-            item.video.src = base ? `${base}${item.video.dataset.src.slice(1)}` : `/public${item.video.dataset.src}`;
-        }
         item.video.play().catch(() => {
             if (item.video.error) item.hint.textContent = '영상을 불러오지 못했습니다. 다시 눌러주세요';
         });
@@ -44,6 +42,7 @@ export function initVideoProject() {
     let activePanel = 0;
     const updateGallery = () => {
         frame = 0;
+        if (fullscreenVideo()) return;
         if (!horizontal.matches) return;
         const scroll = -gallery.getBoundingClientRect().top;
         const progress = Math.max(0, Math.min(1, scroll / viewportHeight - .7));
@@ -59,6 +58,7 @@ export function initVideoProject() {
         if (horizontal.matches && !frame) frame = requestAnimationFrame(updateGallery);
     };
     const measureGallery = () => {
+        if (fullscreenVideo()) return;
         gallery.classList.toggle('video-gallery--pinned', horizontal.matches);
         panelWidth = viewport.clientWidth;
         viewportHeight = viewport.clientHeight;
@@ -72,33 +72,42 @@ export function initVideoProject() {
     horizontal.addEventListener('change', measureGallery, options);
     measureGallery();
     items.forEach(item => {
-        const { button, video, hint } = item;
-        resetSound(item);
-        button.addEventListener('pointerenter', event => {
-            if (event.pointerType === 'touch') return;
-            resetSound(item);
+        const { media, video } = item;
+        // Native controls can start playback immediately; preload=none keeps loading lazy.
+        const base = import.meta.env?.BASE_URL;
+        video.src = base ? `${base}${video.dataset.src.slice(1)}` : `/public${video.dataset.src}`;
+        updateControls(item);
+        media.addEventListener('pointerenter', event => {
+            updateControls(item);
+            if (event.pointerType === 'touch' || !hover.matches || reduced.matches || media.matches(':focus-within')) return;
+            video.muted = true;
             play(item);
         }, options);
-        button.addEventListener('pointerleave', event => {
-            if (event.pointerType !== 'touch') stop(item);
+        media.addEventListener('pointerleave', event => {
+            if (event.pointerType !== 'touch' && !media.matches(':focus-within')) stop(item);
+            updateControls(item);
         }, options);
-        button.addEventListener('blur', () => stop(item), options);
-        button.addEventListener('click', () => {
-            const enableSound = video.paused || video.muted;
+        media.addEventListener('focusin', () => updateControls(item), options);
+        media.addEventListener('focusout', () => {
+            if (!media.matches(':hover')) stop(item);
+            updateControls(item);
+        }, options);
+        video.addEventListener('play', () => {
             items.forEach(other => { if (other !== item) stop(other); });
-            video.muted = !enableSound;
-            button.setAttribute('aria-pressed', String(enableSound));
-            button.setAttribute('aria-label', `${video.getAttribute('aria-label')} 소리 ${enableSound ? '끄기' : '켜기'}`);
-            hint.textContent = enableSound ? 'SOUND ON · CLICK TO MUTE' : 'SOUND OFF · CLICK FOR SOUND';
-            play(item);
         }, options);
     });
+    hover.addEventListener('change', () => items.forEach(updateControls), options);
+    reduced.addEventListener('change', () => { items.forEach(stop); items.forEach(updateControls); }, options);
+    document.addEventListener('fullscreenchange', () => {
+        items.forEach(updateControls);
+        if (!fullscreenVideo()) measureGallery();
+    }, options);
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if (!entry.isIntersecting) stop(items.find(item => item.button === entry.target));
+            if (!entry.isIntersecting) stop(items.find(item => item.media === entry.target));
         });
     });
-    items.forEach(item => observer.observe(item.button));
+    items.forEach(item => observer.observe(item.media));
     document.addEventListener('visibilitychange', () => {
         if (document.hidden) items.forEach(stop);
     }, options);

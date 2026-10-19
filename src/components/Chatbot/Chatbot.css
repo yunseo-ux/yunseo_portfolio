@@ -160,7 +160,7 @@
     display: block;
     margin: 0 4px 5px;
     color: #4f718d;
-    font-size: 13px;
+    font-size: 14px;
 }
 .chatbot-message p {
     margin: 0;
@@ -179,7 +179,8 @@
     text-align: right;
 }
 .chatbot-message--user p {
-    background: #dce5eb;
+    background: #4F718D;
+    color: #fff;
     border-radius: 15px 3px 15px 15px;
 }
 .chatbot-message a {

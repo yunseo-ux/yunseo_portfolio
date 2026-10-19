@@ -1,5 +1,6 @@
 import { createEcoLeaves } from './EcoLeaves.js';
 import { createTodayDoodles } from './TodayDoodles.js';
+import { initTodayJourney } from './TodayJourney.js';
 
 export function initAppGallery() {
     const gallery = document.querySelector('.app-gallery');
@@ -8,6 +9,9 @@ export function initAppGallery() {
     const track = gallery.querySelector('.app-gallery-track');
     const todayDetail = track.querySelector('.app-detail--today');
     track.querySelector('.app-overview--today').after(todayDetail);
+    const journeyPanel = track.querySelector('.today-journey');
+    todayDetail.after(journeyPanel);
+    const journey = initTodayJourney(journeyPanel);
     const panels = [...track.children];
     const ecoPanel = track.querySelector('.app-detail--eco');
     const leaves = createEcoLeaves(ecoPanel);
@@ -18,25 +22,48 @@ export function initAppGallery() {
     let lockUntil = 0;
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const hold = .55;
-    const duration = panels.length * hold + panels.length - 1 + .5;
+    let entries = [];
     let frame = 0;
     const measure = () => {
+        const journeyWidth = journey.measure(viewport.clientWidth);
+        let time = 0;
+        let offset = 0;
+        entries = panels.map((panel, index) => {
+            const travel = panel === journeyPanel ? Math.max(0, journeyWidth / viewport.clientWidth - 1) : 0;
+            const tailHold = travel ? hold : 0;
+            const entry = { start: time, offset, travel, tailHold };
+            time += hold + travel + tailHold + (index < panels.length - 1 ? 1 : 0);
+            offset += 1 + travel;
+            return entry;
+        });
+        const duration = time + .5;
         gallery.style.height = reduced.matches ? '' : `${viewport.offsetHeight + duration * viewport.clientWidth}px`;
     };
     const update = () => {
         frame = 0;
-        if (reduced.matches) { track.style.transform = ''; drawings.forEach(item => item.holder.classList.add('eco-leaves--draw')); lockUntil = 0; return; }
+        if (reduced.matches) { track.style.transform = ''; drawings.forEach(item => item.holder.classList.add('eco-leaves--draw')); journey.update(1); lockUntil = 0; return; }
         const time = Math.max(0, -gallery.getBoundingClientRect().top) / viewport.clientWidth;
-        const index = Math.min(panels.length - 1, Math.floor(time / (hold + 1)));
-        const progress = Math.max(0, Math.min(1, time - index * (hold + 1) - hold));
-        const position = Math.min(panels.length - 1, index + progress * progress * (3 - 2 * progress));
+        let position = entries.at(-1).offset;
+        for (const [index, entry] of entries.entries()) {
+            const local = time - entry.start;
+            if (local <= hold) { position = entry.offset; break; }
+            if (local < hold + entry.travel) { position = entry.offset + local - hold; break; }
+            if (local <= hold + entry.travel + entry.tailHold) { position = entry.offset + entry.travel; break; }
+            if (index < entries.length - 1 && local < hold + entry.travel + entry.tailHold + 1) {
+                const progress = local - hold - entry.travel - entry.tailHold;
+                position = entry.offset + entry.travel + progress * progress * (3 - 2 * progress);
+                break;
+            }
+        }
         track.style.transform = `translate3d(${-position * viewport.clientWidth}px,0,0)`;
+        const journeyEntry = entries[panels.indexOf(journeyPanel)];
+        journey.update((position - journeyEntry.offset + .12) / (journeyEntry.travel + .12));
         drawings.forEach(item => {
-            if (Math.abs(position - item.index) < .001 && !item.drawn) {
+            if (Math.abs(position - entries[item.index].offset) < .001 && !item.drawn) {
                 item.holder.classList.add('eco-leaves--draw');
                 item.drawn = true;
                 lockUntil = performance.now() + 1200;
-            } else if (Math.abs(position - item.index) > 1 && item.drawn) {
+            } else if (Math.abs(position - entries[item.index].offset) > 1 && item.drawn) {
                 item.holder.classList.remove('eco-leaves--draw');
                 item.drawn = false;
             }
@@ -65,7 +92,7 @@ export function initAppGallery() {
         if (reduced.matches) return;
         const index = panels.indexOf(event.target.closest('section'));
         if (index < 0) return;
-        scrollTo({ top: gallery.getBoundingClientRect().top + scrollY + index * (hold + 1) * viewport.clientWidth, behavior: 'instant' });
+        scrollTo({ top: gallery.getBoundingClientRect().top + scrollY + entries[index].start * viewport.clientWidth, left: 0, behavior: 'instant' });
     });
     measure();
     update();

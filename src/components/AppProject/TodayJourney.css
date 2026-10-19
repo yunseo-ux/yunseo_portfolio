@@ -1,0 +1,21 @@
+.today-journey { position: relative; background: #faf8f3; }
+.today-journey-window { position: relative; width: 100%; height: 100svh; overflow: clip; }
+.today-journey-window:focus-visible { outline: 2px solid #4f718d; outline-offset: -6px; }
+.today-journey-canvas { position: absolute; left: 0; top: 50%; width: 4468px; height: 1080px; transform: translateY(-50%) scale(var(--journey-scale, 1)); transform-origin: left center; }
+.today-journey-design { position: relative; width: 100%; height: 100%; font-family: 'Ownglyph Yuntaeng', sans-serif; }
+.today-journey-design p { margin: 0; font-weight: 400; }
+.today-journey-design [data-name="Screen - Replace This"] {
+ overflow: hidden;
+ border-radius: 15.35% / 7.07%;
+ isolation: isolate;
+}
+.today-journey-design [data-name="image"],
+.today-journey-design [data-name="image"] > img,
+.today-journey-design [data-name="image"] > div { border-radius: 0; }
+.today-journey-design [data-journey-line], .today-journey-design [data-journey-pin] { pointer-events: none; }
+.today-journey--animated [data-journey-line] { clip-path: inset(-10px 100% -10px 0); }
+.today-journey--animated [data-journey-pin] { clip-path: inset(100% -10px -10px -10px); }
+.today-journey--static .today-journey-window { overflow-x: auto; overflow-y: hidden; }
+@media (prefers-reduced-motion: reduce) {
+ .today-journey--animated [data-journey-line], .today-journey--animated [data-journey-pin] { clip-path: none !important; }
+}
