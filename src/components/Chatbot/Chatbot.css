@@ -201,8 +201,15 @@ html body .portfolio-chatbot .chatbot-nudge:hover span {
 .chatbot-message .chatbot-contact-reply {
     font-size: 15px;
 }
+.chatbot-message .chatbot-contact-question {
+    font-size: 15px;
+}
 .chatbot-message .chatbot-contact-reply a {
-    font-size: 13px;
+    font-size: 15px;
+}
+.chatbot-message .chatbot-contact-reply a[href^="mailto:"],
+.chatbot-message .chatbot-contact-reply a[href^="https://"] {
+    font-size: 17px;
 }
 .chatbot-topics {
     display: flex;

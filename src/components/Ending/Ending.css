@@ -11,12 +11,14 @@
 .ending-curve { fill: none; stroke: #8fa7b5; stroke-linecap: round; stroke-linejoin: round; }
 .ending-curve--soft { stroke-width: 4; opacity: .85; }
 .ending-curve--trace { stroke-width: 1.5; opacity: .4; }
-.ending-star-slot { position: absolute; left: 76%; top: 38.461538%; width: 116px; aspect-ratio: 1024 / 973; margin: -55.11px 0 0 -58px; }
+.ending-star-slot { position: absolute; left: 50%; top: 50%; width: 140px; aspect-ratio: 1024 / 973; transform: translate(-50%, -50%); }
 .ending-star { display: block; width: 100%; height: 100%; outline-offset: 6px; }
 .ending-star-artwork { display: block; width: 100%; height: 100%; position: relative; overflow: hidden; transition: transform 260ms ease; }
 .ending-star:hover .ending-star-artwork, .ending-star:focus-visible .ending-star-artwork { transform: scale(1.12) rotate(8deg); }
 .ending-star:focus-visible { outline: 2px solid #8fa7b5; border-radius: 50%; }
 .ending-star-artwork img { position: absolute; width: 117.8%; height: 107.08%; max-width: none; left: -7.54%; top: -3.54%; pointer-events: none; }
+.ending-star-outline { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.ending-star-outline path { fill: none; stroke: #829dab; stroke-width: 21; stroke-linecap: round; stroke-linejoin: round; }
 .ending-copy { position: absolute; left: 5%; right: 5%; top: 65%; text-align: center; }
 .ending-copy p { margin: 0; }
 .ending-english { color: #354858; font: 400 clamp(36px, 3.4vw, 62px)/1.2 'Ownglyph PDH', sans-serif; }
@@ -30,7 +32,7 @@
     .ending-intro h2 { font-size: clamp(34px, 7.8vw, 58px); }
     .ending-intro > p { font-size: clamp(22px, 4.5vw, 30px); margin-top: 34px; }
     .ending-art { top: 39%; width: 100%; }
-    .ending-star-slot { width: 66px; margin: -31.36px 0 0 -33px; }
+    .ending-star-slot { width: 90px; }
     .ending-curve--soft { stroke-width: 5; }
     .ending-copy { top: 61%; }
     .ending-copy .ending-korean { font-size: clamp(22px, 4.5vw, 28px); margin-top: 22px; }

@@ -63,6 +63,9 @@ export function initChatbot() {
         label.textContent = author === 'user' ? '방문자' : '윤서 소개 도우미 뭉지';
         const content = document.createElement('p');
         content.textContent = text;
+        if (author === 'user' && text.trim().toLowerCase() === 'contact') {
+            content.classList.add('chatbot-contact-question');
+        }
         if (reply?.contacts) {
             content.classList.add('chatbot-contact-reply');
             content.textContent = '';
