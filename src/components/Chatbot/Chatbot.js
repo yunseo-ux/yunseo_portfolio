@@ -1,6 +1,7 @@
 import { topics, findReply } from './knowledge.js';
 
 const icon = new URL('./assets/chatbot.png', import.meta.url).href;
+const headerCharacter = new URL('./assets/header-character.png', import.meta.url).href;
 const bubble = new URL('./assets/question.png', import.meta.url).href;
 const topArrow = new URL('./assets/top-arrow.svg', import.meta.url).href;
 
@@ -19,7 +20,7 @@ export function initChatbot() {
         </button>
         <section class="chatbot-panel" id="portfolio-chat-panel" role="dialog" aria-labelledby="chatbot-title" hidden>
             <header class="chatbot-header">
-                <img src="${icon}" alt="" width="42" height="42" />
+                <img src="${headerCharacter}" alt="" width="42" height="42" />
                 <div><p>YUNSEO PORTFOLIO</p><h2 id="chatbot-title">윤서에게 물어보세요!</h2></div>
                 <button class="chatbot-close" type="button" aria-label="챗봇 닫기">×</button>
             </header>
@@ -62,6 +63,20 @@ export function initChatbot() {
         label.textContent = author === 'user' ? '방문자' : '윤서 소개 도우미 뭉지';
         const content = document.createElement('p');
         content.textContent = text;
+        if (reply?.contacts) {
+            content.textContent = '';
+            reply.contacts.forEach((contact, index) => {
+                if (index) content.append(document.createElement('br'));
+                const link = document.createElement('a');
+                link.href = contact.href;
+                link.textContent = contact.text;
+                if (contact.href.startsWith('https://')) {
+                    link.target = '_blank';
+                    link.rel = 'noopener noreferrer';
+                }
+                content.append(`${contact.label}: `, link);
+            });
+        }
         row.append(label, content);
         if (reply?.section) {
             const link = document.createElement('a');
@@ -130,6 +145,7 @@ export function initChatbot() {
         const button = document.createElement('button');
         button.type = 'button';
         button.textContent = topic.label;
+        if (topic.contacts) button.classList.add('chatbot-topic--contact');
         button.addEventListener('click', () => ask(topic.label));
         widget.querySelector('.chatbot-topics').append(button);
     }

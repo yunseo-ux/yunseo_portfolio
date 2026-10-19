@@ -24,6 +24,8 @@ export function initAppGallery() {
     const hold = .55;
     let entries = [];
     let frame = 0;
+    let displayedPosition = null;
+    let previousTime = 0;
     const measure = () => {
         const journeyWidth = journey.measure(viewport.clientWidth);
         let time = 0;
@@ -39,9 +41,9 @@ export function initAppGallery() {
         const duration = time + .5;
         gallery.style.height = reduced.matches ? '' : `${viewport.offsetHeight + duration * viewport.clientWidth}px`;
     };
-    const update = () => {
+    const update = timestamp => {
         frame = 0;
-        if (reduced.matches) { track.style.transform = ''; drawings.forEach(item => item.holder.classList.add('eco-leaves--draw')); journey.update(1); lockUntil = 0; return; }
+        if (reduced.matches) { track.style.transform = ''; displayedPosition = null; previousTime = 0; drawings.forEach(item => item.holder.classList.add('eco-leaves--draw')); journey.update(1); lockUntil = 0; return; }
         const time = Math.max(0, -gallery.getBoundingClientRect().top) / viewport.clientWidth;
         let position = entries.at(-1).offset;
         for (const [index, entry] of entries.entries()) {
@@ -55,8 +57,15 @@ export function initAppGallery() {
                 break;
             }
         }
-        track.style.transform = `translate3d(${-position * viewport.clientWidth}px,0,0)`;
         const journeyEntry = entries[panels.indexOf(journeyPanel)];
+        const targetPosition = position;
+        const smoothJourney = position > journeyEntry.offset - 1 && position < journeyEntry.offset + journeyEntry.travel + 1;
+        const elapsed = previousTime && timestamp ? Math.min(64, timestamp - previousTime) : 16;
+        if (displayedPosition === null || !smoothJourney) displayedPosition = position;
+        else displayedPosition += (position - displayedPosition) * (1 - Math.exp(-elapsed / 85));
+        if (Math.abs(position - displayedPosition) < .00002) displayedPosition = position;
+        position = displayedPosition;
+        track.style.transform = `translate3d(${-position * viewport.clientWidth}px,0,0)`;
         journey.update((position - journeyEntry.offset + .12) / (journeyEntry.travel + .12));
         drawings.forEach(item => {
             if (Math.abs(position - entries[item.index].offset) < .001 && !item.drawn) {
@@ -68,6 +77,10 @@ export function initAppGallery() {
                 item.drawn = false;
             }
         });
+        if (position !== targetPosition) {
+            previousTime = timestamp || performance.now();
+            frame = requestAnimationFrame(update);
+        } else previousTime = 0;
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     addEventListener('scroll', schedule, { passive: true });

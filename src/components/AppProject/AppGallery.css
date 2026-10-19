@@ -1,6 +1,6 @@
 .app-gallery { position: relative; background: #faf8f3; overflow-anchor: none; }
 .app-gallery-viewport { position: sticky; top: 0; height: 100svh; overflow: hidden; }
-.app-gallery-track { display: flex; height: 100%; }
+.app-gallery-track { display: flex; height: 100%; will-change: transform; }
 .app-gallery-track > section { flex: 0 0 100%; min-width: 0; display: flex; align-items: center; }
 .app-intro-phone { position: absolute; width: 14.303958%; height: 53.159815%; padding: .494792%; border-radius: min(2.545781cqw, 49px); background: #020202; box-shadow: 0 0 0 min(.086302cqw, 1.657px) #999, inset 0 0 0 min(.172604cqw, 3.314px) #d2d2d2; }
 .app-intro-phone--today { left: 33.680208%; top: 15.185185%; }

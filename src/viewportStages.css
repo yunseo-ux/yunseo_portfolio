@@ -46,6 +46,17 @@
     .video-project--portrait .viewport-stage-slot--active .video-project-layout.viewport-stage-content {
         left: 170px;
     }
+    .video-project--landscape .viewport-stage-slot--active .video-project-layout.viewport-stage-content {
+        grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
+    }
+    .video-project--landscape .viewport-stage-slot--active .video-project-media {
+        width: 910px;
+        aspect-ratio: 850 / 496;
+        transform: translateX(-38px);
+    }
+    .video-project--landscape .viewport-stage-slot--active .video-project-copy {
+        transform: translateX(137.4px);
+    }
     .video-project--portrait .viewport-stage-slot--active .video-project-media {
         height: 585px;
     }

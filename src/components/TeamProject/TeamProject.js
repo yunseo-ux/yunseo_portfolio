@@ -4,6 +4,7 @@ import { initPlanning } from './team_Planning.js';
 import { initStructure } from './team_Structure.js';
 import { initProjectLine } from './ProjectLine.js';
 import { loadProjectImage } from './loadProjectImage.js';
+import { initProgramSubpage } from './ProgramSubpage.js';
 const competitiveAnalysisImage = new URL('./assets/competitive-analysis.png', import.meta.url).href;
 const steepAnalysisImage = new URL('./assets/steep-source.png', import.meta.url).href;
 const threeCAnalysisImage = new URL('./assets/3c-source-1.png', import.meta.url).href;
@@ -44,6 +45,7 @@ function initResearch() {
 }
 
 export function initTeamProject() {
+    initProgramSubpage();
     initInterview();
     initPlanning();
     initStructure();
@@ -72,10 +74,10 @@ export function initTeamProject() {
         if (phoneScreen && phoneContent) {
             const cycle = ((time - startedAt) % 200000) / 200000;
             // Pause at both ends, then travel back without jumping to the start.
-            const phonePosition = cycle < .05 ? 0
-                : cycle < .45 ? (cycle - .05) / .4
-                : cycle < .55 ? 1
-                : cycle < .95 ? 1 - (cycle - .55) / .4 : 0;
+            const phonePosition = cycle < .003 ? 0
+                : cycle < .453 ? (cycle - .003) / .45
+                : cycle < .503 ? 1
+                : cycle < .953 ? 1 - (cycle - .503) / .45 : 0;
             phoneContent.style.transform = `translateY(${motionPreference.matches ? 0 : -phoneDistance * phonePosition}px)`;
         }
         previewFrame = requestAnimationFrame(animate);
