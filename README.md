@@ -1,123 +1,115 @@
-# OH YUNSEO — Portfolio
+﻿# 오윤서 포트폴리오
 
 **ARCHIVING THE ART OF DESIGN**
 
-관찰에서 시작된 생각을 기록하고, 다양한 시도를 통해 디자인을 실제 사용자 경험으로 구현하는 개인 포트폴리오입니다.
+브랜드의 특징과 사용자 경험을 분석하고 새로운 시각으로 재해석한 웹 디자인부터, 사회적 문제에 주목하고 이를 해결하기 위한 앱 UX/UI 디자인까지 다양한 프로젝트를 담았습니다. 기획과 리서치, 디자인, 인터랙션 및 웹 구현을 아우르는 작업 과정을 소개합니다.
 
-## Project Overview
+## 구성
 
-- **Project:** Oh Yunseo — Personal Portfolio
-- **Category:** Web Design · UI/UX · Web Publishing
-- **Concept:** Archive / Paper / Hand-drawn / Sky Blue × Ivory
-- **Core Message:** Observe — Explore — Create
-- **Design Goal:** 결과물뿐 아니라 문제를 발견하고 설계·구현한 과정을 명확하게 전달합니다.
+- **About / Design Approach** — 자기소개와 Observe · Explore · Create의 디자인 과정
+- **Web Design** — 현대모터스튜디오 팀 프로젝트와 무브먼트랩·투슬래시포·로라로라 개인 프로젝트
+- **App Design** — 위치 기반 역사 탐색 서비스 ‘오늘’과 환경 복원 활동 플랫폼 ‘EcoAction’
+- **Video Design** — 로라로라 패션 영상과 Pudding World AI 영상
+- **Software Skills** — 디자인·개발·AI·영상 도구 소개
+- **Clone Coding** — 경동·롯데월드·뮤자인·트래블 웹사이트 구현
+- **Contact** — 이메일, GitHub, 이력서 PDF
 
-## Planned Sections
+## 주요 기능
 
-1. **HOME / INTRO** — 이름, 직무, 포트폴리오 첫인상
-2. **DESIGN PHILOSOPHY** — Archiving the Art of Design
-3. **ABOUT** — 소개, 디자인 태도, 강점
-4. **DESIGN APPROACH** — Observe / Explore / Create
-5. **SELECTED WORKS** — 대표 프로젝트 모음
-6. **PROJECT DETAILS** — 배경·리서치·문제 정의·해결·구현·기여
-7. **SKILLS** — 디자인 및 개발 역량
-8. **CONTACT** — 연락 및 외부 링크
+- 스크롤에 따른 가로 프로젝트 탐색과 드로잉·텍스트 등장 효과
+- 기준 배치를 유지하며 이미지·텍스트·간격을 함께 조절하는 데스크톱 레이아웃
+- 작은 화면을 위한 모바일 배치
+- 영상 호버 재생과 클릭 시 소리 켜기·끄기
+- 클론코딩 카드의 블러 효과와 `LINK` 커서, 사이트 이동
+- 포트폴리오 정보를 안내하는 키워드 기반 챗봇
+- 새 탭에서 열리는 이력서 PDF
 
-## Featured Projects
+## 기술
 
-| Project | Type | Focus |
-|---|---|---|
-| Hyundai Motorstudio | Team Project | Website Renewal · UI/UX · Responsive · GSAP |
-| Rolarola | Web Renewal | Fashion Website · Visual Design |
-| Movement Lab | Web Design | Brand / Digital Experience |
-| Two Slash Four | Web Design | Beauty / Digital Experience |
+| 구분 | 사용 기술 |
+| --- | --- |
+| 화면 구성 | HTML, CSS, JavaScript ES Modules |
+| 개발·빌드 | Vite |
+| 엔딩 인터랙션 | React, GSAP, ScrollTrigger |
+| 코드 검사 | Oxlint |
+| 배포 설정 | Vercel |
 
-프로젝트별 기여 범위와 실제 완료된 기능은 상세 페이지에서 별도로 구분합니다.
+주요 화면은 HTML 섹션과 JavaScript 모듈로 구성하며, 엔딩 영역은 React 번들로 별도 빌드합니다.
 
-## Tech Stack
+## 실행 방법
 
-**예정 기술 기준:**
-
-- React + Vite + JavaScript (JSX)
-- CSS
-- GSAP + ScrollTrigger (필요 시)
-- Git + GitHub
-- Figma / Photoshop / Illustrator
-
-> 사용하지 않은 라이브러리나 아직 구현하지 않은 기능은 완료 사항으로 표기하지 않습니다.
-
-## Getting Started
-
-Node.js와 npm이 설치되어 있어야 합니다.
+Node.js 20.19 이상 또는 22.12 이상의 지원 버전과 npm이 필요합니다.
 
 ```bash
-npm install
+npm ci
 npm run dev
 ```
 
-개발 서버 주소는 터미널에 표시되는 Vite 주소(보통 `http://localhost:5173`)를 사용합니다.
-
-프로덕션 빌드:
+터미널에 표시되는 개발 서버 주소로 접속합니다. 개발 서버를 실행할 때 엔딩 번들이 먼저 생성됩니다.
 
 ```bash
+# 엔딩 번들 생성 후 전체 사이트 빌드
 npm run build
+
+# 배포용 빌드 미리보기
 npm run preview
+
+# 코드 검사
+npm run lint
 ```
 
-위 명령어는 기본적인 Vite 프로젝트를 전제로 합니다. 실제 `package.json`의 스크립트를 확인하세요.
+Windows PowerShell에서 npm 실행 정책 오류가 발생하면 `npm` 대신 `npm.cmd`를 사용합니다.
 
-## Suggested Folder Structure
+## 폴더 구조
 
 ```text
+index.html                  # 진입 HTML 및 섹션 포함 선언
+public/
+├── videos/                 # 프로젝트 영상
+├── ending/                 # 빌드된 엔딩 모듈
+└── resume-oh-yunseo.pdf     # 이력서
 src/
-├── assets/
-│   ├── images/
-│   └── icons/
-├── components/
-│   ├── common/
-│   ├── home/
-│   ├── about/
-│   └── works/
-├── pages/
-│   ├── Home.jsx
-│   └── ProjectDetail.jsx
-├── data/
-│   └── projects.js
-├── styles/
-│   ├── tokens.css
-│   └── global.css
-└── App.jsx
+├── main.js                 # 섹션 로딩 및 기능 초기화
+├── sections.js             # HTML 섹션 로더
+├── index.css               # 공통 스타일
+├── drawingReveal.*         # 스크롤 드로잉 효과
+├── viewportLayout.css      # 섹션 레이아웃
+├── viewportStages.*        # 기준 배치 및 화면 크기 대응
+└── components/             # 섹션별 HTML·CSS·JS와 이미지
+vite.config.js              # 개발 서버 및 HTML 섹션 빌드
+vite.ending.config.js       # React 엔딩 번들 빌드
+vercel.json                # 배포 설정
 ```
 
-이는 **권장 구조 예시**이며, 현재 저장소의 실제 구성과 다를 수 있습니다.
+`dist/`, `node_modules/`, `verification/`은 Git 관리에서 제외합니다. `verification/`은 로컬 검증 스크립트와 화면 캡처를 보관하는 임시 폴더입니다.
 
-## Design Guidelines
+## 디자인과 반응형 기준
 
-자세한 기준은 [`DESIGN_TOKENS.md`](./DESIGN_TOKENS.md)를 참고하세요.
+종이·테이프·손그림 그래픽과 아이보리·스카이블루 색상을 활용했습니다.
 
-- **현재 Figma 시안의 색상**(스카이블루 `#DCE5EB`, 아이보리 `#FAF8F3`, 블루그레이 `#354858`, 흰색 종이)을 그대로 기준으로 사용합니다.
-- 종이·드로잉·테이프 그래픽은 콘셉트 표현에 사용하며 별도의 새 포인트 컬러는 추가하지 않습니다.
-- 주요 프로젝트 이미지는 선명하고 크게 보여줍니다.
-- 모바일에서도 콘텐츠 위계와 탐색 흐름을 유지합니다.
-- 인터랙션은 경험을 돕되 정보 접근을 방해하지 않습니다.
+- 배경: `#FAF8F3`
+- 스카이블루: `#DCE5EB`
+- 주요 텍스트: `#354858`
+- 폰트: Ownglyph PDH, Ownglyph Yuntaeng
 
-## Project Case Study Structure
+개인·앱·영상 프로젝트 등 16개 화면은 **1920 × 900 CSS px** 배치를 기준으로 전체를 같은 비율로 조절합니다. 창의 너비와 높이에 맞춰 배율을 계산하며, 800px 이하에서는 모바일 배치를 사용합니다. 팀 프로젝트와 Approach는 별도의 캔버스 배율을 사용합니다.
 
-Overview → Background → Research → Problem Definition → Goal & Strategy → UX Structure → Design System → Key Solutions → Responsive & Interaction → My Contribution → Validation → Retrospective
+상세 기준은 [반응형 레이아웃 문서](./RESPONSIVE_LAYOUT.md)와 [디자인 토큰 문서](./DESIGN_TOKENS.md)를 참고하세요.
 
-조사·테스트 결과는 실제 자료만 사용하며, 검증 전 내용은 기대 효과 또는 향후 계획으로 구분합니다.
+## 클론코딩 사이트
 
-## Deployment & Links
+| 프로젝트 | 사이트 |
+| --- | --- |
+| 경동 | [Kyungdong](https://kyungdong-iota.vercel.app/) |
+| 롯데월드 | [Lotteworld](https://lotteworld.vercel.app/) |
+| 뮤자인 | [Musign](https://musign-five.vercel.app/) |
+| 트래블 | [Travel](https://travel-site-blue-nu.vercel.app/) |
 
-- **Live Site:** 배포 후 링크 추가
-- **GitHub Repository:** 저장소 주소 추가
-- **Figma:** 공개 가능한 디자인 파일 링크 추가
-- **Contact:** 공개할 이메일 주소 추가
+## 링크
 
-## Status
+- [GitHub 저장소](https://github.com/yunseo-ux/yunseo_portfolio)
+- [Figma 디자인](https://www.figma.com/design/zie8awdwtwHIBkdifsdOCu/)
+- [이력서 PDF](./public/resume-oh-yunseo.pdf)
+- 이메일: [ysoh0217@gmail.com](mailto:ysoh0217@gmail.com)
 
-**Design / Development in progress** — 섹션 및 결과물은 작업 진행에 따라 변경될 수 있습니다.
-
----
-
-© 2026 Oh Yunseo. Portfolio content and project imagery remain subject to their respective rights holders.
+이 포트폴리오는 학습 및 개인 작업 소개를 목적으로 제작했습니다. 프로젝트에 사용된 브랜드명·이미지 등은 각 권리자에게 귀속됩니다.

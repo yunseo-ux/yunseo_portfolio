@@ -139,7 +139,7 @@ export function initChatbot() {
         button.addEventListener('click', () => ask(topic.label));
         widget.querySelector('.chatbot-topics').append(button);
     }
-    message('안녕하세요! 윤서의 포트폴리오에 오신 걸 환영해요. 소개나 작업에 대해 궁금한 점을 물어보세요.', 'bot');
+    message('안녕하세요! 윤서의 포트폴리오에 오신 걸 환영해요.\n프로젝트 소개부터 담당 역할, 디자인 과정까지 궁금한 점이 있다면 편하게 물어보세요! (・8・)', 'bot');
     nudgeTimer = setTimeout(() => {
         if (!panel.hidden || document.hidden) return;
         nudge.classList.add('is-visible');
