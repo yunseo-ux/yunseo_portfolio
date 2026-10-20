@@ -2,7 +2,7 @@ export function initProjectPreview() {
     const mouse = matchMedia('(hover: hover) and (pointer: fine)');
     const cursor = document.createElement('span');
     cursor.className = 'project-preview-cursor';
-    cursor.textContent = 'VIEW PROJECT';
+    cursor.textContent = 'VIEW';
     cursor.setAttribute('aria-hidden', 'true');
     document.body.append(cursor);
     const hideCursor = () => cursor.classList.remove('is-visible');

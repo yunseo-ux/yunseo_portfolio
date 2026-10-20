@@ -1,6 +1,10 @@
 import { initHeroOcean } from './HeroOcean.js';
+import { initHeroDecorations } from './HeroDecorations.js';
 
 export function initHero() {
+    // Keep the fixed navigation outside the hero's size container and sticky wrapper.
+    const header = document.querySelector('.hero-header');
+    if (header) document.body.append(header);
     document.querySelector('.hero-menu a[href="#home"]').addEventListener('click', event => {
         event.preventDefault();
         window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -17,4 +21,5 @@ export function initHero() {
         });
     });
     initHeroOcean();
+    initHeroDecorations();
 }
