@@ -23,7 +23,7 @@ export function initVideoProject() {
     const updateControls = ({ media, video, hint }) => {
         video.controls = !hover.matches || media.matches(':hover, :focus-within') || document.fullscreenElement === video;
         hint.textContent = hover.matches && !reduced.matches
-            ? 'HOVER TO PLAY · USE VIDEO CONTROLS'
+            ? 'HOVER FOR VIDEO CONTROLS'
             : 'USE VIDEO CONTROLS TO PLAY';
     };
     const stop = item => {
@@ -40,6 +40,13 @@ export function initVideoProject() {
     let panelWidth = 0;
     let viewportHeight = 0;
     let activePanel = 0;
+    const visibleItems = new Set();
+    const syncPlayback = item => {
+        const index = panels.indexOf(item.media.closest('.video-project'));
+        if (document.hidden || !visibleItems.has(item) || (horizontal.matches && activePanel !== index)) {
+            stop(item);
+        } else if (!reduced.matches) play(item);
+    };
     const updateGallery = () => {
         frame = 0;
         if (fullscreenVideo()) return;
@@ -51,6 +58,7 @@ export function initVideoProject() {
         if (nextPanel !== activePanel) {
             items.forEach(stop);
             activePanel = nextPanel;
+            items.forEach(syncPlayback);
         }
         panels.forEach((panel, index) => { panel.inert = index !== nextPanel; });
     };
@@ -77,21 +85,10 @@ export function initVideoProject() {
         const base = import.meta.env?.BASE_URL;
         video.src = base ? `${base}${video.dataset.src.slice(1)}` : `/public${video.dataset.src}`;
         updateControls(item);
-        media.addEventListener('pointerenter', event => {
-            updateControls(item);
-            if (event.pointerType === 'touch' || !hover.matches || reduced.matches || media.matches(':focus-within')) return;
-            video.muted = true;
-            play(item);
-        }, options);
-        media.addEventListener('pointerleave', event => {
-            if (event.pointerType !== 'touch' && !media.matches(':focus-within')) stop(item);
-            updateControls(item);
-        }, options);
+        media.addEventListener('pointerenter', () => updateControls(item), options);
+        media.addEventListener('pointerleave', () => updateControls(item), options);
         media.addEventListener('focusin', () => updateControls(item), options);
-        media.addEventListener('focusout', () => {
-            if (!media.matches(':hover')) stop(item);
-            updateControls(item);
-        }, options);
+        media.addEventListener('focusout', () => updateControls(item), options);
         video.addEventListener('play', () => {
             items.forEach(other => { if (other !== item) stop(other); });
         }, options);
@@ -104,12 +101,15 @@ export function initVideoProject() {
     }, options);
     const observer = new IntersectionObserver(entries => {
         entries.forEach(entry => {
-            if (!entry.isIntersecting) stop(items.find(item => item.media === entry.target));
+            const item = items.find(item => item.media === entry.target);
+            if (entry.isIntersecting && entry.intersectionRatio >= .4) visibleItems.add(item);
+            else visibleItems.delete(item);
+            syncPlayback(item);
         });
-    });
+    }, { threshold: [0, .4] });
     items.forEach(item => observer.observe(item.media));
     document.addEventListener('visibilitychange', () => {
-        if (document.hidden) items.forEach(stop);
+        items.forEach(syncPlayback);
     }, options);
     window.addEventListener('pagehide', event => {
         items.forEach(stop);

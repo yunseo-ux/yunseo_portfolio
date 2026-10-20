@@ -1,3 +1,5 @@
+import { initHanyulProject } from '../HanyulProject/HanyulProject.js';
+
 const movementDoodleAssets = {
     sofa: [new URL('./assets/sofa-reveal.svg', import.meta.url).href, new URL('./assets/sofa-doodle.png', import.meta.url).href],
     lamp: [new URL('./assets/lamp-reveal.svg', import.meta.url).href, new URL('./assets/lamp-doodle.png', import.meta.url).href],
@@ -10,9 +12,12 @@ export function initPersonalProject() {
     if (!track || !viewport) return;
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     const panels = [...track.children];
+    const hanyul = initHanyulProject(track);
+    const hanyulIndex = panels.findIndex(panel => panel.matches('.hanyul-intro'));
+    const hanyulComparisonIndex = panels.findIndex(panel => panel.matches('.hanyul-comparison'));
     const starts = [];
     const isOverviewHold = panel => panel.matches('#personal-project-03, #personal-project-04');
-    const holds = panels.map(panel => panel.id === 'personal-project-04' ? .35 : panel.id === 'rola-details' ? 1 : isOverviewHold(panel) ? .8 : panel.matches('.movement-details') ? .4 : .15);
+    const holds = panels.map(panel => panel.matches('.hanyul-comparison') ? 2.8 : panel.matches('.hanyul-panel') ? 1.25 : panel.id === 'personal-project-04' ? .35 : panel.id === 'rola-details' ? 1 : isOverviewHold(panel) ? .8 : panel.matches('.movement-details') ? .4 : .15);
     let duration = 0;
     holds.forEach((hold, index) => { starts.push(duration); duration += hold + (index < panels.length - 1 ? 1 : 0); });
     const clamp = value => Math.max(0, Math.min(1, value));
@@ -54,6 +59,7 @@ export function initPersonalProject() {
     document.addEventListener('visibilitychange', updatePreviews);
 
     const measure = () => {
+        hanyul.measure();
         gallery.style.setProperty('--personal-project-scale', Math.min(1, gallery.clientWidth / 1920));
         if (preference.matches) gallery.style.removeProperty('height');
         else gallery.style.height = `${viewport.offsetHeight + duration * viewport.clientWidth}px`;
@@ -64,6 +70,7 @@ export function initPersonalProject() {
         if (preference.matches) {
             track.style.removeProperty('transform');
             panels.forEach(panel => panel.classList.add('movement-doodles--draw'));
+            hanyul.update(0, panels, 1, true);
             lockUntil = 0;
             return;
         }
@@ -79,7 +86,9 @@ export function initPersonalProject() {
                 break;
             }
         }
-        track.style.transform = `translate3d(${-position * viewport.clientWidth}px, 0, 0)`;
+        const descent = hanyulIndex > 0 ? clamp(position - (hanyulIndex - 1)) : 0;
+        track.style.transform = `translate3d(${-(position - descent) * viewport.clientWidth}px, ${-descent * viewport.clientHeight}px, 0)`;
+        hanyul.update(position, panels, (timeline - starts[hanyulComparisonIndex]) / holds[hanyulComparisonIndex], false);
         panels.forEach((panel, index) => {
             if (!panel.querySelector('.movement-doodle') && !isOverviewHold(panel)) return;
             if (Math.abs(position - index) < .001 && !visited.has(panel)) {

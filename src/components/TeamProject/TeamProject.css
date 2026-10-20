@@ -348,6 +348,7 @@
 }
 
 #team-project .team-project-visual {
+    left: 110px;
     top: 330.15px;
     transform: scale(0.952954);
     transform-origin: top left;
@@ -597,3 +598,5 @@
 .team-project-contribution li::before {
     content: '';
 }
+
+#team-project .team-project-phone { left: 805.06px; }

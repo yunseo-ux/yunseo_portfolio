@@ -5,6 +5,7 @@ import { initStructure } from './team_Structure.js';
 import { initProjectLine } from './ProjectLine.js';
 import { loadProjectImage } from './loadProjectImage.js';
 import { initProgramSubpage } from './ProgramSubpage.js';
+import { getProjectScale } from '../../projectScale.js';
 const competitiveAnalysisImage = new URL('./assets/competitive-analysis.png', import.meta.url).href;
 const steepAnalysisImage = new URL('./assets/steep-source.png', import.meta.url).href;
 const threeCAnalysisImage = new URL('./assets/3c-source-1.png', import.meta.url).href;
@@ -134,8 +135,7 @@ export function initTeamProject() {
     });
     gallery.style.setProperty('--project-scroll-range', `${duration * 160}svh`);
     const measure = () => {
-        const offset = Math.min(32, Math.max(16, window.innerHeight * .03));
-        const scale = Math.min(1, gallery.clientWidth / 1920, Math.max(1, window.innerHeight - offset * 2 - 32) / 1080);
+        const scale = getProjectScale(gallery.clientWidth, window.innerHeight);
         gallery.style.setProperty('--project-scale', scale);
         gallery.style.setProperty('--project-height', `${window.innerHeight}px`);
         gallery.style.setProperty('--project-canvas-top', `${(window.innerHeight - 1080 * scale) / 2}px`);

@@ -3,7 +3,7 @@
 .footer-wave { position: absolute; inset: 0 0 auto; height: min(13.541667cqw, 260px); pointer-events: none; }
 .footer-wave > svg { display: block; width: 100%; height: 100%; }
 .footer-wave > img { position: absolute; left: -2.03125%; top: 0; width: 102.8125%; max-width: none; transform: scaleY(-1); }
-.footer-contacts { position: absolute; left: 10%; top: calc(35.277778% + 36px); display: flex; flex-direction: column; gap: min(2.03125cqw, 39px); margin: 0; }
+.footer-contacts { position: absolute; left: 10%; top: calc(41.111111% + 20px); display: flex; flex-direction: column; gap: min(2.03125cqw, 39px); margin: 0; }
 .footer-contact { display: flex; align-items: center; gap: min(2.552083cqw, 49px); }
 .footer-contact dt { width: min(6.770833cqw, 130px); color: #465e72; font-size: min(1.5625cqw, 30px); }
 .footer-contact dd { margin: 0; font-size: min(2.083333cqw, 40px); line-height: 1.4; }
@@ -16,13 +16,13 @@
 .footer-icon--github img { position: absolute; width: 141.86%; height: 148.78%; left: -20.93%; top: -21.95%; }
 .footer-icon--resume { width: min(2.135417cqw, 41px); height: min(2.1875cqw, 42px); margin-right: min(.260417cqw, 5px); }
 .footer-icon--resume img { position: absolute; width: 186.94%; height: 184.14%; left: -37.74%; top: -45.7%; }
-.footer-character { position: absolute; left: 81%; top: 57.222222%; width: 11.041667%; aspect-ratio: 1; }
+.footer-character { position: absolute; left: 82%; top: 63.055556%; width: 9.375%; aspect-ratio: 1; }
 .footer-character > img { width: 100%; height: 100%; object-fit: cover; transform: scaleX(-1); opacity: .9; }
-.footer-character > span { position: absolute; left: 12.28%; top: 54.646226%; width: 18.867925%; font-size: min(1.25cqw, 24px); line-height: .94; text-align: center; color: #8fa9be; transform: rotate(8.66deg); }
+.footer-character > span { position: absolute; left: 12.28%; top: 54.646226%; width: 18.867925%; font-size: min(1.041667cqw, 20px); line-height: .94; text-align: center; color: #8fa9be; transform: rotate(8.66deg); }
 @media (max-width: 600px) {
     .footer-canvas { aspect-ratio: auto; min-height: 620px; }
     .footer-wave { height: 100px; }
-    .footer-contacts { left: 7%; right: 7%; top: 180px; gap: 28px; }
+    .footer-contacts { left: 7%; right: 7%; top: 200px; gap: 28px; }
     .footer-contact { gap: 16px; }
     .footer-contact dt { width: 65px; font-size: 20px; }
     .footer-contact dd { font-size: clamp(19px, 4.8cqw, 28px); }

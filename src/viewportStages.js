@@ -1,4 +1,6 @@
-// Preserve the approved desktop composition at 1920 × 900 CSS pixels.
+import { getProjectScale } from './projectScale.js';
+
+// Preserve the project composition while scaling it to the viewport.
 // All spacing, typography and artwork inside a stage scale together.
 const REFERENCE_WIDTH = 1920;
 const REFERENCE_HEIGHT = 900;
@@ -39,7 +41,9 @@ export function initViewportStages() {
             if (!desktop.matches) return;
             const width = panel.clientWidth;
             const height = window.innerHeight;
-            const scale = Math.min(width / REFERENCE_WIDTH, height / REFERENCE_HEIGHT);
+            const scale = panel.closest('.personal-project-track')
+                ? getProjectScale(width, height)
+                : Math.min(width / REFERENCE_WIDTH, height / REFERENCE_HEIGHT);
             slot.style.height = `${height}px`;
             stage.style.setProperty('--stage-scale', scale);
             if (canvas.matches('.video-project-layout')) {
