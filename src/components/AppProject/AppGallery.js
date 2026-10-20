@@ -33,8 +33,9 @@ export function initAppGallery() {
         entries = panels.map((panel, index) => {
             const travel = panel === journeyPanel ? Math.max(0, journeyWidth / viewport.clientWidth - 1) : 0;
             const tailHold = travel ? hold : 0;
-            const entry = { start: time, offset, travel, tailHold };
-            time += hold + travel + tailHold + (index < panels.length - 1 ? 1 : 0);
+            const panelHold = panel.matches('.app-overview') ? 1.25 : hold;
+            const entry = { start: time, offset, travel, tailHold, hold: panelHold };
+            time += panelHold + travel + tailHold + (index < panels.length - 1 ? 1 : 0);
             offset += 1 + travel;
             return entry;
         });
@@ -48,6 +49,7 @@ export function initAppGallery() {
         let position = entries.at(-1).offset;
         for (const [index, entry] of entries.entries()) {
             const local = time - entry.start;
+            const hold = entry.hold;
             if (local <= hold) { position = entry.offset; break; }
             if (local < hold + entry.travel) { position = entry.offset + local - hold; break; }
             if (local <= hold + entry.travel + entry.tailHold) { position = entry.offset + entry.travel; break; }

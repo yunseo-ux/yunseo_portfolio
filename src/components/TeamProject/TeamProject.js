@@ -51,58 +51,7 @@ export function initTeamProject() {
     initPlanning();
     initStructure();
     initResearch();
-    const screen = document.querySelector('.team-project-laptop-screen');
-    const content = document.querySelector('.team-project-screen-scroll');
-    const phoneScreen = document.querySelector('.team-project-phone-screen');
-    const phoneContent = document.querySelector('.team-project-phone-content');
     const motionPreference = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let startedAt;
-    let previewFrame = 0;
-    let previewVisible = false;
-    let distance = 0;
-    let phoneDistance = 0;
-    const measurePreview = () => {
-        distance = screen && content ? Math.max(0, content.offsetHeight - screen.clientHeight) : 0;
-        phoneDistance = phoneScreen && phoneContent ? Math.max(0, phoneContent.offsetHeight - phoneScreen.clientHeight) : 0;
-    };
-    const animate = time => {
-        previewFrame = 0;
-        if (!screen || !content || !previewVisible || document.hidden || motionPreference.matches) return;
-        if (startedAt === undefined) startedAt = time;
-        const progress = ((time - startedAt) % 141000) / 141000;
-        const position = progress < .003 ? 0 : progress < .803 ? (progress - .003) / .8 : 1;
-        content.style.transform = `translateY(${-distance * position}px)`;
-        if (phoneScreen && phoneContent) {
-            const cycle = ((time - startedAt) % 235000) / 235000;
-            // Pause at both ends, then travel back without jumping to the start.
-            const phonePosition = cycle < .003 ? 0
-                : cycle < .453 ? (cycle - .003) / .45
-                : cycle < .503 ? 1
-                : cycle < .953 ? 1 - (cycle - .503) / .45 : 0;
-            phoneContent.style.transform = `translateY(${motionPreference.matches ? 0 : -phoneDistance * phonePosition}px)`;
-        }
-        previewFrame = requestAnimationFrame(animate);
-    };
-    const refreshPreview = () => {
-        cancelAnimationFrame(previewFrame);
-        previewFrame = 0;
-        startedAt = undefined;
-        measurePreview();
-        if (previewVisible && !document.hidden && !motionPreference.matches) previewFrame = requestAnimationFrame(animate);
-    };
-    const previewSection = screen?.closest('.team-project');
-    if (previewSection) {
-        new IntersectionObserver(entries => {
-            previewVisible = entries[0].isIntersecting;
-            refreshPreview();
-        }, { threshold: .25 }).observe(previewSection);
-    }
-    content?.querySelector('img')?.addEventListener('load', measurePreview);
-    phoneContent?.addEventListener('load', measurePreview);
-    window.addEventListener('resize', measurePreview);
-    document.addEventListener('visibilitychange', refreshPreview);
-    motionPreference.addEventListener('change', refreshPreview);
-
     const gallery = document.querySelector('.team-project-gallery');
     if (!gallery) return;
     const viewport = gallery.querySelector('.team-project-viewport');

@@ -123,14 +123,12 @@ function initAboutScroll(preference) {
     section.before(wrapper);
     wrapper.append(section);
     const clamp = value => Math.max(0, Math.min(1, value));
-    const reveal = (elements, progress) => {
+    const reveal = (elements, progress, direction) => {
+        const eased = 1 - (1 - progress) ** 3;
         elements.forEach(element => {
             element.style.opacity = String(progress);
-            // Reveal the shadow together with its paper, including the area
-            // outside the element's border box throughout the animation.
-            const shadowMargin = 24;
-            const right = (1 - progress) * (element.offsetWidth + shadowMargin * 2) - shadowMargin;
-            element.style.clipPath = progress >= 1 ? '' : `inset(-${shadowMargin}px ${right}px -${shadowMargin}px -${shadowMargin}px)`;
+            element.style.clipPath = '';
+            element.style.translate = `${direction * (1 - eased) * 260}px 0`;
         });
     };
     let frame = 0;
@@ -140,6 +138,7 @@ function initAboutScroll(preference) {
             [...paper, ...photo].forEach(element => {
                 element.style.opacity = '';
                 element.style.clipPath = '';
+                element.style.translate = '';
             });
             section.style.top = '';
             return;
@@ -149,8 +148,8 @@ function initAboutScroll(preference) {
             ? `${(window.innerHeight - section.offsetHeight) / 2}px`
             : (-vertical) + 'px';
         const scroll = -wrapper.getBoundingClientRect().top - vertical;
-        reveal(paper, clamp(scroll / 600));
-        reveal(photo, clamp((scroll - 700) / 650));
+        reveal(paper, clamp(scroll / 600), -1);
+        reveal(photo, clamp((scroll - 700) / 650), 1);
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     window.addEventListener('scroll', schedule, { passive: true });
@@ -182,81 +181,27 @@ function initIntroScroll(preference) {
     const all = [...lines, ...stars, copy, highlight, ...details].filter(Boolean);
     all.forEach(element => element.classList.remove('drawing-reveal-pending'));
     const clamp = value => Math.max(0, Math.min(1, value));
-    const diagonal = (element, progress) => {
-        if (!element) return;
-        const p = clamp(progress);
-        element.style.clipPath = p === 0 ? 'inset(0 100% 0 0)' : `polygon(0 0, ${Math.min(100, p * 200)}% 0, 100% ${Math.max(0, p * 200 - 100)}%, ${Math.max(0, p * 200 - 100)}% 100%, 0 ${Math.min(100, p * 200)}%)`;
-    };
     let frame = 0;
-    let headingAnimating = false;
-    let lastWheelTime = -Infinity;
-    let headingGesture = false;
-    const headingStops = [0, 550, 1150, 1750];
-    window.addEventListener('wheel', event => {
-        if (event.target.closest('.portfolio-chatbot')) return;
-        if (preference.matches || event.ctrlKey || !event.deltaY || Math.abs(event.deltaX) > Math.abs(event.deltaY)) return;
-        const now = performance.now();
-        const sameGesture = now - lastWheelTime < 140;
-        lastWheelTime = now;
-        if (headingAnimating || (headingGesture && sameGesture)) {
-            event.preventDefault();
-            return;
-        }
-        headingGesture = false;
-        const vertical = Math.max(0, section.offsetHeight - window.innerHeight);
-        const start = wrapper.getBoundingClientRect().top + window.scrollY + vertical;
-        const range = Math.max(1, wrapper.offsetHeight - section.offsetHeight - vertical);
-        const timeline = (window.scrollY - start) / range * 4500;
-        if (timeline < -1 || timeline > 1751) return;
-        const next = event.deltaY > 0
-            ? headingStops.find(stop => stop > timeline + 1)
-            : [...headingStops].reverse().find(stop => stop < timeline - 1);
-        if (next === undefined) return;
-        event.preventDefault();
-        headingGesture = true;
-        headingAnimating = true;
-        const from = window.scrollY;
-        const to = start + next / 4500 * range;
-        const started = performance.now();
-        const animate = time => {
-            const progress = clamp((time - started) / 350);
-            const eased = 1 - (1 - progress) ** 3;
-            window.scrollTo({ top: from + (to - from) * eased, behavior: 'instant' });
-            if (progress < 1) requestAnimationFrame(animate);
-            else headingAnimating = false;
-        };
-        requestAnimationFrame(animate);
-    }, { passive: false });
     const update = () => {
         frame = 0;
-        if (preference.matches) {
-            all.forEach(element => { element.style.clipPath = ''; });
-            return;
-        }
         const vertical = Math.max(0, section.offsetHeight - window.innerHeight);
-        section.style.setProperty('--intro-pin-top', `${-vertical}px`);
+        section.style.setProperty('--intro-pin-top', -vertical + 'px');
         const distance = wrapper.offsetHeight - section.offsetHeight;
-        const progress = clamp((-wrapper.getBoundingClientRect().top - vertical) / Math.max(1, distance - vertical));
-        const timeline = progress * 4500;
-        const lineStarts = [0, 600, 1200];
+        const scroll = -wrapper.getBoundingClientRect().top - vertical;
+        const progress = preference.matches ? 1 : clamp(scroll / Math.max(1, Math.min(2200, distance - vertical)));
         lines.forEach((line, index) => {
-            const local = clamp((timeline - lineStarts[index]) / 550);
-            const stepped = Math.floor(local * 12) / 12;
-            line.style.clipPath = `inset(0 ${(1 - stepped) * 100}% 0 0)`;
+            const fill = clamp((progress - index * .16) / .24);
+            line.style.setProperty('--intro-fill', fill * 100 + '%');
+            line.style.clipPath = '';
         });
-        stars.forEach((star, index) => diagonal(star, (timeline - 1950 - index * 180) / 200));
-        const copyProgress = clamp((timeline - 3150) / 650);
-        diagonal(copy, copyProgress);
-        if (highlight) highlight.style.clipPath = `inset(0 ${(1 - clamp((timeline - 4070) / 300)) * 100}% 0 0)`;
-        const outroProgress = clamp((window.innerHeight - outro.getBoundingClientRect().top) / Math.max(440, window.innerHeight * .75));
-        details.forEach(element => {
-            if (element.matches('.intro-divider')) {
-                element.style.clipPath = `inset(0 0 ${(1 - clamp((outroProgress - .15) / .52)) * 100}% 0)`;
-            } else {
-                const textProgress = clamp((window.innerHeight * .75 - element.getBoundingClientRect().top) / 180);
-                element.style.clipPath = `inset(0 ${(1 - textProgress) * 100}% 0 0)`;
-            }
+        if (copy) copy.style.clipPath = '';
+        stars.forEach((star, index) => {
+            star.style.clipPath = '';
+            star.style.opacity = clamp((progress - .58 - index * .06) / .16);
         });
+        const highlightProgress = preference.matches ? 1 : clamp((scroll - 1700) / 850);
+        if (highlight) highlight.style.clipPath = 'inset(0 ' + (1 - highlightProgress) * 100 + '% 0 0)';
+        details.forEach(element => { element.style.clipPath = ''; });
     };
     const schedule = () => { if (!frame) frame = requestAnimationFrame(update); };
     window.addEventListener('scroll', schedule, { passive: true });
