@@ -19,6 +19,11 @@ import { initProjectPreview } from './components/ProjectPreview/project_Preview.
 import { initMockupVideos } from './mockupVideos.js';
 
 async function start() {
+    const iconBase = import.meta.env?.BASE_URL || '/public/';
+    document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]').forEach(icon => {
+        const filename = new URL(icon.href).pathname.split('/').pop();
+        icon.href = `${iconBase}${filename}?v=pencil-299-3313`;
+    });
     const root = document.querySelector('#root');
     try {
         await loadSections(root);
