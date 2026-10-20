@@ -22,12 +22,43 @@
 .project-preview-card--right { margin-left: auto; }
 .project-preview-photo { display: block; position: relative; isolation: isolate; transform: rotate(-2deg); }
 .project-preview-photo:focus-visible { outline: 2px solid #4f718d; outline-offset: 6px; border-radius: 5px; }
+.project-preview-cursor {
+    position: fixed;
+    z-index: 10000;
+    display: grid;
+    place-items: center;
+    width: 112px;
+    height: 112px;
+    border-radius: 50%;
+    background: #4f718ded;
+    color: #fff;
+    font: 16px 'Ownglyph PDH', sans-serif;
+    pointer-events: none;
+    opacity: 0;
+    transform: translate(-50%, -50%) scale(.85);
+    transition: opacity 160ms ease, transform 160ms ease;
+}
+.project-preview-cursor.is-visible { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+@media (hover: hover) and (pointer: fine) {
+    .project-preview-photo { cursor: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .project-preview-cursor { transition: none; }
+}
 .project-preview-photo::after { content: ''; position: absolute; top: -38px; left: 38%; width: clamp(90px, 8.5vw, 163px); height: clamp(41px, 3.84vw, 74px); background: url('../TeamProject/assets/research-tape.svg') center / contain no-repeat; transform: rotate(9deg); pointer-events: none; z-index: 2; }
 .project-preview-card--right .project-preview-photo { transform: rotate(2.5deg); }
 .project-preview-card--right .project-preview-photo::after { transform: rotate(18deg); }
 .project-preview-card:nth-child(3) .project-preview-photo::after { transform: rotate(-8deg); }
 .project-preview-card:nth-child(4) .project-preview-photo::after { transform: rotate(-13deg); }
 .project-preview-image { display: block; width: 100%; height: auto; aspect-ratio: 720 / 452; object-fit: cover; border: 1px solid #dce5eb; border-radius: 5px; }
+.project-preview-image { transition: transform 350ms ease; }
+@media (hover: hover) and (pointer: fine) {
+    .project-preview-photo:hover .project-preview-image { transform: scale(1.04); }
+}
+.project-preview-photo:focus-visible .project-preview-image { transform: scale(1.04); }
+@media (prefers-reduced-motion: reduce) {
+    .project-preview-image { transition: none; }
+}
 .project-preview-placeholder { display: flex; flex-direction: column; align-items: center; justify-content: center; width: 100%; aspect-ratio: 720 / 452; border: 1px solid #c1ced7; border-radius: 5px; background: #dce5eb; color: #7895a7; }
 .project-preview-placeholder > span { font-size: 76px; line-height: 1; }
 .project-preview-placeholder > p { margin: 20px 0 0; font-size: 25px; letter-spacing: 2px; }
