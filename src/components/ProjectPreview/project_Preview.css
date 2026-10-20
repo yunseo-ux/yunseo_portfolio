@@ -20,7 +20,8 @@
 .project-preview-card { width: min(720px, 46%); margin-bottom: 130px; }
 .project-preview-card:last-child { margin-bottom: 0; }
 .project-preview-card--right { margin-left: auto; }
-.project-preview-photo { position: relative; isolation: isolate; transform: rotate(-2deg); }
+.project-preview-photo { display: block; position: relative; isolation: isolate; transform: rotate(-2deg); }
+.project-preview-photo:focus-visible { outline: 2px solid #4f718d; outline-offset: 6px; border-radius: 5px; }
 .project-preview-photo::after { content: ''; position: absolute; top: -38px; left: 38%; width: clamp(90px, 8.5vw, 163px); height: clamp(41px, 3.84vw, 74px); background: url('../TeamProject/assets/research-tape.svg') center / contain no-repeat; transform: rotate(9deg); pointer-events: none; z-index: 2; }
 .project-preview-card--right .project-preview-photo { transform: rotate(2.5deg); }
 .project-preview-card--right .project-preview-photo::after { transform: rotate(18deg); }

@@ -141,6 +141,7 @@ export function initPersonalProject() {
         window.scrollTo({ top, left: 0, behavior: 'instant' });
     };
     track.addEventListener('focusin', event => showPanel(event.target));
+    window.addEventListener('portfolio:project-navigate', event => showPanel(document.getElementById(event.detail.id)));
     const showHash = () => { if (window.location.hash) showPanel(document.getElementById(window.location.hash.slice(1))); };
     window.addEventListener('hashchange', showHash);
     measure();

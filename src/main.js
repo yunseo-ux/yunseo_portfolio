@@ -15,6 +15,7 @@ import { initSoftwareSkills } from './components/SoftwareSkills/SoftwareSkills.j
 import { initEnding } from './components/Ending/Ending.js';
 import { initVideoProject } from './components/VideoProject/VideoProject.js';
 import { initViewportStages } from './viewportStages.js';
+import { initProjectPreview } from './components/ProjectPreview/project_Preview.js';
 
 async function start() {
     const root = document.querySelector('#root');
@@ -35,6 +36,7 @@ async function start() {
         }
     }
     initViewportStages();
+    initProjectPreview();
     await initEnding();
 }
 

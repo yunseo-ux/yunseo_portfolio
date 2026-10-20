@@ -66,6 +66,12 @@ html body .hero-menu li * {
 .hero-menu span {
     position: relative;
     display: inline-block;
+    transition: color 180ms ease;
+}
+
+html body .hero-menu li:hover > a,
+html body .hero-menu li:focus-within > a {
+    color: var(--color-text-hover);
 }
 
 .hero-menu a[href="#team-project"] {
@@ -74,12 +80,14 @@ html body .hero-menu li * {
 }
 
 .hero-menu li:hover > a,
-.hero-menu li:hover > span {
+.hero-menu li:hover > span,
+.hero-menu li:focus-within > a {
     animation: header-type .45s steps(12, end) both;
 }
 
 .hero-menu li:hover > a::after,
-.hero-menu li:hover > span::after {
+.hero-menu li:hover > span::after,
+.hero-menu li:focus-within > a::after {
     position: absolute;
     top: calc(12px + .1em);
     right: calc(10px - .18em);
@@ -90,7 +98,8 @@ html body .hero-menu li * {
     animation: header-caret .45s steps(1, end) both;
 }
 
-.hero-menu li:hover > a[href="#team-project"]::after {
+.hero-menu li:hover > a[href="#team-project"]::after,
+.hero-menu li:focus-within > a[href="#team-project"]::after {
     top: calc(22px + .1em);
     right: calc(14px - .18em);
 }

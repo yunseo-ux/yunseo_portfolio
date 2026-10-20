@@ -45,7 +45,8 @@ export function initViewportStages() {
                 ? getProjectScale(width, height)
                 : Math.min(width / REFERENCE_WIDTH, height / REFERENCE_HEIGHT);
             slot.style.height = `${height}px`;
-            stage.style.setProperty('--stage-scale', scale);
+            const appContent = panel.matches('.app-gallery-intro, .app-overview, .app-detail');
+            stage.style.setProperty('--stage-scale', scale * (appContent ? .9 : 1));
             if (canvas.matches('.video-project-layout')) {
                 stage.style.setProperty('--stage-content-top', `${(REFERENCE_HEIGHT - canvas.offsetHeight) / 2 - 13}px`);
             }
