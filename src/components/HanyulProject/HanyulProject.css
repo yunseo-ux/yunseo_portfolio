@@ -25,6 +25,7 @@
 .hanyul-comparison .team-before-after-image--after { top: -112.2%; height: 531.01%; }
 .hanyul-comparison .team-before-after-description .hanyul-comparison-second { top: 799px; }
 .hanyul-direction .team-editorial-copy h2 { position: absolute; top: 30px; left: 0; margin: 0; white-space: nowrap; }
+.hanyul-direction .team-editorial-preview { --preview-duration: 70s; }
 .hanyul-direction .team-editorial-description { position: absolute; top: 105px; left: 0; }
 @media (prefers-reduced-motion: no-preference) { .personal-project-track > .hanyul-panel { left: -100%; top: 100%; } }
 @media (prefers-reduced-motion: reduce) {

@@ -33,6 +33,10 @@ export function initDrawingReveal() {
     ];
     const reveal = element => {
         if (preference.matches) return;
+        if (element.matches('.hero-pen') && !element.closest('.portfolio-hero')?.dataset.illustrationsReady) {
+            window.addEventListener('portfolio:hero-artwork-ready', () => reveal(element), { once: true });
+            return;
+        }
         active.get(element)?.cancel();
         element.classList.remove('drawing-reveal-pending');
         const picture = element.matches('img, .team-project-visual, .team-research-paper, .introduction-art, .software-skills-paper');
@@ -53,6 +57,7 @@ export function initDrawingReveal() {
             element.classList.add('intro-header-writing');
         }
         animation.finished.then(() => {
+            if (element.matches('.hero-pen')) window.dispatchEvent(new Event('portfolio:hero-pen-ready'));
             element.classList.remove('intro-header-writing');
             if (active.get(element) === animation) active.delete(element);
         }).catch(() => {});

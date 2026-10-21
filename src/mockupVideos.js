@@ -18,6 +18,7 @@ export function initMockupVideos() {
     }, { threshold: [0, .25] });
     const base = import.meta.env?.BASE_URL;
     videos.forEach(video => {
+        video.playbackRate = Number(video.dataset.playbackRate) || 1;
         const source = base ? `${base}${video.dataset.src.slice(1)}` : `/public${video.dataset.src}`;
         video.poster = source.replace(/\.webm$/, '.png');
         video.src = source;

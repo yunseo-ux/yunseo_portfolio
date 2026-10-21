@@ -145,7 +145,8 @@ html body .hero-menu li:focus-within > a {
 .hero-decoration[data-vector="81"] { animation-name: hero-doodle-sway; animation-duration: 12s; }
 .hero-decoration[data-vector="77"],
 .hero-decoration[data-vector="86"] { animation-name: hero-doodle-twinkle; animation-duration: 6s; }
-.hero-illustrations-moving .hero-decoration { animation-play-state: running; }
+.hero-illustrations-moving .hero-decoration--drawn { animation-play-state: running; }
+.hero-decoration:not(.hero-decoration--drawn) { animation: none; }
 @keyframes hero-doodle-drift {
     0%, 100% { transform: translate(0, 0) rotate(-1deg); }
     50% { transform: translate(9px, -12px) rotate(1deg); }
