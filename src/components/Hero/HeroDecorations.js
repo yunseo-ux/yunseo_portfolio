@@ -75,6 +75,15 @@ export function initHeroDecorations() {
     layer.className = 'hero-decorations';
     layer.setAttribute('aria-hidden', 'true');
     hero.append(layer);
+    let visible = false;
+    const updateMotion = () => hero.classList.toggle('hero-illustrations-moving', visible && !document.hidden && !reduced.matches);
+    const visibilityObserver = new IntersectionObserver(entries => {
+        visible = entries[0].isIntersecting;
+        updateMotion();
+    });
+    visibilityObserver.observe(hero);
+    document.addEventListener('visibilitychange', updateMotion, { signal: controller.signal });
+    reduced.addEventListener('change', updateMotion, { signal: controller.signal });
     const drawings = [];
     let frame = 0;
     let height = 0;
@@ -170,6 +179,7 @@ export function initHeroDecorations() {
         if (event.persisted) return;
         disposed = true;
         controller.abort();
+        visibilityObserver.disconnect();
         cancelAnimationFrame(frame);
     }, { signal: controller.signal });
 }

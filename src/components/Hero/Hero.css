@@ -134,6 +134,33 @@ html body .hero-menu li:focus-within > a {
 }
 .hero-decoration { position: absolute; transform-origin: center; contain: layout style; isolation: isolate; }
 .hero-decoration-svg { display: block; max-width: none; overflow: visible; transform-origin: top left; will-change: transform; }
+.hero-decoration { animation: hero-doodle-drift 8s ease-in-out infinite; animation-play-state: paused; }
+.hero-decoration:nth-child(3n) { animation-delay: -3s; animation-duration: 10s; }
+.hero-decoration:nth-child(3n + 1) { animation-delay: -5s; }
+.hero-decoration[data-vector="75"],
+.hero-decoration[data-vector="76"],
+.hero-decoration[data-vector="83"],
+.hero-decoration[data-vector="84"] { animation-name: hero-doodle-twinkle; animation-duration: 5s; }
+.hero-decoration[data-vector="80"],
+.hero-decoration[data-vector="81"] { animation-name: hero-doodle-sway; animation-duration: 12s; }
+.hero-decoration[data-vector="77"],
+.hero-decoration[data-vector="86"] { animation-name: hero-doodle-twinkle; animation-duration: 6s; }
+.hero-illustrations-moving .hero-decoration { animation-play-state: running; }
+@keyframes hero-doodle-drift {
+    0%, 100% { transform: translate(0, 0) rotate(-1deg); }
+    50% { transform: translate(9px, -12px) rotate(1deg); }
+}
+@keyframes hero-doodle-twinkle {
+    0%, 100% { transform: scale(.96) rotate(-3deg); opacity: .8; }
+    50% { transform: scale(1.06) rotate(3deg); opacity: 1; }
+}
+@keyframes hero-doodle-sway {
+    0%, 100% { transform: translate(0, 0) rotate(-.5deg); }
+    50% { transform: translate(4px, -7px) rotate(.5deg); }
+}
+@media (prefers-reduced-motion: reduce) {
+    .hero-decorations .hero-decoration { animation: none; }
+}
 .hero-title {
     display: flex;
     flex-direction: column;
