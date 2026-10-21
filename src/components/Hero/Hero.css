@@ -51,6 +51,7 @@ html body .hero-menu li * {
 .hero-menu > li {
     padding: 12px 10px;
     margin: -12px -10px;
+    cursor: pointer;
 }
 .hero-header a:focus-visible {
     outline: 2px solid currentColor;
@@ -85,20 +86,14 @@ html body .hero-menu li:focus-within > a {
 .hero-menu li:hover > a,
 .hero-menu li:hover > span,
 .hero-menu li:focus-within > a {
-    animation: header-type .45s steps(12, end) both;
+    animation: none;
+    clip-path: none;
 }
 
 .hero-menu li:hover > a::after,
 .hero-menu li:hover > span::after,
 .hero-menu li:focus-within > a::after {
-    position: absolute;
-    top: calc(12px + .1em);
-    right: calc(10px - .18em);
-    width: 1px;
-    height: .9em;
-    content: '';
-    background: currentColor;
-    animation: header-caret .45s steps(1, end) both;
+    content: none;
 }
 
 .hero-menu li:hover > a[href="#team-project"]::after,

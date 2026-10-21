@@ -14,9 +14,16 @@ export function initVideoProject() {
     gallery.append(viewport);
     viewport.append(track);
     track.append(...panels);
+    gallery.style.setProperty('--video-gallery-height', `${(1 + panels.length * .7 + panels.length - 1) * 100}svh`);
     const items = [...section.querySelectorAll('.video-project-media')].map(media => ({
         media, video: media.querySelector('video'), hint: media.querySelector('.video-project-hint'),
     }));
+    items.forEach(({ video }) => {
+        const frame = document.createElement('div');
+        frame.className = 'video-project-video-frame';
+        video.before(frame);
+        frame.append(video);
+    });
     const hover = matchMedia('(hover: hover) and (pointer: fine)');
     const reduced = matchMedia('(prefers-reduced-motion: reduce)');
     const fullscreenVideo = () => items.some(({ video }) => document.fullscreenElement === video);
@@ -52,9 +59,19 @@ export function initVideoProject() {
         if (fullscreenVideo()) return;
         if (!horizontal.matches) return;
         const scroll = -gallery.getBoundingClientRect().top;
-        const progress = Math.max(0, Math.min(1, scroll / viewportHeight - .7));
-        track.style.transform = `translate3d(${-progress * panelWidth}px, 0, 0)`;
-        const nextPanel = progress === 0 ? 0 : progress === 1 ? 1 : -1;
+        const timeline = Math.max(0, scroll / viewportHeight);
+        let position = panels.length - 1;
+        for (let index = 0; index < panels.length - 1; index++) {
+            const local = timeline - index * 1.7;
+            if (local <= .7) { position = index; break; }
+            if (local < 1.7) { position = index + local - .7; break; }
+        }
+        const nextPanel = Number.isInteger(position) ? position : -1;
+        const pixelRatio = devicePixelRatio || 1;
+        const offset = Math.round(-position * panelWidth * pixelRatio) / pixelRatio;
+        track.style.transform = `translateX(${offset}px)`;
+        // Release the animated GPU layer while the panel is held still.
+        track.style.willChange = nextPanel < 0 ? 'transform' : 'auto';
         if (nextPanel !== activePanel) {
             items.forEach(stop);
             activePanel = nextPanel;
@@ -72,6 +89,7 @@ export function initVideoProject() {
         viewportHeight = viewport.clientHeight;
         if (!horizontal.matches) {
             track.style.transform = '';
+            track.style.willChange = 'auto';
             panels.forEach(panel => { panel.inert = false; });
         } else updateGallery();
     };
