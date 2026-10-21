@@ -5,32 +5,6 @@ export function initTeamProjectSlogan() {
 function initSlogan(section) {
     const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
     if (!section || preference.matches) return;
-    if (section.matches('.team-project-slogan')) {
-        const hold = document.createElement('div');
-        hold.className = 'team-title-hold';
-        section.before(hold);
-        hold.append(section);
-        const parts = [...section.querySelectorAll('.team-project-slogan-label, h2, .team-project-slogan-character, .team-project-slogan-line, .team-project-slogan-star')];
-        parts.forEach(part => { part.style.opacity = '0'; });
-        const observer = new IntersectionObserver(entries => {
-            if (!entries.some(entry => entry.isIntersecting)) return;
-            parts.forEach((part, index) => part.animate([
-                { opacity: 0 },
-                { opacity: 1 },
-            ], { duration: 500, delay: index * 300, easing: 'ease-out', fill: 'forwards' }));
-            observer.disconnect();
-        }, { threshold: .25 });
-        observer.observe(section);
-        preference.addEventListener('change', () => {
-            if (!preference.matches) return;
-            observer.disconnect();
-            parts.forEach(part => {
-                part.getAnimations().forEach(animation => animation.cancel());
-                part.style.opacity = '1';
-            });
-        });
-        return;
-    }
     const wrapper = document.createElement('div');
     wrapper.className = 'team-slogan-scroll';
     if (section.matches('.personal-project-slogan')) wrapper.classList.add('personal-slogan-scroll');
