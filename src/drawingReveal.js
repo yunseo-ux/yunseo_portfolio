@@ -33,10 +33,6 @@ export function initDrawingReveal() {
     ];
     const reveal = element => {
         if (preference.matches) return;
-        if (element.matches('.hero-pen') && !element.closest('.portfolio-hero')?.dataset.illustrationsReady) {
-            window.addEventListener('portfolio:hero-artwork-ready', () => reveal(element), { once: true });
-            return;
-        }
         active.get(element)?.cancel();
         element.classList.remove('drawing-reveal-pending');
         const picture = element.matches('img, .team-project-visual, .team-research-paper, .introduction-art, .software-skills-paper');
@@ -46,7 +42,7 @@ export function initDrawingReveal() {
             { clipPath: 'inset(0 100% 0 0)' },
             { clipPath: 'inset(0 0% 0 0)' },
         ] : frames, {
-            duration: star ? 850 : handwriting ? 450 : picture ? 1500 : 950,
+            duration: element.matches('.hero-pen') ? 400 : star ? 850 : handwriting ? 450 : picture ? 1500 : 950,
             easing: handwriting ? 'steps(12, end)' : 'cubic-bezier(.25,.1,.25,1)',
             delay: Number(element.dataset.drawingDelay || 0),
             fill: 'backwards',

@@ -11,7 +11,7 @@ const artwork = [
     [83, 265.1, 403.16, 56.303, 56.0709, 0, .13],
     [84, 1555.1, 636, 56.303, 56.0709, 27, .29],
     [85, 297.73, 244.61, 128.496, 74.917, 0, .2],
-    [86, 385.402, 648.788, 24.722, 42.949, 1.09, .31],
+    [86, 425.402, 632.788, 24.722, 42.949, 1.09, .31],
 ];
 const assets = import.meta.env ? import.meta.glob('./assets/decoration-*.svg', { eager: true, query: '?url', import: 'default' }) : {};
 const textures = import.meta.env ? import.meta.glob('./assets/decoration-texture-*.webp', { eager: true, query: '?url', import: 'default' }) : {};
@@ -85,10 +85,10 @@ export function initHeroDecorations() {
         const delta = lastPaint ? Math.min(time - lastPaint, 64) : 0;
         elapsed += delta;
         lastPaint = time;
-        const settled = reduced.matches || elapsed >= 1500;
+        const settled = reduced.matches || elapsed >= 1125;
         drawings.forEach(drawing => {
             const order = artwork.findIndex(item => item[0] === drawing.id);
-            const value = reduced.matches ? 1 : clamp((elapsed - order * 65) / 785);
+            const value = reduced.matches ? 1 : clamp((elapsed - order * 45) / 630);
             if (drawing.progress === value) return;
             drawing.progress = value;
             drawing.fillReveal?.setAttribute('opacity', clamp((value - .72) / .28));
