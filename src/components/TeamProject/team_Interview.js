@@ -1,7 +1,7 @@
 import { loadProjectImage } from './loadProjectImage.js';
 
 const images = {
-    questions: new URL('./assets/interview-questions.png', import.meta.url).href,
+    questions: new URL('./assets/interview-columns.svg', import.meta.url).href,
     summary: new URL('./assets/response-summary.png', import.meta.url).href,
     affinity: new URL('./assets/affinity-diagram.png', import.meta.url).href,
 };

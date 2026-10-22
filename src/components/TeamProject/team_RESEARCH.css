@@ -72,7 +72,7 @@
 .team-research-labels { position: absolute; top: 528px; left: 1137px; display: flex; align-items: center; gap: 27px; margin: 0; padding: 0; list-style: none; }
 .team-research-label { position: relative; width: 69px; height: 22px; }
 .team-research-label img { position: absolute; top: 3px; left: 1px; width: 11px; height: 11px; transform: rotate(-162.05deg) scaleY(-1); }
-.team-research-label span { position: absolute; top: -2px; left: 18px; color: #354858; font-size: 21px; line-height: normal; white-space: nowrap; }
+.team-research-label span { position: absolute; top: -2px; left: 18px; color: #785D70; font-size: 21px; line-height: normal; white-space: nowrap; }
 .team-research-label--2 { width: 81px; }
 .team-research-label--3 { width: 70px; }
 .team-research-label--4 { width: 66px; }

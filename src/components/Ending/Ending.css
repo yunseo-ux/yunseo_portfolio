@@ -1,4 +1,4 @@
-.portfolio-ending { position: relative; height: calc(100svh + clamp(2200px, 300svh, 3600px)); overflow-anchor: none; background: #faf8f3; color: #354858; }
+.portfolio-ending { position: relative; height: calc(100svh + clamp(2640px, 360svh, 4320px)); overflow-anchor: none; background: #faf8f3; color: #354858; }
 .ending-viewport { position: sticky; top: 0; height: 100svh; min-height: 500px; overflow: hidden; }
 .ending-intro, .ending-fallback { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 80px 6%; }
 .ending-intro { position: absolute; inset: 0; }

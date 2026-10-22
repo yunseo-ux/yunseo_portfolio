@@ -608,3 +608,32 @@
 }
 
 #team-project .team-project-phone { left: 805.06px; }
+
+/* Shared project links: label, icon and underline use the accent color. */
+:root a.team-project-link,
+:root button.team-project-link,
+:root .team-project-link:hover,
+:root .team-project-link:focus-visible {
+    color: #785D70;
+}
+
+/* Darken project links and research menus on hover and keyboard focus. */
+:root a.team-project-link,
+:root button.team-project-link,
+:root :is(.team-interview-button, .team-research-button, .team-planning-menu button, .team-structure-menu button) span {
+    transition: color 180ms ease;
+}
+:root a.team-project-link:is(:hover, :focus-visible),
+:root button.team-project-link:is(:hover, :focus-visible),
+:root .team-project-link:is(:hover, :focus-visible) span,
+:root :is(.team-interview-button, .team-research-button, .team-planning-menu button, .team-structure-menu button):is(:hover, :focus-visible) span {
+    color: #5A4654;
+}
+:root .team-project-link :is(.team-project-pen, .team-project-link-line),
+:root :is(.team-interview-button, .team-research-button, .team-planning-menu button, .team-structure-menu button) img {
+    transition: filter 180ms ease;
+}
+:root .team-project-link:is(:hover, :focus-visible) :is(.team-project-pen, .team-project-link-line),
+:root :is(.team-interview-button, .team-research-button, .team-planning-menu button, .team-structure-menu button):is(:hover, :focus-visible) img {
+    filter: brightness(.75);
+}

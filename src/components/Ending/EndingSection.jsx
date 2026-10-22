@@ -83,7 +83,8 @@ export default function EndingSection() {
                     invalidateOnRefresh: true,
                 },
             });
-            timeline
+            // Hold the opening message longer before the drawing sequence starts.
+            timeline.add(gsap.timeline({ defaults: { ease: 'none' } })
                 .to(intro, { autoAlpha: 0, y: -24, duration: .8 }, 1.1)
                 .to(scene, { autoAlpha: 1, duration: .45 }, 1.9)
                 .to(pencil, { autoAlpha: .82, duration: .65 }, 2)
@@ -96,7 +97,7 @@ export default function EndingSection() {
                 .to(star, { rotation: 8, duration: .55, ease: 'sine.inOut' }, 7.75)
                 .to(copy[0], { autoAlpha: 1, y: 0, duration: .7, ease: 'power2.out' }, 8.5)
                 .to(copy[1], { autoAlpha: 1, y: 0, duration: .75, ease: 'power2.out' }, 9.1)
-                .to({}, { duration: 1.2 });
+                .to({}, { duration: 1.2 }), 2.2);
             // matchMedia tracks and reverts the timeline and ScrollTrigger.
         }, section);
 

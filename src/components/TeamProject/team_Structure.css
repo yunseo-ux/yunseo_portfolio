@@ -17,7 +17,7 @@
 .team-structure-menu li:nth-child(2) { width: 67px; }
 .team-structure-menu li:nth-child(3) { width: 115px; }
 .team-structure-menu li:nth-child(4) { width: 113px; }
-.team-structure-menu button { position: relative; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; color: #354858; font-family: 'Ownglyph Yuntaeng', sans-serif; }
+.team-structure-menu button { position: relative; width: 100%; height: 100%; padding: 0; border: 0; background: transparent; color: #785D70; font-family: 'Ownglyph Yuntaeng', sans-serif; }
 .team-structure-menu button img { position: absolute; top: 2px; left: 0; width: 14px; height: 14px; object-fit: contain; transform: rotate(-162.05deg) scaleY(-1); }
 .team-structure-menu button span { position: absolute; top: -2px; left: 20px; font-size: 23px; line-height: normal; white-space: nowrap; }
 .team-structure-menu button:hover span, .team-structure-menu button:focus-visible span { animation: research-label-writing 650ms steps(5, end) both; }

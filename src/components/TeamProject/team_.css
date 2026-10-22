@@ -10,7 +10,7 @@
 .team-placeholder-labels { position: absolute; top: 528px; left: 1137px; display: flex; align-items: center; gap: 27px; margin: 0; padding: 0; list-style: none; }
 .team-placeholder-label { position: relative; width: 85px; height: 22px; }
 .team-placeholder-label img { position: absolute; top: 3px; left: 1px; width: 11px; height: 11px; transform: rotate(-162.05deg) scaleY(-1); }
-.team-placeholder-label span { position: absolute; top: -2px; left: 18px; color: #354858; font-size: 21px; line-height: normal; white-space: nowrap; }
+.team-placeholder-label span { position: absolute; top: -2px; left: 18px; color: #785D70; font-size: 21px; line-height: normal; white-space: nowrap; }
 .team-placeholder-label--1 { width: 82px; }
 .team-placeholder-label--2 { width: 76px; }
 .team-placeholder-label--3 { width: 158px; }
@@ -28,4 +28,10 @@
 }
 @media (prefers-reduced-motion: reduce) {
     .team-placeholder-label:hover span { animation: none; }
+}
+
+/* Fill the paper with the research images, cropping overflow. */
+.team-placeholder:not(.team-interview--summary):not(.team-interview--affinity) .team-placeholder-image {
+ top: 0; left: 0; width: 100%; height: 100%; object-fit: cover;
+ transform: scale(1.15); transform-origin: center;
 }

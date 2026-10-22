@@ -68,7 +68,8 @@ export function initChatbot() {
         }
         if (reply?.contacts) {
             content.classList.add('chatbot-contact-reply');
-            content.textContent = '';
+            content.textContent = reply.answer || '';
+            if (reply.answer) content.append(document.createElement('br'));
             reply.contacts.forEach((contact, index) => {
                 if (index) content.append(document.createElement('br'));
                 const link = document.createElement('a');
@@ -82,6 +83,16 @@ export function initChatbot() {
             });
         }
         row.append(label, content);
+        for (const related of reply?.links || []) {
+            const line = document.createElement('p');
+            const link = document.createElement('a');
+            link.href = related.href;
+            link.textContent = `${related.text} ↗`;
+            link.target = '_blank';
+            link.rel = 'noopener noreferrer';
+            line.append(link);
+            row.append(line);
+        }
         if (reply?.section) {
             const link = document.createElement('a');
             link.href = `#${reply.section}`;
@@ -91,7 +102,12 @@ export function initChatbot() {
                 if (!target) return;
                 event.preventDefault();
                 close();
-                target.scrollIntoView({ behavior: preference.matches ? 'instant' : 'smooth', block: 'start' });
+                if (target.closest('.personal-project-gallery') && !preference.matches) {
+                    window.dispatchEvent(new CustomEvent('portfolio:project-navigate', { detail: { id: target.id } }));
+                } else {
+                    const destination = target.closest('.team-project-gallery') || target;
+                    destination.scrollIntoView({ behavior: preference.matches ? 'instant' : 'smooth', block: 'start' });
+                }
             });
             row.append(link);
         }
@@ -153,7 +169,7 @@ export function initChatbot() {
         button.addEventListener('click', () => ask(topic.label));
         widget.querySelector('.chatbot-topics').append(button);
     }
-    message('안녕하세요! 윤서의 포트폴리오에 오신 걸 환영해요.\n프로젝트 소개부터 담당 역할, 디자인 과정까지 궁금한 점이 있다면 편하게 물어보세요! (・8・)', 'bot');
+    message('안녕하세요! UI/UX 디자이너 오윤서의 포트폴리오 안내 도우미 뭉지예요.\n아래 네 메뉴에서 대표 프로젝트, 담당 역할, 디자인 과정·사용 기술, 연락처를 확인해 보세요. 프로젝트 이름으로 물어보셔도 좋아요! (・8・)', 'bot');
     nudgeTimer = setTimeout(() => {
         if (!panel.hidden || document.hidden) return;
         nudge.classList.add('is-visible');

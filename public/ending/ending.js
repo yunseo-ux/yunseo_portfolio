@@ -11960,7 +11960,7 @@ function sc() {
 					scrub: .45,
 					invalidateOnRefresh: !0
 				}
-			}).to(r, {
+			}).add(Fi.timeline({ defaults: { ease: "none" } }).to(r, {
 				autoAlpha: 0,
 				y: -24,
 				duration: .8
@@ -12007,7 +12007,7 @@ function sc() {
 				y: 0,
 				duration: .75,
 				ease: "power2.out"
-			}, 9.1).to({}, { duration: 1.2 });
+			}, 9.1).to({}, { duration: 1.2 }), 2.2);
 		}, t), document.fonts.ready.then(() => {
 			d || $.refresh();
 		}), () => {

@@ -199,13 +199,15 @@ html body .portfolio-chatbot .chatbot-nudge:hover span {
     text-underline-offset: 4px;
 }
 .chatbot-message .chatbot-contact-reply {
-    font-size: 15px;
+    font-size: 17px;
+    line-height: 1.35;
 }
 .chatbot-message .chatbot-contact-question {
     font-size: 13px;
 }
 .chatbot-message .chatbot-contact-reply a {
     font-size: 15px;
+    margin: 2px 4px 0;
 }
 .chatbot-message .chatbot-contact-reply a[href^="mailto:"],
 .chatbot-message .chatbot-contact-reply a[href^="https://"] {

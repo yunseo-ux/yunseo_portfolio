@@ -17,8 +17,10 @@ import { initVideoProject } from './components/VideoProject/VideoProject.js';
 import { initViewportStages } from './viewportStages.js';
 import { initProjectPreview } from './components/ProjectPreview/project_Preview.js';
 import { initMockupVideos } from './mockupVideos.js';
+import { initLoadingScreen } from './components/Loading/Loading.js';
 
 async function start() {
+    const loading = initLoadingScreen();
     const iconBase = import.meta.env?.BASE_URL || '/public/';
     document.querySelectorAll('link[rel="icon"], link[rel="apple-touch-icon"]').forEach(icon => {
         const filename = new URL(icon.href).pathname.split('/').pop();
@@ -28,12 +30,14 @@ async function start() {
     try {
         await loadSections(root);
     } catch (error) {
+        loading.dispose();
         console.error('페이지를 불러오지 못했습니다.', error);
         const message = document.createElement('p');
         message.textContent = '페이지를 불러오지 못했습니다. 개발 서버(npm run dev)에서 열어 주세요.';
         root.replaceChildren(message);
         return;
     }
+    await loading.finish();
     for (const initialize of [initHero, initTeamProject, initApproach, initTeamProjectSlogan, initPersonalProject, initDrawingReveal, initCloneCoding, initChatbot, initPhotoRail, initFooter, initAppGallery, initAppProposal, initSoftwareSkills, initVideoProject]) {
         try {
             initialize();

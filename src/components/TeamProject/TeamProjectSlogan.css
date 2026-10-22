@@ -6,6 +6,7 @@
     align-items: center;
     min-height: clamp(260px, 48svh, 600px);
     overflow-anchor: none;
+    overflow: clip;
 }
 .team-title-hold { position: relative; height: 230svh; background: #faf8f3; overflow-anchor: none; }
 .team-title-hold > .team-project-slogan { position: sticky; top: 0; height: 100svh; }
