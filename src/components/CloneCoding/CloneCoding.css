@@ -26,8 +26,8 @@
  html body .clone-coding-card:hover, html body .clone-coding-card:hover * { cursor: none; }
 }
 @media (prefers-reduced-motion: reduce) { .clone-coding-image img { transition: none; } }
-.clone-coding-card h3 { margin: 26px 0 8px; font-weight: 400; font-size: 31px; line-height: 1.2; }
-.clone-coding-card p { margin: 0; font-size: 24px; line-height: 1.3; color: #4f718d; }
+.clone-coding-card h3 { margin: 26px 0 8px; font-weight: 400; font-size: 24px; line-height: 1.2; }
+.clone-coding-card p { margin: 0; font-size: 18px; line-height: 1.3; color: #4f718d; }
 .clone-coding--pinned { padding: 0; height: calc(100svh + var(--clone-scroll-distance)); }
 .clone-coding--pinned .clone-coding-viewport { position: sticky; top: 0; height: 100svh; display: flex; flex-direction: column; justify-content: center; padding: 70px 0; overflow: hidden; }
 .clone-coding--pinned .clone-coding-window { overflow: hidden; flex-shrink: 0; width: 100%; margin-top: 0; }
@@ -37,7 +37,7 @@
  .clone-coding-heading p { font-size: 23px; }
  .clone-coding-window { margin-top: 55px; scroll-snap-type: x mandatory; }
  .clone-coding-card { scroll-snap-align: center; width: 80vw; }
- .clone-coding-card h3 { font-size: 24px; }
- .clone-coding-card p { font-size: 21px; }
+ .clone-coding-card h3 { font-size: 19px; }
+ .clone-coding-card p { font-size: 16px; }
 }
 @media (max-height: 750px) and (min-width: 801px) { .clone-coding--pinned .clone-coding-viewport { padding: 35px 0; } }
