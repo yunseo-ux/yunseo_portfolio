@@ -1,0 +1,101 @@
+:root { color-scheme: light; --ink: #263440; --accent: #4f718d; --rule: #dbe2e6; }
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 90px; }
+body { margin: 0; background: #eef2f4; color: var(--ink); font-family: 'Noto Sans KR', 'Malgun Gothic', 'Apple SD Gothic Neo', sans-serif; font-size: 15px; line-height: 1.75; word-break: keep-all; overflow-wrap: anywhere; }
+a { color: var(--accent); text-underline-offset: 3px; }
+a:hover { color: #354858; }
+button { font: inherit; }
+:focus-visible { outline: 2px solid var(--accent); outline-offset: 4px; }
+.skip-link { position: fixed; left: 16px; top: -100px; z-index: 10; padding: 10px; background: white; }
+.skip-link:focus { top: 10px; }
+.toolbar { position: sticky; top: 0; z-index: 2; display: flex; align-items: center; justify-content: space-between; gap: 16px; width: min(980px, calc(100% - 40px)); margin: auto; padding: 16px 0; background: #eef2f4; }
+.toolbar a { text-decoration: none; font-size: 14px; }
+.toolbar nav { display: flex; gap: 18px; }
+.toolbar button { border: 1px solid #c4d0d8; border-radius: 6px; background: white; padding: 7px 13px; color: var(--accent); cursor: pointer; font-size: 13px; }
+.document { width: min(980px, calc(100% - 40px)); margin: 0 auto 64px; padding: 56px 60px; background: white; box-shadow: 0 5px 30px #2634400b; }
+.document-header { border-bottom: 2px solid var(--accent); padding-bottom: 27px; margin-bottom: 28px; }
+.eyebrow { margin: 0 0 10px; color: var(--accent); font-size: 14px; letter-spacing: .08em; }
+h1 { margin: 0; font-size: 38px; line-height: 1.25; letter-spacing: .1em; }
+.english-name { margin: 7px 0; font-size: 14px; letter-spacing: .15em; color: #657785; }
+.position { margin: 12px 0 0; font-size: 17px; }
+.profile { display: grid; grid-template-columns: 146px 1fr; gap: 30px; align-items: start; }
+.profile-photo { display: block; width: 146px; height: 188px; object-fit: cover; border: 1px solid var(--rule); }
+dl, dd { margin: 0; }
+.profile-facts { display: grid; grid-template-columns: 1fr 1fr; column-gap: 22px; }
+.profile-facts > div { display: grid; grid-template-columns: 68px minmax(0,1fr); gap: 9px; padding: 5px 0 8px; border-bottom: 1px solid #edf0f2; }
+.profile-facts .wide { grid-column: 1 / -1; }
+dt { color: #667987; font-size: 13px; }
+.resume-section { margin-top: 42px; }
+h2 { margin: 0 0 17px; padding-bottom: 9px; border-bottom: 2px solid var(--accent); font-size: 21px; font-weight: 700; }
+h3 { font-size: 17px; line-height: 1.6; }
+.table-wrap { width: 100%; }
+table { width: 100%; border-collapse: collapse; table-layout: fixed; font-size: 14px; }
+caption, .visually-hidden { position: absolute; width: 1px; height: 1px; padding: 0; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+th, td { padding: 12px 13px; border: 1px solid var(--rule); text-align: left; vertical-align: top; }
+th { background: #f1f5f7; color: #425d70; font-size: 13px; font-weight: 600; }
+td p, dd p { margin: 0; }
+td p + p, dd p + p { margin-top: 7px; }
+.project { border: 1px solid var(--rule); margin-top: 17px; }
+.project h3 { margin: 0; padding: 12px 16px; background: #f1f5f7; color: #354858; }
+.project dl > div { display: grid; grid-template-columns: 124px 1fr; gap: 16px; padding: 12px 16px; border-top: 1px solid var(--rule); }
+.essay { margin-top: 28px; }
+.essay h3 { margin: 0 0 12px; color: #354858; }
+.essay p { margin: 0 0 13px; text-align: justify; line-height: 1.9; }
+.declaration { border-top: 1px solid var(--rule); margin-top: 38px; padding-top: 24px; text-align: center; color: #536673; font-size: 14px; }
+.declaration p { margin: 7px 0; }
+.declaration img { display: block; margin: 8px auto 0; width: 68px; height: auto; }
+@media screen and (max-width: 700px) {
+ .toolbar { width: calc(100% - 28px); gap: 8px; flex-wrap: wrap; padding: 12px 0; }
+ .toolbar nav { gap: 12px; }
+ .toolbar a { font-size: 12px; }
+ .toolbar button { font-size: 12px; padding: 6px 8px; }
+ .document { width: calc(100% - 24px); padding: 30px 22px; margin-bottom: 24px; }
+ h1 { font-size: 32px; }
+ .position { font-size: 15px; }
+ .profile { grid-template-columns: 100px minmax(0,1fr); gap: 16px; }
+ .profile-photo { width: 100px; height: 129px; }
+ .profile-facts { display: block; }
+ .profile-facts > div { grid-template-columns: 58px minmax(0,1fr); gap: 6px; font-size: 13px; }
+ h2 { font-size: 19px; }
+ .resume-section { margin-top: 32px; }
+ table, tbody, tr, td { display: block; width: 100%; }
+ thead { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); }
+ tr { margin-bottom: 12px; border: 1px solid var(--rule); }
+ td { display: grid; grid-template-columns: 90px minmax(0,1fr); gap: 12px; padding: 9px 11px; border: 0; border-bottom: 1px solid #edf0f2; }
+ td:last-child { border-bottom: 0; }
+ td::before { content: attr(data-label); color: #667987; font-size: 12px; }
+ td p { grid-column: 2; }
+ .project dl > div { grid-template-columns: 1fr; gap: 4px; padding: 11px 14px; }
+ .project h3, .essay h3 { font-size: 16px; }
+ .essay p { text-align: left; font-size: 14px; }
+}
+@media screen and (max-width: 420px) {
+ .profile { grid-template-columns: 1fr; }
+ .profile-photo { margin-bottom: 7px; }
+ .toolbar nav { margin-left: auto; }
+ .toolbar button { width: 100%; }
+}
+@media (prefers-reduced-motion: reduce) { html { scroll-behavior: auto; } }
+@page { size: A4; margin: 15mm; }
+@media print {
+ body { background: white; font-size: 10pt; color: #17212b; }
+ .toolbar, .skip-link { display: none; }
+ .document { width: 100%; padding: 0; margin: 0; box-shadow: none; }
+ .document-header { margin-bottom: 20px; padding-bottom: 18px; }
+ h1 { font-size: 25pt; }
+ .profile { grid-template-columns: 110px 1fr; gap: 22px; }
+ .profile-photo { width: 110px; height: 142px; }
+ .profile-facts { font-size: 9pt; }
+ .resume-section { margin-top: 25px; }
+ h2 { font-size: 15pt; break-after: avoid; }
+ h3 { break-after: avoid; }
+ table { font-size: 9pt; }
+ th, td { padding: 7px 8px; }
+ thead { display: table-header-group; }
+ tr, .project, .profile { break-inside: avoid; }
+ .project dl > div { padding: 8px 11px; }
+ .cover-letter { break-before: page; }
+ .essay p { line-height: 1.7; orphans: 3; widows: 3; }
+ .declaration { break-inside: avoid; }
+ a { color: inherit; text-decoration: none; }
+}
