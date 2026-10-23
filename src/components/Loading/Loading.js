@@ -36,9 +36,13 @@ export function initLoadingScreen() {
           </pattern>
           <mask id="loading-body-texture-mask" maskUnits="userSpaceOnUse" x="0" y="0" width="210" height="228" style="mask-type:alpha">${image('', bodyArtwork)}</mask>
           <mask id="loading-arm-texture-mask" maskUnits="userSpaceOnUse" x="34" y="69" width="76.9407" height="73.72" style="mask-type:alpha"><image href="${armArtwork}" x="34" y="69" width="76.9407" height="73.72"/></mask>
-          <mask id="loading-trail-mask" maskUnits="userSpaceOnUse" x="102" y="136" width="275" height="124"><path class="portfolio-loader-trace" d="M110 246C167 264 244 239 267 194C280 176 281 159 274 160C269 158 267 169 265 169C248 157 241 175 256 180C289 193 344 164 368 144" fill="none" stroke="white" stroke-width="8" stroke-linecap="round"/></mask>
+          <mask id="loading-trail-mask" maskUnits="userSpaceOnUse" x="102" y="136" width="275" height="124"><path class="portfolio-loader-trace" d="M110 246C167 264 244 239 267 194C280 176 281 159 274 160C269 158 267 169 265 169C248 157 241 175 256 180C287 192 336 168 360 150" fill="none" stroke="white" stroke-width="8" stroke-linecap="round"/></mask>
         </defs>
         <g class="portfolio-loader-raised-arm">
+          <g class="portfolio-loader-arm-marks" fill="none" stroke="#675344" stroke-width="1.8" stroke-linecap="round">
+            <path d="M43 72C38 76 35 82 36 87"/>
+            <path d="M48 75C44 79 42 84 43 89"/>
+          </g>
           <image href="${armArtwork}" x="34" y="69" width="76.9407" height="73.72" filter="url(#loading-pencil-texture)"/>
           <rect x="34" y="69" width="76.9407" height="73.72" fill="url(#loading-pencil-hatching)" mask="url(#loading-arm-texture-mask)"/>
         </g>
@@ -96,16 +100,17 @@ export function initLoadingScreen() {
             return;
         }
         armWave = gsap.timeline({ repeat: -1, defaults: { ease: 'sine.inOut', onUpdate: paintArm } })
-            .to(armState, { angle: -4, duration: .5 })
-            .to(armState, { angle: 4, duration: 1 })
+            .to(armState, { angle: -5, duration: .5 })
+            .to(armState, { angle: 5, duration: 1 })
             .to(armState, { angle: 0, duration: .5 });
-        dotLoop = gsap.timeline({ repeat: -1 });
+        dotLoop = gsap.timeline({ repeat: -1, repeatDelay: .12 });
         dots.forEach((dot, index) => dotLoop.to(dot, { opacity: 1, duration: .15 }, index * .38).to(dot, { opacity: 0, duration: .18 }, index * .38 + .18));
         ellipsisLoop = gsap.timeline({ repeat: -1, repeatDelay: .2 })
             .to(ellipsis, { opacity: 1, duration: .12, stagger: .23 })
             .to(ellipsis, { opacity: 0, duration: .12 }, '+=.32');
-        drawing = gsap.timeline()
-            .to(trace, { strokeDashoffset: 0, duration: 1.65, ease: 'none' });
+        drawing = gsap.timeline({ repeat: -1, repeatDelay: .12 })
+            .to(trace, { strokeDashoffset: 0, duration: 3.2, ease: 'none' })
+            .set(trace, { strokeDashoffset: length });
     };
     startMotion();
     const stopMotion = () => {
@@ -113,6 +118,7 @@ export function initLoadingScreen() {
         [armWave, dotLoop, ellipsisLoop].forEach(animation => animation?.kill());
         armState.angle = 0;
         paintArm();
+        gsap.set(overlay.querySelector('.portfolio-loader-arm-marks'), { opacity: 0 });
         drawing?.progress(1);
         gsap.set([...dots, ...ellipsis], { opacity: 1, rotation: 0, y: 0 });
     };
