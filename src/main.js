@@ -37,7 +37,6 @@ async function start() {
         root.replaceChildren(message);
         return;
     }
-    await loading.finish();
     for (const initialize of [initHero, initTeamProject, initApproach, initTeamProjectSlogan, initPersonalProject, initDrawingReveal, initCloneCoding, initChatbot, initPhotoRail, initFooter, initAppGallery, initAppProposal, initSoftwareSkills, initVideoProject]) {
         try {
             initialize();
@@ -48,6 +47,9 @@ async function start() {
     initViewportStages();
     initProjectPreview();
     initMockupVideos();
+    // Initialize the page under the opaque loading layer so the main UI is ready
+    // at the exact moment the illustration finishes fading out.
+    await loading.finish();
     await initEnding();
 }
 

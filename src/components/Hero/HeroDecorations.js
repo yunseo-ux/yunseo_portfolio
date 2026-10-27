@@ -85,10 +85,12 @@ export function initHeroDecorations() {
         const delta = lastPaint ? Math.min(time - lastPaint, 64) : 0;
         elapsed += delta;
         lastPaint = time;
-        const settled = reduced.matches || elapsed >= 1125;
+        const drawingDuration = 700;
+        const drawingStagger = 65;
+        const settled = reduced.matches || elapsed >= drawingStagger * (artwork.length - 1) + drawingDuration;
         drawings.forEach(drawing => {
             const order = artwork.findIndex(item => item[0] === drawing.id);
-            const value = reduced.matches ? 1 : clamp((elapsed - order * 45) / 630);
+            const value = reduced.matches ? 1 : clamp((elapsed - order * drawingStagger) / drawingDuration);
             if (drawing.progress === value) return;
             drawing.progress = value;
             drawing.fillReveal?.setAttribute('opacity', clamp((value - .72) / .28));

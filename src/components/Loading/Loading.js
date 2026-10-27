@@ -38,7 +38,7 @@ export function initLoadingScreen() {
           <mask id="loading-arm-texture-mask" maskUnits="userSpaceOnUse" x="34" y="69" width="76.9407" height="73.72" style="mask-type:alpha"><image href="${armArtwork}" x="34" y="69" width="76.9407" height="73.72"/></mask>
           <mask id="loading-trail-mask" maskUnits="userSpaceOnUse" x="102" y="136" width="275" height="124"><path class="portfolio-loader-trace" d="M110 246C167 264 244 239 267 194C280 176 281 159 274 160C269 158 267 169 265 169C248 157 241 175 256 180C287 192 336 168 360 150" fill="none" stroke="white" stroke-width="8" stroke-linecap="round"/></mask>
         </defs>
-        <g class="portfolio-loader-raised-arm">
+        <g class="portfolio-loader-raised-arm" transform="rotate(0 75.5 132.5)">
           <g class="portfolio-loader-arm-marks" fill="none" stroke="#675344" stroke-width="1.8" stroke-linecap="round">
             <path d="M43 72C38 76 35 82 36 87"/>
             <path d="M48 75C44 79 42 84 43 89"/>
@@ -83,6 +83,9 @@ export function initLoadingScreen() {
     const unlock = () => {
         if (released) return;
         released = true;
+        window.__portfolioShouldLoad = false;
+        clearTimeout(safety);
+        preference.removeEventListener('change', stopMotion);
         resolveRelease();
         root.classList.remove('portfolio-loading', 'portfolio-loading--revealing');
         if (content) content.inert = previousInert;
@@ -91,8 +94,16 @@ export function initLoadingScreen() {
         [armWave, dotLoop, ellipsisLoop, drawing].forEach(animation => animation?.kill());
         gsap.killTweensOf([armState, ...dots, ...ellipsis, overlay]);
     };
-    const safety = setTimeout(unlock, 20000);
-    const readyEvent = document.readyState === 'complete' ? Promise.resolve() : new Promise(resolve => window.addEventListener('load', resolve, { once: true }));
+    const safety = setTimeout(unlock, 6000);
+    const decodeImage = async source => {
+        const picture = new Image();
+        picture.src = source;
+        await picture.decode();
+    };
+    // SVG <image> elements have no decode() API; preload their shared sources.
+    const artworkReady = Promise.all([
+        artwork, bodyArtwork, armArtwork, labelArtwork, dotYellow, dotBlue, dotLast,
+    ].map(decodeImage));
     const startMotion = () => {
         if (preference.matches) {
             trace.style.strokeDashoffset = '0';
@@ -112,26 +123,41 @@ export function initLoadingScreen() {
             .to(trace, { strokeDashoffset: 0, duration: 3.2, ease: 'none' })
             .set(trace, { strokeDashoffset: length });
     };
-    startMotion();
+    const motionReady = artworkReady.then(async () => {
+        if (released) return;
+        paintArm();
+        await new Promise(resolve => requestAnimationFrame(() => requestAnimationFrame(resolve)));
+        if (released) return;
+        startMotion();
+    }).catch(() => {
+        // Never show a partially decoded character when an asset fails.
+        unlock();
+    });
     const stopMotion = () => {
         if (!preference.matches) return;
         [armWave, dotLoop, ellipsisLoop].forEach(animation => animation?.kill());
         armState.angle = 0;
         paintArm();
         gsap.set(overlay.querySelector('.portfolio-loader-arm-marks'), { opacity: 0 });
-        drawing?.progress(1);
+        drawing?.kill();
+        trace.style.strokeDashoffset = '0';
         gsap.set([...dots, ...ellipsis], { opacity: 1, rotation: 0, y: 0 });
     };
     preference.addEventListener('change', stopMotion);
     return {
         async finish() {
             const heroReady = Promise.all([...content.querySelectorAll('.portfolio-hero img')].map(picture => picture.decode().catch(() => {})));
-            await Promise.race([Promise.all([readyEvent, document.fonts?.ready, heroReady]), releasedReady]);
+            // Below-the-fold project images must not delay the first screen.
+            await Promise.race([Promise.all([motionReady, heroReady]), releasedReady]);
             if (released) return;
-            root.classList.add('portfolio-loading--revealing');
-            await new Promise(resolve => {
-                gsap.to(overlay, { opacity: 0, duration: preference.matches ? 0 : .3, ease: 'power2.inOut', onComplete: resolve });
-            });
+            // Keep the backdrop opaque until the character has disappeared.
+            // Crossfading the entire overlay exposes the hero through its artwork.
+            const loaderContent = overlay.querySelector('.portfolio-loader-content');
+            loaderContent.style.transition = preference.matches ? 'none' : 'opacity 160ms ease';
+            loaderContent.style.opacity = '0';
+            // Use wall-clock time: GSAP's lag smoothing can prolong a transition
+            // while the browser decodes the portfolio's large project images.
+            if (!preference.matches) await new Promise(resolve => setTimeout(resolve, 180));
             clearTimeout(safety);
             preference.removeEventListener('change', stopMotion);
             unlock();

@@ -21,6 +21,12 @@
     </script>
 
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <style>
+      html.portfolio-loading { overflow: hidden; background: #dce5eb; }
+      html.portfolio-loading #root,
+      html.portfolio-loading #root *,
+      html.portfolio-loading body > .hero-header { visibility: hidden !important; }
+    </style>
     <link rel="stylesheet" href="/src/components/Loading/Loading.css" />
     <script>
       (() => {
@@ -32,6 +38,7 @@
       try { sessionStorage.setItem('portfolio-loading-seen', '1'); } catch {}
       document.documentElement.classList.add('portfolio-loading');
       window.__portfolioLoadingFallback = setTimeout(() => {
+        window.__portfolioShouldLoad = false;
         document.documentElement.classList.remove('portfolio-loading', 'portfolio-loading--revealing');
         document.querySelector('.portfolio-loader')?.remove();
         const content = document.querySelector('#root');
@@ -39,7 +46,7 @@
       }, 22000);
       })();
     </script>
-    <noscript><style>#root { visibility: visible !important; } :root { overflow: auto !important; }</style></noscript>
+    <noscript><style>html.portfolio-loading #root, html.portfolio-loading #root * { visibility: visible !important; } :root { overflow: auto !important; }</style></noscript>
     <title>윤서 포트폴리오</title>
     <link rel="icon" type="image/png" sizes="512x512" href="/favicon.png" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
