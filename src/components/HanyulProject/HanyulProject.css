@@ -6,6 +6,7 @@
 .hanyul-panel--visible .hanyul-main-scroll { animation-play-state: running; }
 @keyframes hanyul-main-scroll { 0%, .5% { transform: translateY(0); } 94%, 100% { transform: translateY(calc(var(--hanyul-preview-height) - 100%)); } }
 .hanyul-intro .team-project-info { top: 301px; left: 1080px; }
+.hanyul-intro .team-project-links { top: 100px; }
 .hanyul-project-label { margin: 0; font: 26px 'Ownglyph PDH', sans-serif; color: #4f718d; }
 .hanyul-intro .team-project-info h2 { margin-top: 4px; }
 .hanyul-website-placeholder, .hanyul-website-placeholder * { pointer-events: none; }

@@ -218,14 +218,29 @@
     overflow-wrap: anywhere;
 }
 
-.ai-lab-link {
+.video-project--ai-lab .ai-lab-link {
     position: relative;
     left: auto;
     top: auto;
     flex: none;
-    font-size: 20px;
+    font-size: 18px;
     line-height: normal;
     margin-top: .55cqw;
+}
+
+.video-project--ai-lab .ai-lab-link .team-project-pen {
+    width: 16.5px;
+    height: 20.7px;
+}
+
+.video-project--ai-lab .ai-lab-link span,
+.video-project--ai-lab .ai-lab-link .team-project-link-line {
+    left: 26px;
+}
+
+.video-project--ai-lab .ai-lab-link .team-project-link-line {
+    top: 24.8px;
+    width: 62.6px;
 }
 
 .ai-lab-brief,
