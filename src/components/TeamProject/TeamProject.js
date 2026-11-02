@@ -57,6 +57,19 @@ export function initTeamProject() {
     const viewport = gallery.querySelector('.team-project-viewport');
     const track = gallery.querySelector('.team-project-track');
     if (!viewport || !track) return;
+    if (matchMedia('(max-width: 640px)').matches) {
+        gallery.classList.add('team-project-gallery--swipe');
+        const measureMobileProject = () => {
+            gallery.style.setProperty('--project-scale', String(Math.min(1, gallery.clientWidth / 1920)));
+        };
+        measureMobileProject();
+        window.addEventListener('resize', measureMobileProject, { passive: true });
+        gallery.style.setProperty('--project-canvas-top', '0px');
+        gallery.style.setProperty('--project-canvas-left', '0px');
+        viewport.setAttribute('role', 'region');
+        viewport.setAttribute('aria-label', 'Swipe horizontally to browse project content.');
+        return;
+    }
     const updateLine = initProjectLine(track);
     const comparison = track.querySelector('.team-before-after');
     const comparisonIndex = [...track.children].indexOf(comparison);

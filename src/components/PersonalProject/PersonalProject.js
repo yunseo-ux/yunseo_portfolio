@@ -10,7 +10,7 @@ export function initPersonalProject() {
     const viewport = gallery?.querySelector('.personal-project-viewport');
     const track = gallery?.querySelector('.personal-project-track');
     if (!track || !viewport) return;
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce), (max-width: 640px)');
     const panels = [...track.children];
     const hanyul = initHanyulProject(track);
     const hanyulIndex = panels.findIndex(panel => panel.matches('.hanyul-intro'));
@@ -46,6 +46,33 @@ export function initPersonalProject() {
         }
     });
 
+    if (preference.matches && window.matchMedia('(max-width: 640px)').matches) {
+        gallery.classList.add('personal-project-gallery--swipe');
+        const measureMobileOverview = () => {
+            gallery.style.setProperty('--personal-overview-mobile-scale', String(Math.min(1, Math.max(.25, (window.innerWidth - 48) / 914))));
+        };
+        measureMobileOverview();
+        window.addEventListener('resize', measureMobileOverview, { passive: true });
+        viewport.setAttribute('role', 'region');
+        viewport.setAttribute('aria-label', '개인 프로젝트. 좌우로 밀어 확인하세요.');
+        viewport.tabIndex = 0;
+        hanyul.measure();
+        hanyul.update(panels.length - 1, panels, 1, true);
+        panels.forEach(panel => {
+            if (panel.querySelector('.movement-doodle') || isOverviewHold(panel)) {
+                panel.classList.add('movement-doodles--draw');
+            }
+        });
+        const showPanel = id => {
+            const panel = document.getElementById(id)?.closest('.personal-project-track > *');
+            if (panel) viewport.scrollTo({ left: panel.offsetLeft, behavior: 'instant' });
+        };
+        window.addEventListener('portfolio:project-navigate', event => showPanel(event.detail.id));
+        window.addEventListener('hashchange', () => showPanel(location.hash.slice(1)));
+        if (location.hash) requestAnimationFrame(() => showPanel(location.hash.slice(1)));
+        return;
+    }
+
     const previews = panels.filter(panel => !panel.matches('.movement-details')).map(panel => ({ panel, screen: panel.querySelector('.team-project-laptop-screen'), visible: false }));
     const updatePreviews = () => previews.forEach(item => {
         item.panel.classList.toggle('movement-preview--playing', item.visible && !document.hidden && !preference.matches);
@@ -60,6 +87,9 @@ export function initPersonalProject() {
 
     const measure = () => {
         hanyul.measure();
+        if (window.innerWidth <= 800) {
+            gallery.style.setProperty('--personal-overview-mobile-scale', String(Math.min(1, Math.max(.25, (gallery.clientWidth - 48) / 914))));
+        }
         gallery.style.setProperty('--personal-project-scale', Math.min(1, gallery.clientWidth / 1920));
         if (preference.matches) gallery.style.removeProperty('height');
         else gallery.style.height = `${viewport.offsetHeight + duration * viewport.clientWidth}px`;

@@ -44,3 +44,92 @@
 .personal-overview--03 .personal-overview-highlight--3 { top: 62.361111%; left: 65.703125%; }
 .personal-overview--04 .personal-overview-highlight--2 { top: 59.12037%; left: 72.369792%; }
 .personal-overview--04 .personal-overview-highlight--3 { top: 62.222222%; left: 60.208333%; }
+
+@media (max-width: 800px) {
+    .personal-project-gallery .personal-project-track > .personal-overview:not(.movement-details) {
+        display: block;
+        min-height: 0;
+        height: auto;
+        padding: 34px 24px 48px;
+        box-sizing: border-box;
+    }
+    .personal-project-gallery .personal-overview-canvas {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0;
+        width: 100%;
+        max-width: 520px;
+        aspect-ratio: auto;
+        margin: 0 auto;
+    }
+    .personal-project-gallery .personal-overview-canvas p,
+    .personal-project-gallery .personal-overview-canvas h2,
+    .personal-project-gallery .personal-overview-canvas h3,
+    .personal-project-gallery .personal-overview-contribution {
+        position: static;
+        left: auto;
+        top: auto;
+        white-space: normal;
+    }
+    .personal-project-gallery .personal-overview-visual {
+        position: relative;
+        inset: auto;
+        flex: none;
+        width: 914px;
+        height: 559px;
+        margin: 0 auto 12px;
+        zoom: var(--personal-overview-mobile-scale, .35);
+        transform: none;
+    }
+    .personal-project-gallery .personal-overview-page {
+        margin: 0 0 8px;
+        font-size: 18px;
+        line-height: 1.2;
+    }
+    .personal-project-gallery .personal-overview-page span { font-size: 16px; }
+    .personal-project-gallery .personal-overview-canvas h2 {
+        margin: 0 0 14px;
+        font-size: clamp(25px, 7vw, 34px);
+        line-height: 1.2;
+        overflow-wrap: anywhere;
+    }
+    .personal-project-gallery .personal-website-button {
+        position: relative;
+        top: auto;
+        left: auto;
+        flex: none;
+        width: 124px;
+        height: 34px;
+        margin: 0 0 28px;
+        font-size: 18px;
+    }
+    .personal-project-gallery .personal-website-button .team-project-pen { width: 18px; height: 23px; }
+    .personal-project-gallery .personal-website-button .team-project-link-line { width: 78px; }
+    .personal-project-gallery .personal-website-button span { left: 29px; top: 3px; }
+    .personal-project-gallery .personal-overview-canvas h3 {
+        margin: 0 0 8px;
+        font-size: 16px;
+        line-height: 1.25;
+    }
+    .personal-project-gallery .personal-overview-brief,
+    .personal-project-gallery .personal-overview-direction {
+        margin: 0 0 22px;
+        color: #4f718d;
+        font-size: clamp(16px, 4.2vw, 19px);
+        line-height: 1.6;
+        overflow-wrap: anywhere;
+    }
+    .personal-project-gallery .personal-overview-contribution-label { margin-bottom: 8px; }
+    .personal-project-gallery .personal-overview-contribution {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 6px 20px;
+        margin: 0;
+        padding: 0;
+        color: #4f718d;
+        font-size: clamp(16px, 4.2vw, 19px);
+        line-height: 1.5;
+    }
+    .personal-project-gallery .personal-overview-highlight { display: none; }
+}
