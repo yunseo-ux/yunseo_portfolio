@@ -28,32 +28,34 @@ export function initCloneCoding() {
     headingHold.className = 'clone-heading-hold';
     section.prepend(headingHold);
     headingHold.append(heading);
-    const reduced = window.matchMedia('(prefers-reduced-motion: reduce)');
-    let headingObserver;
-    if (!reduced.matches) {
-        heading.classList.add('clone-heading--animated');
-        headingObserver = new IntersectionObserver(entries => {
-            if (!entries.some(entry => entry.isIntersecting)) return;
-            heading.classList.add('clone-heading--visible');
-            headingObserver.disconnect();
-        }, { threshold: .55 });
-        headingObserver.observe(heading);
-    }
-    reduced.addEventListener('change', () => {
-        if (!reduced.matches) return;
-        headingObserver?.disconnect();
-        heading.classList.remove('clone-heading--animated');
-    });
+    const reduced = window.matchMedia('(prefers-reduced-motion: reduce), (max-width: 600px)');
+    if (!reduced.matches) heading.classList.add('clone-heading--animated');
     let frame = 0;
     const update = () => {
         frame = 0;
         const style = getComputedStyle(windowElement);
         const available = windowElement.clientWidth - parseFloat(style.paddingLeft) - parseFloat(style.paddingRight);
         const distance = Math.max(0, track.scrollWidth - available);
-        const pinned = window.innerWidth > 800 && window.innerHeight > 600 && !reduced.matches && distance > 1;
+        const pinned = window.innerWidth > 800 && !reduced.matches && distance > 1;
         section.classList.toggle('clone-coding--pinned', pinned);
         const introDistance = headingHold.offsetHeight;
         section.style.setProperty('--clone-scroll-distance', `${introDistance + distance * 1.8 + 250}px`);
+        if (!reduced.matches) {
+            const clamp = value => Math.max(0, Math.min(1, value));
+            const introProgress = clamp(-headingHold.getBoundingClientRect().top / Math.max(1, introDistance - window.innerHeight));
+            const titleProgress = clamp(introProgress / .35);
+            const copyProgress = clamp((introProgress - .22) / .38);
+            heading.style.setProperty('--clone-title-opacity', titleProgress);
+            heading.style.setProperty('--clone-title-clip', `${(1 - titleProgress) * 100}%`);
+            heading.style.setProperty('--clone-copy-opacity', copyProgress);
+            heading.style.setProperty('--clone-copy-y', `${(1 - copyProgress) * 14}px`);
+        } else {
+            heading.classList.remove('clone-heading--animated');
+            heading.style.removeProperty('--clone-title-opacity');
+            heading.style.removeProperty('--clone-title-clip');
+            heading.style.removeProperty('--clone-copy-opacity');
+            heading.style.removeProperty('--clone-copy-y');
+        }
         if (!pinned) {
             track.style.transform = '';
             return;

@@ -26,7 +26,7 @@ export function initHeroDecorations() {
     const hero = document.querySelector('.portfolio-hero');
     if (!hero || hero.querySelector('.hero-decorations')) return;
     const controller = new AbortController();
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce), (max-width: 600px)');
     const root = document.documentElement;
     const originalOverflow = root.style.overflowY;
     const originalGutter = root.style.scrollbarGutter;

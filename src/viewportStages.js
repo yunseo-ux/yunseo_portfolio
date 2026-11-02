@@ -13,7 +13,6 @@ export function initViewportStages() {
         '.app-gallery-track .personal-overview-canvas',
         '.personal-project-slogan-canvas',
         '.app-slogan-scroll .app-project-canvas',
-        '.video-project-layout',
     ].join(',');
     const entries = [...document.querySelectorAll(selector)].map(canvas => {
         const panel = canvas.parentElement;
@@ -47,9 +46,6 @@ export function initViewportStages() {
             slot.style.height = `${height}px`;
             const appContent = panel.matches('.app-gallery-intro, .app-overview, .app-detail');
             stage.style.setProperty('--stage-scale', scale * (appContent ? .9 : 1));
-            if (canvas.matches('.video-project-layout')) {
-                stage.style.setProperty('--stage-content-top', `${(REFERENCE_HEIGHT - canvas.offsetHeight) / 2 - 13}px`);
-            }
         });
     };
     // ResizeObserver handles fonts and text wrapping without relying on a timeout.

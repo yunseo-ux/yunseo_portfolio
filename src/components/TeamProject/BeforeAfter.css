@@ -30,3 +30,98 @@
 .team-before-after-description { opacity: var(--comparison-copy, 0); transform: translateY(calc((1 - var(--comparison-copy, 0)) * 16px)); }
 .team-before-after-description h3 { position: absolute; top: 671px; left: 1036px; margin: 0; font-size: 25px; line-height: 1.4; font-weight: 400; }
 .team-before-after-description p { position: absolute; top: 716px; left: 1036px; margin: 0; color: #4f718d; font-size: 25px; line-height: 1.4; white-space: nowrap; }
+
+@media (max-width: 900px) {
+    .team-project-gallery--swipe .team-project-track > .team-before-after {
+        height: auto;
+        min-height: 100svh;
+        padding: 56px 6% 64px;
+        box-sizing: border-box;
+    }
+    .team-project-gallery--swipe .team-before-after-canvas {
+        position: relative;
+        top: auto;
+        left: auto;
+        display: grid;
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+        align-content: start;
+        align-items: start;
+        gap: 16px 12px;
+        width: 100%;
+        height: auto;
+        transform: none !important;
+    }
+    .team-project-gallery--swipe .team-before-after-canvas::before {
+        left: 0;
+        top: 0;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 716 / 681;
+    }
+    .team-project-gallery--swipe .team-before-after-image-slot {
+        position: relative;
+        grid-column: 1 / -1;
+        left: auto;
+        top: auto;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 716 / 681;
+    }
+    .team-project-gallery--swipe .team-before-after-detail {
+        position: relative;
+        left: auto;
+        top: auto;
+        width: 100%;
+        height: auto;
+        aspect-ratio: 355 / 200;
+        box-shadow: 0 2px 4px rgb(53 72 88 / 9%);
+    }
+    .team-project-gallery--swipe .team-before-after-detail img {
+        display: block;
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .team-project-gallery--swipe .team-before-after-label,
+    .team-project-gallery--swipe .team-before-after-canvas h2 {
+        position: relative;
+        grid-column: 1 / -1;
+        left: auto;
+        top: auto;
+        width: 100%;
+        transform: none;
+        text-align: center;
+    }
+    .team-project-gallery--swipe .team-before-after-label {
+        margin: 2px 0 0;
+        font-size: 12px;
+    }
+    .team-project-gallery--swipe .team-before-after-canvas h2 {
+        position: relative;
+        margin: -8px 0 0;
+        font-size: clamp(26px, 7vw, 34px);
+    }
+    .team-project-gallery--swipe .team-before-after-description {
+        position: relative;
+        grid-column: 1 / -1;
+        left: auto;
+        top: auto;
+        width: 100%;
+    }
+    .team-project-gallery--swipe .team-before-after-description h3,
+    .team-project-gallery--swipe .team-before-after-description p {
+        position: relative;
+        left: auto;
+        top: auto;
+        margin: 0;
+        white-space: normal;
+        overflow-wrap: anywhere;
+        font-size: clamp(14px, 3.8vw, 17px);
+        line-height: 1.55;
+        text-align: center;
+    }
+    .team-project-gallery--swipe .team-before-after-description p {
+        margin-top: 8px;
+        color: #4f718d;
+    }
+}

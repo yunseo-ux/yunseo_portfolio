@@ -4,7 +4,7 @@ const DESIGN_HEIGHT = 1080;
 export function initTodayJourney(panel) {
     const line = panel.querySelector('[data-journey-line]');
     const pins = [...panel.querySelectorAll('[data-journey-pin]')];
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce), (max-width: 900px)');
     const pinPositions = [1894, 407, 4254];
     let width = 0;
     let target = 0;

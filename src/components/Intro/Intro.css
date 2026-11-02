@@ -123,9 +123,10 @@
     .intro-heading span:nth-child(1) { top: 0; left: 21cqw; }
     .intro-heading span:nth-child(2) { top: 13cqw; left: 15cqw; }
     .intro-heading span:nth-child(3) { top: 26cqw; left: 31cqw; }
-    .intro-sparkles { top: -3cqw; left: 13cqw; scale: .8; }
+    .intro-sparkles { top: -13cqw; left: 12cqw; scale: .75; }
     .intro-copy-wrap { top: 52%; width: 92%; }
     .intro-copy { font-size: 5.3cqw; }
+    .intro-highlight-text .intro-highlighter { width: calc(100% + 8px); height: 1em; }
     .intro-highlighter { top: 13cqw; transform: translateX(-50%) scale(.7); }
     .intro-divider { top: 72%; left: 50%; transform: translateX(-50%); }
     .intro-process { top: 88%; left: 50%; gap: 4cqw; font-size: 3.8cqw; transform: translateX(-50%); }

@@ -17,6 +17,12 @@
 .team-slogan-scroll { position: relative; height: calc(100svh + 3500px); background: #faf8f3; overflow-anchor: none; }
 .team-slogan-scroll > .team-project-slogan { position: sticky; top: 0; display: flex; align-items: center; height: 100svh; }
 @media (prefers-reduced-motion: reduce) { .team-slogan-scroll { height: auto; } .team-slogan-scroll > .team-project-slogan { position: relative; height: auto; } }
+@media (max-width: 640px) {
+    .team-title-hold { height: auto; }
+    .team-title-hold > .team-project-slogan { position: relative; height: auto; }
+    .team-slogan-scroll { height: auto; }
+    .team-slogan-scroll > .team-project-slogan { position: relative; height: auto; }
+}
 .team-project-slogan-canvas {
     position: relative;
     width: min(100%, 1920px);

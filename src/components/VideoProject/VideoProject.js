@@ -9,12 +9,97 @@ export function initVideoProject() {
     viewport.className = 'video-gallery-viewport';
     const track = document.createElement('div');
     track.className = 'video-gallery-track';
-    const panels = [...section.querySelectorAll('.video-project')];
+    const aiLabPanels = [...section.querySelectorAll('.video-project--ai-lab-title, .video-project--ai-lab')];
+    const panels = [...section.querySelectorAll('.video-project')].filter(panel => !aiLabPanels.includes(panel));
+    const aiLabTitle = section.querySelector('.video-project--ai-lab-title .ai-lab-title-layout');
+    if (aiLabTitle) {
+        const titlePanel = aiLabTitle.closest('.video-project--ai-lab-title');
+        const titleHold = document.createElement('div');
+        titleHold.className = 'ai-lab-title-hold';
+        titlePanel.before(titleHold);
+        titleHold.append(titlePanel);
+    }
     panels[0].before(gallery);
     gallery.append(viewport);
     viewport.append(track);
     track.append(...panels);
-    gallery.style.setProperty('--video-gallery-height', `${(1 + panels.length * .7 + panels.length - 1) * 100}svh`);
+    // Keep the final (Pudding World) panel pinned for one viewport of scrolling.
+    gallery.style.setProperty('--video-gallery-height', `${(1 + Math.max(0, panels.length - 1) * 1.7 + 1) * 100}svh`);
+    const titleHold = aiLabTitle?.closest('.ai-lab-title-hold');
+    const titlePinned = matchMedia('(min-width: 901px)');
+    const titleReduced = matchMedia('(prefers-reduced-motion: reduce)');
+    let aiLabTitleObserver = null;
+    let titleFrame = 0;
+    const updateTitleInteraction = () => {
+        titleFrame = 0;
+        if (!aiLabTitle || !titleHold || !titlePinned.matches || titleReduced.matches) return;
+        const clamp = value => Math.max(0, Math.min(1, value));
+        const range = Math.max(1, titleHold.offsetHeight - window.innerHeight);
+        const holdTop = titleHold.getBoundingClientRect().top;
+        const progress = clamp(-holdTop / range);
+        titleHold.classList.toggle('ai-lab-title-hold--past', holdTop <= -range);
+        titleHold.style.setProperty('--ai-lab-pin-top', `${Math.max(0, holdTop)}px`);
+        // Finish the reveal early enough to keep the complete title pinned before details.
+        const eyebrow = clamp(progress / .24);
+        const title = clamp((progress - .08) / .32);
+        aiLabTitle.style.setProperty('--ai-lab-eyebrow-opacity', eyebrow);
+        aiLabTitle.style.setProperty('--ai-lab-eyebrow-clip', `${(1 - eyebrow) * 100}%`);
+        aiLabTitle.style.setProperty('--ai-lab-eyebrow-y', `${(1 - eyebrow) * 14}px`);
+        aiLabTitle.style.setProperty('--ai-lab-title-opacity', title);
+        aiLabTitle.style.setProperty('--ai-lab-title-clip', `${(1 - title) * 100}%`);
+        aiLabTitle.style.setProperty('--ai-lab-title-y', `${(1 - title) * 14}px`);
+    };
+    const scheduleTitleInteraction = () => {
+        if (titlePinned.matches && !titleReduced.matches && !titleFrame) titleFrame = requestAnimationFrame(updateTitleInteraction);
+    };
+    const clearTitleInteraction = () => {
+        ['--ai-lab-eyebrow-opacity', '--ai-lab-eyebrow-clip', '--ai-lab-eyebrow-y', '--ai-lab-title-opacity', '--ai-lab-title-clip', '--ai-lab-title-y']
+            .forEach(property => aiLabTitle?.style.removeProperty(property));
+    };
+    const configureTitleInteraction = () => {
+        if (!aiLabTitle) return;
+        aiLabTitleObserver?.disconnect();
+        aiLabTitleObserver = null;
+        aiLabTitle.classList.remove('ai-lab-title--pending', 'ai-lab-title--revealed', 'ai-lab-title--scrolling');
+        clearTitleInteraction();
+        if (titleReduced.matches) {
+            aiLabTitle.classList.add('ai-lab-title--revealed');
+        } else if (titlePinned.matches) {
+            aiLabTitle.classList.add('ai-lab-title--scrolling');
+            updateTitleInteraction();
+        } else if ('IntersectionObserver' in window) {
+            aiLabTitle.classList.add('ai-lab-title--pending');
+            aiLabTitleObserver = new IntersectionObserver(entries => {
+                if (!entries.some(entry => entry.isIntersecting && entry.intersectionRatio >= .2)) return;
+                aiLabTitle.classList.remove('ai-lab-title--pending');
+                aiLabTitle.classList.add('ai-lab-title--revealed');
+                aiLabTitleObserver.disconnect();
+            }, { threshold: [0, .2] });
+            aiLabTitleObserver.observe(aiLabTitle);
+        } else {
+            aiLabTitle.classList.add('ai-lab-title--revealed');
+        }
+    };
+    configureTitleInteraction();
+    titlePinned.addEventListener('change', configureTitleInteraction, options);
+    titleReduced.addEventListener('change', configureTitleInteraction, options);
+    window.addEventListener('scroll', scheduleTitleInteraction, { ...options, passive: true });
+    window.addEventListener('resize', scheduleTitleInteraction, options);
+    const mobileSwipe = matchMedia('(max-width: 640px)');
+    const updateMobileSwipe = () => {
+        gallery.classList.toggle('video-gallery--swipe', mobileSwipe.matches);
+        if (mobileSwipe.matches) {
+            viewport.setAttribute('role', 'region');
+            viewport.setAttribute('aria-label', '영상 프로젝트. 좌우로 밀어 콘텐츠를 확인하세요.');
+            viewport.tabIndex = 0;
+        } else {
+            viewport.removeAttribute('role');
+            viewport.removeAttribute('aria-label');
+            viewport.removeAttribute('tabindex');
+        }
+    };
+    updateMobileSwipe();
+    mobileSwipe.addEventListener('change', updateMobileSwipe, options);
     const items = [...section.querySelectorAll('.video-project-media')].map(media => ({
         media, video: media.querySelector('video'), hint: media.querySelector('.video-project-hint'),
     }));
@@ -25,7 +110,7 @@ export function initVideoProject() {
         frame.append(video);
     });
     const hover = matchMedia('(hover: hover) and (pointer: fine)');
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce), (max-width: 600px)');
     const fullscreenVideo = () => items.some(({ video }) => document.fullscreenElement === video);
     const updateControls = ({ media, video, hint }) => {
         video.controls = !hover.matches || media.matches(':hover, :focus-within') || document.fullscreenElement === video;
@@ -42,12 +127,12 @@ export function initVideoProject() {
             if (item.video.error) item.hint.textContent = '영상을 불러오지 못했습니다. 다시 눌러주세요';
         });
     };
-    const horizontal = matchMedia('(min-width: 801px) and (prefers-reduced-motion: no-preference)');
+    const visibleItems = new Set();
+    const horizontal = matchMedia('(min-width: 901px) and (prefers-reduced-motion: no-preference)');
     let frame = 0;
     let panelWidth = 0;
     let viewportHeight = 0;
     let activePanel = 0;
-    const visibleItems = new Set();
     const syncPlayback = item => {
         const index = panels.indexOf(item.media.closest('.video-project'));
         if (document.hidden || !visibleItems.has(item) || (horizontal.matches && activePanel !== index)) {
@@ -56,8 +141,7 @@ export function initVideoProject() {
     };
     const updateGallery = () => {
         frame = 0;
-        if (fullscreenVideo()) return;
-        if (!horizontal.matches) return;
+        if (fullscreenVideo() || !horizontal.matches || !viewportHeight) return;
         const scroll = -gallery.getBoundingClientRect().top;
         const timeline = Math.max(0, scroll / viewportHeight);
         let position = panels.length - 1;
@@ -70,7 +154,6 @@ export function initVideoProject() {
         const pixelRatio = devicePixelRatio || 1;
         const offset = Math.round(-position * panelWidth * pixelRatio) / pixelRatio;
         track.style.transform = `translateX(${offset}px)`;
-        // Release the animated GPU layer while the panel is held still.
         track.style.willChange = nextPanel < 0 ? 'transform' : 'auto';
         if (nextPanel !== activePanel) {
             items.forEach(stop);
@@ -131,6 +214,6 @@ export function initVideoProject() {
     }, options);
     window.addEventListener('pagehide', event => {
         items.forEach(stop);
-        if (!event.persisted) { observer.disconnect(); controller.abort(); cancelAnimationFrame(frame); }
+        if (!event.persisted) { observer.disconnect(); aiLabTitleObserver?.disconnect(); controller.abort(); cancelAnimationFrame(frame); cancelAnimationFrame(titleFrame); }
     }, options);
 }

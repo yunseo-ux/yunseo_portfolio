@@ -1,7 +1,7 @@
 export function initMockupVideos() {
     const videos = [...document.querySelectorAll('.project-mockup-video')];
     const visible = new Set();
-    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce)');
+    const reducedMotion = matchMedia('(prefers-reduced-motion: reduce), (max-width: 600px)');
     const update = () => videos.forEach(video => {
         video.muted = true;
         video.controls = reducedMotion.matches;

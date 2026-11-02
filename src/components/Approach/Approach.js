@@ -1,6 +1,6 @@
 export function initApproach() {
     const section = document.querySelector('.approach');
-    if (!section || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+    if (!section || window.matchMedia('(prefers-reduced-motion: reduce), (max-width: 600px)').matches) return;
     const cards = [...section.querySelectorAll('.approach-card')];
     cards.forEach((card, index) => {
         const sheet = card.querySelector('.approach-sheet');

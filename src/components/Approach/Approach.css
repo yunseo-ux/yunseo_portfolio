@@ -201,22 +201,22 @@
         overflow: hidden;
     }
     .approach-canvas {
-        left: 50%;
+        left: 0;
         width: 1920px;
         height: 3240px;
-        transform: translateX(-50%);
+        transform: none;
         scale: 0.52;
     }
     .approach-card--observe {
         top: 180px;
-        left: 668px;
+        left: calc(96.153846cqw - 292px);
     }
     .approach-card--explore {
         top: 1030px;
-        left: 704px;
+        left: calc(96.153846cqw - 255.5px);
     }
     .approach-card--create {
         top: 1880px;
-        left: 681px;
+        left: calc(96.153846cqw - 278.5px);
     }
 }

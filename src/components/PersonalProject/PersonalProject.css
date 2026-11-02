@@ -2,9 +2,52 @@
 .personal-slogan-scroll { height: calc(100svh + 2000px); }
 .personal-slogan-scroll > .personal-project-slogan { position: sticky; top: 0; display: flex; align-items: center; height: 100svh; }
 @media (prefers-reduced-motion: reduce) { .personal-slogan-scroll { height: auto; } .personal-slogan-scroll > .personal-project-slogan { position: relative; height: auto; } }
+@media (max-width: 640px) { .personal-slogan-scroll { height: auto; } .personal-slogan-scroll > .personal-project-slogan { position: relative; height: auto; } }
 .personal-project-slogan-canvas { position: relative; width: min(100%, 1920px); aspect-ratio: 1920 / 600; margin-inline: auto; font-family: 'Ownglyph PDH', sans-serif; }
 .personal-project-slogan h2, .personal-project-label { position: absolute; margin: 0; font-weight: 400; line-height: normal; white-space: nowrap; }
 .personal-project-slogan h2 { left: 49.140625%; top: 47.166667%; transform: translateX(-50%); font-size: min(5.208333cqw, 100px); color: #354858; }
 .personal-project-label { left: 43.90625%; top: 36.833333%; font-size: min(1.875cqw, 36px); color: #4f718d; }
 .personal-project-character { position: absolute; left: 73.020833%; top: 34%; width: 7.552083%; height: 31%; overflow: hidden; opacity: .85; transform: scaleX(-1); }
 .personal-project-character img { position: absolute; top: -12.93%; left: -31.12%; width: 157.34%; height: 121.87%; max-width: none; }
+
+@media (max-width: 640px) {
+    .personal-project-gallery { height: auto !important; }
+    .personal-project-gallery .personal-project-viewport {
+        position: relative;
+        top: auto;
+        height: auto;
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #c1ced7 transparent;
+        touch-action: pan-x pan-y;
+    }
+    .personal-project-gallery .personal-project-track {
+        display: flex;
+        width: max-content;
+        height: auto;
+        transform: none !important;
+        will-change: auto;
+    }
+    .personal-project-gallery .personal-project-track > * {
+        position: relative;
+        top: auto !important;
+        left: auto !important;
+        flex: 0 0 100vw !important;
+        width: 100vw !important;
+        min-width: 0;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+    .personal-project-gallery .personal-project-track > .personal-overview {
+        height: auto;
+        min-height: 56.25vw;
+    }
+    .personal-project-gallery .personal-project-track > .hanyul-panel {
+        height: 56.25vw;
+        min-height: 56.25vw;
+    }
+}

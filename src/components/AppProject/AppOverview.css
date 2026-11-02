@@ -47,7 +47,7 @@
 .app-overview--eco .app-overview-highlight--1 { left: 63.229167%; top: 49.722222%; width: 6.354167%; height: 3.055556%; background-image: url('./assets/eco-highlight.svg'); }
 .app-overview--eco .app-overview-highlight--2 { left: 67.916667%; top: 59.444444%; width: 6.354167%; height: 3.055556%; background-image: url('./assets/eco-highlight.svg'); }
 
-@media (max-width: 800px) {
+@media (max-width: 900px) {
  .app-gallery .app-gallery-track > .app-overview,
  .app-gallery .app-gallery-track > .app-detail {
   display: block;
@@ -81,11 +81,32 @@
   position: relative;
   inset: auto;
   flex: none;
-  width: 1920px;
-  height: 1080px;
+  width: 100%;
+  height: auto;
+  aspect-ratio: 1.8;
   margin: 0 auto 16px;
   transform: none;
-  zoom: var(--app-overview-mobile-scale, .28);
+  zoom: 1;
+ }
+ .app-gallery .app-overview-phone {
+  left: 0;
+  top: 2%;
+  width: 24%;
+  height: 94%;
+ }
+ .app-gallery .app-overview-screen {
+  top: 12%;
+  width: 24%;
+  height: 78%;
+ }
+ .app-gallery .app-overview-screen--1 { left: 25%; }
+ .app-gallery .app-overview-screen--2 { left: 49%; }
+ .app-gallery .app-overview-screen--3 { left: 73%; }
+ .app-gallery .app-overview-phone-shadow {
+  left: 2%;
+  top: 93%;
+  width: 25%;
+  height: 7%;
  }
  .app-gallery .app-overview-page {
   margin: 0 0 8px;

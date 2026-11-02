@@ -2,6 +2,7 @@
 .app-slogan-scroll { height: calc(100svh + 2000px); }
 .app-slogan-scroll > .app-project-slogan { position: sticky; top: 0; display: flex; align-items: center; height: 100svh; }
 @media (prefers-reduced-motion: reduce) { .app-slogan-scroll { height: auto; } .app-slogan-scroll > .app-project-slogan { position: relative; height: auto; } }
+@media (max-width: 900px) { .app-slogan-scroll { height: auto; } .app-slogan-scroll > .app-project-slogan { position: relative; height: auto; } }
 .app-project-canvas { position: relative; width: min(100%, 1920px); aspect-ratio: 1920 / 900; margin: auto; font-family: 'Ownglyph PDH', sans-serif; }
 .app-project-label, .app-project-canvas h2 { position: absolute; left: 49.973958%; margin: 0; transform: translateX(-50%); white-space: nowrap; font-weight: 400; line-height: normal; }
 .app-project-label { top: 52.602222%; color: #4f718d; font-size: min(1.875cqw, 36px); }

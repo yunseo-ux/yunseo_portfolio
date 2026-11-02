@@ -16,7 +16,7 @@
 .photo-rail-clip { position: absolute; max-width: none; transform: scaleX(-1); }
 .photo-rail-clip--back { z-index: 0; left: 119px; top: -48px; }
 .photo-rail-clip--front { z-index: 2; left: 120px; top: -52px; }
-@media (prefers-reduced-motion: reduce) {
+@media (prefers-reduced-motion: reduce), (max-width: 600px) {
     .photo-rail { height: 75svh; min-height: 470px; }
     .photo-rail-viewport { position: relative; height: 100%; overflow-x: auto; }
     .photo-rail-frame { will-change: auto; }

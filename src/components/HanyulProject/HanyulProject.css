@@ -33,3 +33,7 @@
  .personal-project-track > .hanyul-panel { min-height: max(450px, 56.25vw); }
  .hanyul-main-scroll { animation: none; }
 }
+@media (max-width: 640px) {
+ .personal-project-track > .hanyul-panel { left: auto; top: auto; }
+ .hanyul-main-scroll { animation: none; }
+}

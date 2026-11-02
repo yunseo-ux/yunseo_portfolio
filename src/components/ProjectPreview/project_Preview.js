@@ -27,7 +27,7 @@ export function initProjectPreview() {
             if (!target) return;
             event.preventDefault();
             history.pushState(null, '', link.hash);
-            if (target.closest('.personal-project-gallery') && !matchMedia('(prefers-reduced-motion: reduce)').matches) {
+            if (target.closest('.personal-project-gallery') && (!matchMedia('(prefers-reduced-motion: reduce)').matches || matchMedia('(max-width: 600px)').matches)) {
                 dispatchEvent(new CustomEvent('portfolio:project-navigate', { detail: { id: target.id } }));
             } else {
                 const destination = target.closest('.team-project-gallery') || target;

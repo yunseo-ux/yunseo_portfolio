@@ -3,7 +3,7 @@ export function initTeamProjectSlogan() {
 }
 
 function initSlogan(section) {
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce), (max-width: 640px)');
     if (!section || preference.matches) return;
     const wrapper = document.createElement('div');
     wrapper.className = 'team-slogan-scroll';

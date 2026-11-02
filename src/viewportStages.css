@@ -4,8 +4,7 @@
 @media (min-width: 801px) {
     /* Hash/focus navigation must not add native scrolling on top of the track transform. */
     .personal-project-viewport,
-    .app-gallery-viewport,
-    .video-gallery--pinned .video-gallery-viewport { overflow: clip; }
+    .app-gallery-viewport { overflow: clip; }
     .viewport-stage-slot--active {
         display: block;
         position: relative;
@@ -37,27 +36,5 @@
     }
     .viewport-stage-slot--active > .viewport-stage > .viewport-stage-content {
         left: var(--stage-content-left, 0px);
-    }
-    .viewport-stage-slot--active .video-project-layout.viewport-stage-content {
-        left: 160px;
-        width: 1600px;
-        gap: 115.2px;
-    }
-    .video-project--portrait .viewport-stage-slot--active .video-project-layout.viewport-stage-content {
-        left: 170px;
-    }
-    .video-project--landscape .viewport-stage-slot--active .video-project-layout.viewport-stage-content {
-        grid-template-columns: minmax(0, 1fr) minmax(0, 1.15fr);
-    }
-    .video-project--landscape .viewport-stage-slot--active .video-project-media {
-        width: 910px;
-        aspect-ratio: 850 / 496;
-        transform: translateX(-38px);
-    }
-    .video-project--landscape .viewport-stage-slot--active .video-project-copy {
-        transform: translateX(137.4px);
-    }
-    .video-project--portrait .viewport-stage-slot--active .video-project-media {
-        height: 585px;
     }
 }

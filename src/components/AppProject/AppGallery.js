@@ -12,15 +12,7 @@ export function initAppGallery() {
     const journeyPanel = track.querySelector('.today-journey');
     todayDetail.after(journeyPanel);
     const journey = initTodayJourney(journeyPanel);
-    if (matchMedia('(max-width: 800px)').matches) {
-        gallery.classList.add('app-gallery--mobile-layout');
-        const measureMobileAppVisuals = () => {
-            gallery.style.setProperty('--app-overview-mobile-scale', String(Math.min(1, Math.max(.18, (viewport.clientWidth - 48) / 1920))));
-        };
-        measureMobileAppVisuals();
-        window.addEventListener('resize', measureMobileAppVisuals, { passive: true });
-    }
-    if (matchMedia('(max-width: 640px)').matches) {
+    if (matchMedia('(max-width: 900px)').matches) {
         gallery.classList.add('app-gallery--vertical');
         viewport.setAttribute('role', 'region');
         viewport.setAttribute('aria-label', '앱 프로젝트 콘텐츠. 아래로 스크롤해 확인하세요.');

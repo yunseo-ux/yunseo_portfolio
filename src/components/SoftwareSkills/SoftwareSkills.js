@@ -1,6 +1,6 @@
 ﻿export function initSoftwareSkills() {
     const section = document.querySelector('.software-skills');
-    const reduced = matchMedia('(prefers-reduced-motion: reduce)');
+    const reduced = matchMedia('(prefers-reduced-motion: reduce), (max-width: 600px)');
     if (!section || reduced.matches) return;
     const heading = section.querySelector('.software-skills-heading');
     const headingHold = document.createElement('div');

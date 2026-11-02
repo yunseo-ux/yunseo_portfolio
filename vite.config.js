@@ -8,6 +8,22 @@ function expandSections(html) {
     );
 }
 
+function deferOffscreenImages(html) {
+    return html.replace(/<img\b[^>]*>/gi, tag => {
+        const criticalHeroAsset = /class=["'][^"']*\b(?:hero-pen-icon|hero-pen-line)\b[^"']*["']/.test(tag);
+        const loading = criticalHeroAsset ? 'eager' : 'lazy';
+        if (/\bloading=["'][^"']*["']/.test(tag)) {
+            tag = tag.replace(/\bloading=["'][^"']*["']/, `loading="${loading}"`);
+        } else {
+            tag = tag.replace(/\s*\/?>$/, end => ` loading="${loading}"${end}`);
+        }
+        if (!/\bdecoding=["'][^"']*["']/.test(tag)) {
+            tag = tag.replace(/\s*\/?>$/, end => ` decoding="async"${end}`);
+        }
+        return tag;
+    });
+}
+
 export default defineConfig({
     optimizeDeps: { entries: ['index.html'] },
     server: {
@@ -25,6 +41,9 @@ export default defineConfig({
                 response.end(readFileSync(resolve('public/ending/ending.js')));
             });
         },
-        transformIndexHtml: { order: 'pre', handler: expandSections },
+        transformIndexHtml: {
+            order: 'pre',
+            handler: html => deferOffscreenImages(expandSections(html)),
+        },
     }],
 });

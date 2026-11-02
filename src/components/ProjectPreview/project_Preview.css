@@ -74,3 +74,12 @@
     .project-preview-placeholder > span { font-size: 52px; }
     .project-preview-placeholder > p { font-size: 18px; }
 }
+@media (max-width: 600px) {
+    .project-preview-cards .project-preview-card {
+        width: min(88%, 440px);
+        margin-inline: auto;
+    }
+    .project-preview-card-caption { padding-top: 20px; }
+    .project-preview-card-number { font-size: 14px; letter-spacing: 1px; }
+    .project-preview-card-caption h3 { font-size: clamp(22px, 5vw, 28px); }
+}

@@ -57,6 +57,7 @@ html body .hero-menu li * {
     outline: 2px solid currentColor;
     outline-offset: 6px;
 }
+.hero-menu-toggle { display: none; }
 .hero-menu {
     display: flex;
     align-items: center;
@@ -243,7 +244,7 @@ html body .hero-menu li:focus-within > a {
 @media (prefers-reduced-motion: reduce) {
     .hero-ocean .hero-wave { will-change: auto; }
 }
-@media (max-width: 600px) {
+@media (max-width: 640px) {
     .portfolio-hero {
         aspect-ratio: auto;
         min-height: 100svh;
@@ -251,14 +252,63 @@ html body .hero-menu li:focus-within > a {
     .hero-header {
         padding: 28px 6% 0;
         flex-wrap: wrap;
-        gap: 24px;
+        justify-content: space-between;
+        align-items: center;
+        gap: 0 12px;
         font-size: 19px;
     }
+    .hero-brand { margin-right: auto; }
+    .hero-menu-toggle {
+        display: flex;
+        flex: 0 0 44px;
+        flex-direction: column;
+        align-items: center;
+        justify-content: center;
+        gap: 6px;
+        width: 44px;
+        height: 44px;
+        padding: 10px;
+        border: 1px solid rgb(53 72 88 / 30%);
+        border-radius: 50%;
+        color: inherit;
+        background: rgb(250 248 243 / 78%);
+        cursor: pointer;
+        -webkit-tap-highlight-color: transparent;
+    }
+    .hero-menu-toggle span {
+        display: block;
+        width: 19px;
+        height: 2px;
+        border-radius: 2px;
+        background: currentColor;
+        transition: transform 180ms ease, opacity 180ms ease;
+    }
+    .hero-menu-toggle[aria-expanded="true"] span:first-child { transform: translateY(8px) rotate(45deg); }
+    .hero-menu-toggle[aria-expanded="true"] span:nth-child(2) { opacity: 0; }
+    .hero-menu-toggle[aria-expanded="true"] span:last-child { transform: translateY(-8px) rotate(-45deg); }
+    .hero-header nav {
+        flex: 0 0 100%;
+        max-height: 0;
+        margin-top: 0;
+        overflow: hidden;
+        opacity: 0;
+        pointer-events: none;
+        transition: max-height 220ms ease, margin-top 220ms ease, opacity 180ms ease;
+    }
+    .hero-header.is-menu-open nav {
+        max-height: 100px;
+        margin-top: 12px;
+        opacity: 1;
+        pointer-events: auto;
+    }
     .hero-menu {
-        gap: 20px;
+        justify-content: space-between;
+        gap: 4px 12px;
         font-size: 17px;
         flex-wrap: wrap;
     }
+    .hero-menu > li { padding: 8px 0; margin: 0; }
+    .hero-menu a { padding: 8px 0; margin: 0; }
     .hero-intro {
         top: 36%;
     }

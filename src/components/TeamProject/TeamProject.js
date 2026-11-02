@@ -57,10 +57,14 @@ export function initTeamProject() {
     const viewport = gallery.querySelector('.team-project-viewport');
     const track = gallery.querySelector('.team-project-track');
     if (!viewport || !track) return;
-    if (matchMedia('(max-width: 640px)').matches) {
+    if (matchMedia('(max-width: 900px)').matches) {
         gallery.classList.add('team-project-gallery--swipe');
         const measureMobileProject = () => {
-            gallery.style.setProperty('--project-scale', String(Math.min(1, gallery.clientWidth / 1920)));
+            const scale = Math.min(1, Math.max(.2, (gallery.clientWidth - 48) / 914));
+            const visualWidth = 914 * scale;
+            gallery.style.setProperty('--team-project-visual-scale', String(scale));
+            gallery.style.setProperty('--team-project-phone-left', `${(gallery.clientWidth - 48 - visualWidth) / 2 + 690 * scale}px`);
+            gallery.style.setProperty('--team-project-phone-top', `${165 * scale}px`);
         };
         measureMobileProject();
         window.addEventListener('resize', measureMobileProject, { passive: true });

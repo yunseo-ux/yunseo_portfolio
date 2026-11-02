@@ -19,7 +19,7 @@ const targets = [
 ];
 
 export function initDrawingReveal() {
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce), (max-width: 600px)');
     if (preference.matches) return;
     const staticStart = document.querySelector('.personal-overview');
     const elements = [...document.querySelectorAll(targets.join(','))]

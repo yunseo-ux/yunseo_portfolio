@@ -16,7 +16,7 @@ export function initPhotoRail() {
     const stage = section.querySelector('.photo-rail-stage');
     const rope = section.querySelector('.photo-rail-rope');
     const holder = section.querySelector('.photo-rail-frames');
-    const preference = window.matchMedia('(prefers-reduced-motion: reduce)');
+    const preference = window.matchMedia('(prefers-reduced-motion: reduce), (max-width: 600px)');
     const caption = document.createElement('p');
     caption.className = 'photo-rail-caption';
     const messages = ['작은 순간에서 의미 있는 단서를 모읍니다.', '서로 다른 생각을 연결해 가능성을 넓힙니다.', '발견한 가능성을 실제 경험으로 구현합니다.'];

@@ -2,6 +2,42 @@
 .app-gallery-viewport { position: sticky; top: 0; height: 100svh; overflow: hidden; }
 .app-gallery-track { display: flex; height: 100%; will-change: transform; }
 .app-gallery-track > section { flex: 0 0 100%; min-width: 0; display: flex; align-items: center; }
+@media (max-width: 900px) {
+ .app-gallery--vertical { height: auto !important; }
+ .app-gallery--vertical .app-gallery-viewport {
+  position: relative;
+  height: auto;
+  overflow: visible;
+ }
+ .app-gallery--vertical .app-gallery-track {
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  transform: none !important;
+  will-change: auto;
+ }
+ .app-gallery--vertical .app-gallery-track > section {
+  position: relative;
+  top: auto;
+  left: auto;
+  flex: 0 0 auto;
+  width: 100%;
+  min-height: 56.25vw;
+  align-items: stretch;
+ }
+ .app-gallery.app-gallery--vertical .app-gallery-track > section {
+  padding-top: 88px;
+  box-sizing: border-box;
+ }
+ .app-gallery--vertical .today-journey-window {
+  height: calc(100svh - 64px);
+  overflow-x: auto;
+  overflow-y: hidden;
+  overscroll-behavior-x: contain;
+  -webkit-overflow-scrolling: touch;
+ }
+ .app-gallery--vertical .today-journey-canvas { top: 0; }
+}
 .app-intro-phone { position: absolute; width: 14.303958%; height: 53.159815%; padding: .494792%; border-radius: min(2.545781cqw, 49px); background: #020202; box-shadow: 0 0 0 min(.086302cqw, 1.657px) #999, inset 0 0 0 min(.172604cqw, 3.314px) #d2d2d2; }
 .app-intro-phone--today { left: 33.680208%; top: 15.185185%; }
 .app-intro-phone--eco { left: 52.013542%; top: 33.888889%; }
