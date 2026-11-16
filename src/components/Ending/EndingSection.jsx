@@ -130,14 +130,14 @@ export default function EndingSection() {
                             <g transform="translate(230 350) rotate(-18)"><g className="ending-resting-pencil"><image href={pencilImage} x="-5.7" y="-134.3" width="140" height="140" /></g></g>
                         </svg>
                         <span className="ending-star-slot">
-                            <span className="ending-star" tabIndex={0} role="img" aria-label="새로운 가능성을 상징하는 반짝이는 별">
+                            <a className="ending-star" href="/resume-oh-yunseo.pdf" target="_blank" rel="noopener noreferrer" aria-label="오윤서 이력서 PDF 새 창에서 열기">
                                 <span className="ending-star-artwork" data-node-id="428:4101">
                                     <svg className="ending-star-outline" viewBox="0 0 1024 973" aria-hidden="true">
                                         <path filter={`url(#${filterId})`} d="M838 433 Q859 438 842 453 L671 611 Q663 618 665 630 L706 844 Q711 869 690 857 L489 748 Q479 742 468 747 L246 846 Q222 857 228 831 L274 625 Q278 613 269 603 L120 440 Q102 420 128 416 L342 384 Q354 382 360 371 L474 185 Q487 161 499 187 L600 382 Q606 394 620 396 Z" />
                                     </svg>
                                     <img className="ending-star-color" src={starImage} alt="" aria-hidden="true" />
                                 </span>
-                            </span>
+                            </a>
                         </span>
                     </div>
                     <div className="ending-copy">

@@ -143,6 +143,255 @@
     .ai-lab-title-layout.ai-lab-title--revealed h2 { transform: translateY(0); }
 }
 
+/* University visual design projects reuse the AI project page rhythm and link motion. */
+.video-project--university-title {
+    padding: 0;
+    justify-content: center;
+}
+
+.video-project--university-title .university-title-layout {
+    gap: clamp(18px, 1.5cqw, 30px);
+}
+
+.video-project--brand-detail {
+    margin-top: 0;
+    padding: 0;
+}
+
+.brand-project-gallery { position: relative; background: #faf8f3; }
+.brand-project-viewport { width: 100%; overflow: visible; }
+.brand-project-track { display: block; }
+.brand-project-track > .video-project { width: 100%; min-width: 0; }
+
+.brand-project-content h2 {
+    font-family: 'Ownglyph PDH', sans-serif;
+    font-size: min(2.3958cqw, 46px);
+    line-height: 1.2;
+}
+
+.video-project--stella .ai-lab-main-image img {
+    position: absolute;
+    top: -9.04%;
+    left: 0;
+    width: 100%;
+    height: 114.33%;
+    max-width: none;
+    object-fit: fill;
+}
+
+.brand-project-links {
+    display: flex;
+    align-items: flex-start;
+    gap: 31px;
+    margin-top: .55cqw;
+}
+
+.brand-project-link {
+    flex: none;
+    margin: 0;
+    font-size: 18px;
+}
+
+.brand-project-link .team-project-pen {
+    width: 16.5px;
+    height: 20.7px;
+}
+
+.brand-project-link span,
+.brand-project-link .team-project-link-line {
+    left: 26px;
+}
+
+.brand-project-link .team-project-link-line {
+    top: 24.8px;
+    height: 6.3px;
+}
+
+.brand-project-link--proposal .team-project-link-line {
+    width: 83px;
+}
+
+.video-project--grujam .brand-project-link--proposal {
+    top: 8px;
+}
+
+.brand-project-link--manual {
+    width: 180px;
+}
+
+.brand-project-link--manual .team-project-link-line {
+    width: 140.5px;
+}
+
+.brand-project-meta,
+.brand-project-contributions {
+    position: relative;
+    margin-top: 1.25cqw;
+}
+
+.brand-project-meta {
+    margin-top: 3.65cqw;
+}
+
+.brand-project-meta h3,
+.brand-project-contributions h3 {
+    margin: 0 0 .35cqw;
+    color: #354858;
+    font-family: 'Ownglyph PDH', sans-serif;
+    font-size: min(1.04167cqw, 20px);
+    font-weight: 400;
+    line-height: 1.2;
+}
+
+.brand-project-meta p,
+.brand-project-contributions p,
+.brand-project-contribution-row {
+    margin: 0;
+    color: #4f718d;
+    font-family: 'Ownglyph Yuntaeng', sans-serif;
+    font-size: min(1.3021cqw, 25px);
+    line-height: 1.4;
+}
+
+.ai-lab-brief.brand-project-brief {
+    margin-top: 1.5cqw;
+}
+
+.ai-lab-brief .brand-project-secondary-brief {
+    margin-top: 2.1cqw;
+}
+
+.brand-project-contributions {
+    margin-top: 2.1cqw;
+}
+
+.brand-project-contribution-row {
+    display: grid;
+    grid-template-columns: repeat(3, max-content);
+    justify-content: start;
+    gap: clamp(48px, 7cqw, 110px);
+}
+
+.brand-project-highlight {
+    position: relative;
+    z-index: 0;
+    isolation: isolate;
+    white-space: nowrap;
+}
+
+.brand-project-highlight::before {
+    position: absolute;
+    z-index: -1;
+    inset: 50% -.12em auto;
+    height: 1.08em;
+    content: '';
+    transform: translateY(-50%);
+    background: url('./assets/brand-projects/highlight-grujam.svg') center / 100% 100% no-repeat;
+    pointer-events: none;
+}
+
+.brand-project-highlight--grujam::before {
+    background-image: url('./assets/brand-projects/highlight-grujam-2.svg');
+}
+
+.brand-project-highlight--stella::before {
+    background-image: url('./assets/brand-projects/highlight-stella.svg');
+}
+
+@media (min-width: 901px) {
+    .video-project--university-title .university-title-layout {
+        width: min(100%, 1920px);
+        height: auto;
+        aspect-ratio: 1920 / 720;
+        margin: auto;
+    }
+
+    .brand-project-content {
+        justify-content: flex-start;
+    }
+
+    .brand-project-gallery--pinned {
+        height: var(--brand-project-gallery-height, 370svh);
+    }
+    .brand-project-gallery--pinned .brand-project-viewport {
+        position: sticky;
+        top: 0;
+        height: 100svh;
+        overflow: hidden;
+    }
+    .brand-project-gallery--pinned .brand-project-track {
+        display: flex;
+        height: 100%;
+        will-change: transform;
+    }
+    .brand-project-gallery--pinned .brand-project-track > .video-project {
+        flex: 0 0 100%;
+        min-width: 0;
+        height: 100%;
+    }
+}
+
+@media (max-width: 900px) {
+    .video-project--university-title {
+        min-height: 70svh;
+        padding: 42px 7%;
+    }
+
+    .video-project--brand-detail {
+        min-height: auto;
+        padding: 72px 7% 80px;
+    }
+
+    .brand-project-content h2 {
+        font-size: clamp(25px, 6vw, 38px);
+        line-height: 1.3;
+    }
+
+    .brand-project-links { gap: 18px; margin-top: 0; }
+    .brand-project-link { font-size: 16px; }
+    .brand-project-meta,
+    .brand-project-brief,
+    .brand-project-contributions { margin-top: 0; }
+    .brand-project-meta h3,
+    .brand-project-contributions h3 { margin-bottom: 6px; font-size: 17px; }
+    .brand-project-meta p,
+    .brand-project-contributions p,
+    .brand-project-contribution-row { font-size: 18px; line-height: 1.55; }
+    .brand-project-contribution-row { grid-template-columns: 1fr; gap: 4px; }
+    .brand-project-desktop-break { display: none; }
+}
+
+@media (max-width: 640px) {
+    .brand-project-gallery--swipe .brand-project-viewport {
+        height: auto;
+        overflow-x: auto;
+        overflow-y: hidden;
+        overscroll-behavior-x: contain;
+        scroll-snap-type: x mandatory;
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: thin;
+        scrollbar-color: #c1ced7 transparent;
+        touch-action: pan-x pan-y;
+    }
+    .brand-project-gallery--swipe .brand-project-track {
+        display: flex;
+        width: max-content;
+        height: auto;
+        transform: none !important;
+        will-change: auto;
+    }
+    .brand-project-gallery--swipe .brand-project-track > .video-project {
+        flex: 0 0 100vw;
+        width: 100vw;
+        min-height: 0;
+        height: auto;
+        padding: 56px 7% 54px;
+        box-sizing: border-box;
+        scroll-snap-align: start;
+        scroll-snap-stop: always;
+    }
+}
+
 @media (prefers-reduced-motion: reduce) {
     .ai-lab-title-layout.ai-lab-title--pending .ai-lab-eyebrow,
     .ai-lab-title-layout.ai-lab-title--pending h2 {

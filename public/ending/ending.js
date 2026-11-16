@@ -12100,11 +12100,12 @@ function sc() {
 						]
 					}), /* @__PURE__ */ (0, ic.jsx)("span", {
 						className: "ending-star-slot",
-						children: /* @__PURE__ */ (0, ic.jsx)("span", {
+						children: /* @__PURE__ */ (0, ic.jsx)("a", {
 							className: "ending-star",
-							tabIndex: 0,
-							role: "img",
-							"aria-label": "새로운 가능성을 상징하는 반짝이는 별",
+							href: "/resume-oh-yunseo.pdf",
+							target: "_blank",
+							rel: "noopener noreferrer",
+							"aria-label": "오윤서 이력서 PDF 새 창에서 열기",
 							children: /* @__PURE__ */ (0, ic.jsxs)("span", {
 								className: "ending-star-artwork",
 								"data-node-id": "428:4101",

@@ -26,6 +26,8 @@ dl, dd { margin: 0; }
 .profile-facts .wide { grid-column: 1 / -1; }
 dt { color: #667987; font-size: 13px; }
 .resume-section { margin-top: 42px; }
+.resume-section > p { margin: 0 0 12px; }
+.resume-section > h3 { margin: 0 0 10px; color: #354858; }
 h2 { margin: 0 0 17px; padding-bottom: 9px; border-bottom: 2px solid var(--accent); font-size: 21px; font-weight: 700; }
 h3 { font-size: 17px; line-height: 1.6; }
 .table-wrap { width: 100%; }
@@ -36,6 +38,7 @@ th { background: #f1f5f7; color: #425d70; font-size: 13px; font-weight: 600; }
 td p, dd p { margin: 0; }
 td p + p, dd p + p { margin-top: 7px; }
 .project { border: 1px solid var(--rule); margin-top: 17px; }
+.project > p { margin: 0; padding: 12px 16px; }
 .project h3 { margin: 0; padding: 12px 16px; background: #f1f5f7; color: #354858; }
 .project dl > div { display: grid; grid-template-columns: 124px 1fr; gap: 16px; padding: 12px 16px; border-top: 1px solid var(--rule); }
 .essay { margin-top: 28px; }
